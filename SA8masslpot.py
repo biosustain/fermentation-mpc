@@ -127,8 +127,6 @@ def display_content(val):
             ],
                 style={'width': '25%', 'display': 'inline-block'}),
 
-            html.Div([],style={'width': '5%', 'display': 'inline-block'}), # Space between
-
             html.Div([
                 dcc.Dropdown(
                     id='choose-substrates',
