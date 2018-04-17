@@ -27,8 +27,6 @@ df, available_indicators = stack_data(df1)
 mass_sheet, available_indicatorsMASS = data_to_mass(df1)
 
 
-
-
 # The actual application starts here
 
 app = dash.Dash()
