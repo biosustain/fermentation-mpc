@@ -4,8 +4,8 @@ import dash_html_components as html
 import plotly.graph_objs as go
 import pandas as pd
 
-from functions import data_to_mass
-from functions import stack_data
+from functions_fermentation_tool import data_to_mass
+from functions_fermentation_tool import stack_data
 
 from dash.dependencies import Input, Output
 from loremipsum import get_sentences
@@ -43,7 +43,7 @@ app.layout = html.Div([
                     {'label': 'Balancing Region', 'value': 2},
                     {'label': 'Mass Plot', 'value': 3}
                 ],
-                value=1,  # Sets the default value (maybe not neccesary)
+                value=1,  # Sets the default value
                 id='tabs',
                 vertical=vertical,
                 style={
@@ -75,7 +75,6 @@ def display_content(val):
                     dcc.Dropdown(
                         id='crossfilter-xaxis-columnMASS',
                         options=[{'label': i, 'value': i} for i in available_indicatorsMASS],
-                        # label Makes the different options from the dataframe appear, and value can change to another
                         placeholder="Select the x-axis",
                         value = 'Time (hours)'),
                 ],
@@ -85,7 +84,6 @@ def display_content(val):
                     dcc.Dropdown(
                         id='crossfilter-yaxis-columnMASS',
                         options=[{'label': i, 'value': i} for i in available_indicatorsMASS],
-                        # value can later be defined in function - if false then just a string - if true then the value correspons to this in the option
                         placeholder="Select the y-axis",
                         value = 'Glucose (g)')
                 ],
@@ -122,7 +120,6 @@ def display_content(val):
                 dcc.Dropdown(
                     id='choose-substrates',
                     options=[{'label': i, 'value': i} for i in available_indicators],
-                    # value can later be defined in function - if false then just a string - if true then the value correspons to this in the option
                     placeholder="Select the substrates",
                     multi=True),
                 html.Div(id='output-substrates'),
@@ -146,7 +143,6 @@ def display_content(val):
                     dcc.Dropdown(
                         id='crossfilter-xaxis-column',
                         options=[{'label': i, 'value': i} for i in available_indicators],
-                        # label Makes the different options from the dataframe appear, and value can change to another
                         placeholder="Select the x-axis",
                         value='Time (hours)'),
                 ],
@@ -156,7 +152,6 @@ def display_content(val):
                     dcc.Dropdown(
                         id='crossfilter-yaxis-column',
                         options=[{'label': i, 'value': i} for i in available_indicators],
-                        # value can later be defined in function - if false then just a string - if true then the value correspons to this in the option
                         placeholder="Select the y-axis",
                         value='Glucose ( g/L)'),
                 ],
