@@ -23,20 +23,21 @@ class SpecialDict(dict):
 Modelfermentation = '''
 model *IDModel()
 
-    # Set the compartment to 1, otherwise it will be multiplied by the compounds. 
+    ######## Set the compartment to 1, otherwise it will be multiplied by the compounds. 
     compartment comp1;
     comp1 =1;
     
-    
-    ### Specify the species in the compartment
+    ######## Specify the species in the compartment
     Glucose in comp1; Serine in comp1; Biomass in comp1;
     
-
-    ### Constants
-    rho_liq = 995.67; # [kg/m^3]     The density in the broth (which is used in the equations)
+    ######## Constants
     alpha = 24.68070389; # Check units
     beta = 67.30468128; # Check units
     V0 = 0.00010428; #[m^3]
+    
+
+    ### Constants
+
     
     
     # Function for volume
