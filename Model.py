@@ -22,7 +22,7 @@ from scipy.optimize import differential_evolution as diff_evol
 Modelfermentation = '''
 model *IDModel()
 
-    # Set the compartment to 1, otherwise it will be multiplied by the compounds. And therefore works only if the equations are in concentrations
+    # Set the compartment to 1, otherwise it will be multiplied by the compounds. 
     compartment comp1;
     comp1 =1;
     #V = 0.0001; # [m^3] # DEN SKAL FAKTISK VÆRE 0.0001
@@ -34,14 +34,18 @@ model *IDModel()
 
     Glucose in comp1; Serine in comp1; Biomass in comp1;
     
-    # Function for volume
-    V := -1.2121*time + 104.28
+
     
     
     ### Constants
     rho_liq = 995.67; # [kg/m^3]     The density in the broth (which is used in the equations)
     alpha = 7.37051053e+01; # Check units
     beta = 77.701061; # Check units
+    V0 = 0.00010302999999999999; [m^3]
+    
+    
+    # Function for volume
+    V := V0-(0.00000121*time)
     
     
     ### Initial values for concentrations of compounds
