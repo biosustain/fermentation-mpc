@@ -27,84 +27,46 @@ model *IDModel()
     compartment comp1;
     comp1 =1;
     
+    
     ######## Specify the species in the compartment
     Glucose in comp1; Serine in comp1; Biomass in comp1;
+    
     
     ######## Constants
     alpha = 24.68070389; # Check units
     beta = 67.30468128; # Check units
+    mu_max = 0.26017167; # [1/h]
+    Kc = 1.0522095; # [mol/kg] # Kc? 
+    a = -0.2572;
+    b = -0.7651;
+    ms = -0.0046; 
+    
+    
+    ######## Initial conditions
+    Glucose = 8.254856e-06 # [mol] 
+    Serine = 0 #c_serine0*comp1 # [mol]
+    Biomass = 5.538306e-07 # [mol]
     V0 = 0.00010428; #[m^3]
     
-
-    ### Constants
-
     
-    
-    # Function for volume
+    ######## Functions
     V := 0.00010302999999999999-(0.00000121*time) #[m^3]
+    mu := mu_max*(c_glucose/((Kc*c_biomass)+c_glucose)) # [1/h]
+    qp_s := alpha*mu/(beta+mu) # [mol_serine/(mol_biomass*h)]
+    qs_g := a*mu + b*qp_s + ms 
+    rp_s := qp_s*Biomass # [mol/h] 
+    r_s := qs_g*Biomass # [mol/h]
     
 
-    
-    
-    ### Initial conditions for mass
-    Glucose = 8.254856e-06  #c_glucose0*comp1 # [mol] #Should it be the volume of the filtrate?
-    Serine = 0 #c_serine0*comp1 # [mol]
-    Biomass = 5.538306e-07 #c_biomass0*comp1 # [mol]
-    
-    
-    ### Concentrations that is used in the equations
+    ######## Concentrations that is used in the equations
     c_glucose := Glucose/V  # [mol/m^3]
     c_biomass := Biomass/V # [mol/m^3] 
     
     
-    
-    # Function for growthrate
-    mu_max = 0.26017167; # [1/h]
-    Kc = 1.0522095; # [mol/kg] # Kc? 
-    mu := mu_max*(c_glucose/((Kc*c_biomass)+c_glucose)) # [1/h]
-    
-    
-
-    
-    ### Biomass mass balance
-    
-    EqB: -> Biomass; mu*Biomass # [c-mol/h]
-    
-    
-    ### Products mass balance
-    
-    # Serine
-
-    # qp rate (for serine)
-    qp_s := alpha*mu/(beta+mu) # [mol_serine/(mol_biomass*h)]    
-
-    
-    # r_s 
-    rp_s := qp_s*Biomass # [mol/h]
-
-    EqS: -> Serine; rp_s
-
-
-    ### Substrate mass balance
-    
-    # Glucose
-
-    # qs_g for glucose
-    a = -0.2572;
-    b = -0.7651;
-    ms = -0.0046; 
-    qs_g := a*mu + b*qp_s + ms 
-    
-    
-    
-    # r_s
-    r_s := qs_g*Biomass # [mol/h]
-    
-    EqG: -> Glucose; r_s # [mol/h]
-
-
-
- 
+    ######## Mass Balances    
+    EqBiomass: -> Biomass; mu*Biomass # [c-mol/h]
+    EqSerine: -> Serine; rp_s
+    EqGlucose: -> Glucose; r_s # [mol/h]
 
 
 
