@@ -25,18 +25,12 @@ model *IDModel()
     # Set the compartment to 1, otherwise it will be multiplied by the compounds. 
     compartment comp1;
     comp1 =1;
-    #V = 0.0001; # [m^3] # DEN SKAL FAKTISK VÆRE 0.0001
-    #F = 0.05;
-    #comp1' = 1;
     
     
     ### Specify the species in the compartment
-
     Glucose in comp1; Serine in comp1; Biomass in comp1;
     
 
-    
-    
     ### Constants
     rho_liq = 995.67; # [kg/m^3]     The density in the broth (which is used in the equations)
     alpha = 7.37051053e+01; # Check units
@@ -45,7 +39,7 @@ model *IDModel()
     
     
     # Function for volume
-    V := V0-(0.00000121*time)
+    V := V0-(0.00000121*time) [m^3]
     
     
     ### Initial values for concentrations of compounds
@@ -62,13 +56,15 @@ model *IDModel()
     
     
     ### Concentrations that is used in the equations
-    c_glucose := Glucose/M_liq  # [mol/kg]
+    c_glucose := Glucose/V  # [mol/m^3]
+    c_biomass := Biomass/V # [mol/m^3] 
+    
     
     
     # Function for growthrate
     mu_max = 8.90895344e+01; # [1/h]
-    Ks = 3.20697831e-02; # [mol/kg]
-    mu := mu_max*(c_glucose/(Ks+c_glucose)) # [1/h]
+    Kc = 3.20697831e-02; # [mol/kg] # Kc? 
+    mu := mu_max*(c_glucose/((Kc*c_biomass)+c_glucose)) # [1/h]
     
     
 
@@ -83,9 +79,8 @@ model *IDModel()
     # Serine
 
     # qp rate (for serine)
-    #qp_s := alpha*mu/(beta+mu) # [mol_serine/(mol_biomass*h)]    
-    gamma = 65.688896;
-    qp_s := alpha*mu/(beta+mu+gamma*mu^2) # [mol_serine/(mol_biomass*h)]
+    qp_s := alpha*mu/(beta+mu) # [mol_serine/(mol_biomass*h)]    
+
     
     # r_s 
     rp_s := qp_s*Biomass # [mol/h]
