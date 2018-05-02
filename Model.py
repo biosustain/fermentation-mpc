@@ -2,6 +2,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import tellurium as te
 from scipy.optimize import differential_evolution as diff_evol
+#from functions_model import convert_data_to_moles
+from functions_model import parameter_estimation
 #te.setDefaultPlottingEngine("matplotlib")
 
 # The following relevant for the estimation parameters with tellurium
@@ -11,12 +13,8 @@ class SpecialDict(dict):
         return list(super().values())
 
 
-
-
-
-
 # The model starts here:
-# It contains the substrates glucose and the products serine and biomass as solids in g/L
+# It contains the substrates glucose and the products serine and biomass as solids
 # It consists of the mass balancing equations
 # Units are given in comments in square brackets []
 # The initial conditions are found from the experiment
@@ -49,19 +47,20 @@ model *IDModel()
     V0 = 0.00010428; #[m^3]
     
     
-    ######## Functions
+    ######## Function for volume
     V := 0.00010302999999999999-(0.00000121*time) #[m^3]
+    
+    ######## Concentrations that is used in the equations
+    c_glucose := Glucose/V  # [mol/m^3]
+    c_biomass := Biomass/V # [mol/m^3] 
+    
+    ######## Functions
     mu := mu_max*(c_glucose/((Kc*c_biomass)+c_glucose)) # [1/h]
     qp_s := alpha*mu/(beta+mu) # [mol_serine/(mol_biomass*h)]
     qs_g := a*mu + b*qp_s + ms 
     rp_s := qp_s*Biomass # [mol/h] 
     r_s := qs_g*Biomass # [mol/h]
-    
 
-    ######## Concentrations that is used in the equations
-    c_glucose := Glucose/V  # [mol/m^3]
-    c_biomass := Biomass/V # [mol/m^3] 
-    
     
     ######## Mass Balances    
     EqBiomass: -> Biomass; mu*Biomass # [c-mol/h]
@@ -75,7 +74,6 @@ model *IDModel()
 r = te.loada(Modelfermentation)
 
 # We can set the lists so it has the same order as the data
-# if we need to for the parameter estimation:
 # r.timeCourseSelections = ['time', 'comp1', 'Glucose','Acetate','Biomass']
 
 # Time interval must mach the exact value from the experiment
@@ -83,25 +81,25 @@ results = r.simulate(2, 23.5, 100)
 print(results)
 
 
-
-
 #function for data and we need to convert the data to mol, because the units of the compounds is now in g/L.
-#Start by multiplying the volume with L, (it actually should be the volume of the filtrate)
-#Then g, Therefore divide with g/mol = mol..
+#file = 'C002_R2_overview.xlsm'
+#Experimental_data = pd.ExcelFile(file)
+#Compounds_in_mol = convert_data_to_moles(Experimental_data)
+#print(Compounds_in_mol)
 
-file = 'C002_R2_overview.xlsm'
-Experimental_data = pd.ExcelFile(file)
-Experimental_data = Experimental_data.parse('Off line measurements')
-print(Experimental_data)
+# The data are in mmol
+Data_sent = pd.read_csv("SER522_COO2_R2_moles.csv")
+print(Data_sent)
+# # Drop the columns with NaN
+Data_sent.dropna(inplace=True)
+Data_sent.reset_index(inplace=True, drop=True)
+Data_sent = Data_sent.reindex(columns=['time', 'VC_GLU', 'VC_SER', 'VC_X'])
 
-Compounds_in_concentration = Experimental_data.reindex(columns=['Time (hours)', 'Glucose ( g/L)', 'Serine (g/L)', 'Biomass (g/L)','Volume(mL)'])
+Time = (Data_sent['time'])
+Glucose_mol = (Data_sent['VC_GLU'] / 1000)
+Serine_mol = (Data_sent['VC_SER'] / 1000)
+Biomass_cmol = (Data_sent['VC_X'] /1000)
 
-# Get the compounds in mol and biomass in cmol
-Volume = (Compounds_in_concentration['Volume(mL)'])*0.000001
-Glucose_mol = (Compounds_in_concentration['Glucose ( g/L)']/180)*Volume
-Serine_mol = (Compounds_in_concentration['Serine (g/L)']/105.09)*Volume
-Biomass_cmol = (Compounds_in_concentration['Biomass (g/L)']/24.6)*Volume
-Time = (Compounds_in_concentration['Time (hours)'])
 
 Compounds_in_mol = pd.DataFrame(
     {'Time [hours]': Time,
@@ -109,71 +107,26 @@ Compounds_in_mol = pd.DataFrame(
      'Serine [mol]': Serine_mol,
      'Glucose [mol]': Glucose_mol
      })
-Compounds_in_mol = Compounds_in_mol.reindex(columns=['Time [hours]', 'Glucose [mol]', 'Serine [mol]', 'Biomass [c-mol]'])
-# Good parameters : [ 32.16527919  87.06608832   0.91095026   0.25020637]
+Compounds_in_mol = Compounds_in_mol.reindex(
+    columns=['Time [hours]', 'Glucose [mol]', 'Serine [mol]', 'Biomass [c-mol]'])
 
 
-
-# If we have other initial values given:
-#Compounds_in_mol.loc[-1] = ['0', '0.1', '1e-06', '0.0001']
-#Compounds_in_mol.index = Compounds_in_mol.index + 1
-#Compounds_in_mol.sort_index(inplace=True)
-
-
-# # Drop the columns with NaN
-Compounds_in_mol.dropna(inplace=True)
-Compounds_in_mol.reset_index(inplace=True, drop=True)
 print(Compounds_in_mol)
-
 Compounds_in_mol.to_csv("Data_to_estimate_from.csv", index=False)
-Data = pd.read_csv("Data_to_estimate_from.csv")
-print(Data)
 
 
 
-# # plt.scatter(ExperimentalData['Time (hours)'], ExperimentalData['Serine (g/L)'])
-# # plt.show()
-#
-#
-#
-#
-# # We can export it to SBML and then load it in Copasi
-# # to check the model or work with the model in Copasi
-# # r.exportToSBML("TheBalanceEquations.xml")
-#
-#
-# # The parameter estimation start here:
-#
-#
-# #MassData = pd.read_csv("Data_to_estimate_from.csv")
+# Parameter estimation:
+Parameters = parameter_estimation(Modelfermentation)
+print(Parameters)
 
-stochastic_simulation_model = te.StochasticSimulationModel(model=Modelfermentation,
-                seed=1234, # not used
-                variable_step_size = False,
-                from_time=2,
-                to_time=23.5,
-                step_points=10)
-stochastic_simulation_model.integrator = "gillespie"
-
-bounds = SpecialDict([("alpha",(0.0, 100.0)),
-                      ("beta", (0.0, 100.0)),
-                      ("Kc", (0.0, 100.0)),
-                      ("mu_max", (0.0, 100.0))]) # ("gamma", (0.0, 100.0))
+#Data_from_program = pd.read_csv("Data_to_estimate_from.csv")
+#print(Data_from_program)
 
 
-parameter_est = te.ParameterEstimation(stochastic_simulation_model,bounds)
-path = "/Users/s144510/Documents/FermentationTool/"
-parameter_est.setDataFromFile(path+"Data_to_estimate_from.csv", delimiter=",", headers=True)
-print(parameter_est.run(diff_evol))
-#
-#
-#
-#
-#
-# # #
-# # #
-# # # # Plot of the results from the model and the experimental data
-# # When plotting it could be multiplied by 1000 to get mmol
+
+# Plot of the results from the model and the experimental data
+# When plotting it could be multiplied by 1000 to get mmol
 plt.figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
 
 plt.subplot(3, 2, 1)
