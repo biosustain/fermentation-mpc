@@ -81,15 +81,27 @@ print(results)
 
 
 #function for data and we need to convert the data to mol, because the units of the compounds is now in g/L.
-file = 'C002_R2_overview.xlsm'
-experimental_data = pd.ExcelFile(file)
-compounds_in_mol = convert_data_to_moles(experimental_data)
-print(compounds_in_mol)
+#file = 'C002_R2_overview.xlsm'
+#experimental_data = pd.ExcelFile(file)
+#compounds_in_mol,vol = convert_data_to_moles(experimental_data)
+#print(compounds_in_mol)
 
+#Experimental data
+file = 'R2_data_in_moles.xlsx'
+experimental_data = pd.ExcelFile(file)
+experimental_data = experimental_data.parse('Sheet1')
+
+experimental_data.dropna(inplace=True)
+experimental_data.reset_index(inplace=True, drop=True)
+experimental_data.to_csv("Data_to_estimate_from.csv", index=False)
+experimental_data = experimental_data.reindex(
+    columns=['Time (hours)', 'mol-Glucose', 'mol-Serine', 'C-mol-Biomass'])
+
+print(experimental_data)
 
 # Parameter estimation:
-parameters = parameter_estimation(modelfermentation)
-print(parameters)
+#parameters = parameter_estimation(modelfermentation)
+#print(parameters)
 
 #Data_from_program = pd.read_csv("Data_to_estimate_from.csv")
 #print(Data_from_program)
@@ -97,25 +109,25 @@ print(parameters)
 
 # Plot of the results from the model and the experimental data
 # When plotting it could be multiplied by 1000 to get mmol
-plt.figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
-
-plt.subplot(3, 2, 1)
-plt.plot(results[:, 0], (results[:, 3]))
-plt.scatter(compounds_in_mol['Time [hours]'], compounds_in_mol['Biomass [c-mol]'])
-plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
-
-plt.subplot(2, 2, 2)
-plt.plot(results[:, 0], results[:, 2])
-plt.scatter(compounds_in_mol['Time [hours]'], compounds_in_mol['Serine [mol]'])
-plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
-
-plt.subplot(2, 2, 3)
-plt.plot(results[:, 0], results[:, 1])
-plt.scatter(compounds_in_mol['Time [hours]'], compounds_in_mol['Glucose [mol]'])
-plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
-
-
-plt.show()
+# plt.figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
+#
+# plt.subplot(3, 2, 1)
+# plt.plot(results[:, 0], (results[:, 3]))
+# plt.scatter(compounds_in_mol['Time [hours]'], compounds_in_mol['Biomass [c-mol]'])
+# plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
+#
+# plt.subplot(2, 2, 2)
+# plt.plot(results[:, 0], results[:, 2])
+# plt.scatter(compounds_in_mol['Time [hours]'], compounds_in_mol['Serine [mol]'])
+# plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
+#
+# plt.subplot(2, 2, 3)
+# plt.plot(results[:, 0], results[:, 1])
+# plt.scatter(compounds_in_mol['Time [hours]'], compounds_in_mol['Glucose [mol]'])
+# plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
+#
+#
+# plt.show()
 
 
 

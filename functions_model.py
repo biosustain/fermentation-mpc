@@ -41,7 +41,7 @@ def convert_data_to_moles(experimental_data):
     compounds_in_mol.to_csv("Data_to_estimate_from.csv", index=False)
     return compounds_in_mol
 
-
+# Parameters to estimate could also be a, b and ms.
 def parameter_estimation(modelfermentation):
     stochastic_simulation_model = te.StochasticSimulationModel(model=modelfermentation,
                                                                seed=1234,  # not used
