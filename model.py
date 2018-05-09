@@ -1,7 +1,6 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import tellurium as te
-from scipy.optimize import differential_evolution as diff_evol
 from functions_model import convert_data_to_moles
 from functions_model import parameter_estimation
 #te.setDefaultPlottingEngine("matplotlib")
