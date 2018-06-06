@@ -32,10 +32,10 @@ model *IDModel()
     
     
     ######## Constants
-    alpha = 24.68070389; # Check units
-    beta = 67.30468128; # Check units
-    mu_max = 0.26017167; # [1/h]
-    kc = 1.0522095; # [mol/kg] # Kc? 
+    alpha = 24.6807; # Check units
+    beta = 67.3047; # Check units
+    mu_max = 0.260172; # [1/h]
+    kc = 1.05221; # [mol/kg] # Kc? 
     a = -0.2572;
     b = -0.7651;
     ms = -0.0046; 
@@ -134,16 +134,19 @@ plt.figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
 plt.subplot(3, 2, 1)
 plt.plot(results[:, 0], (results[:, 3]*1000))
 plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
+plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
 plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
 
 plt.subplot(2, 2, 2)
 plt.plot(results[:, 0], results[:, 2]*1000)
 plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
+plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
 plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
 
 plt.subplot(2, 2, 3)
 plt.plot(results[:, 0], results[:, 1]*1000)
 plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
+plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
 plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
 
 
