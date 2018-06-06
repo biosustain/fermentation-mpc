@@ -92,7 +92,7 @@ r.exportToSBML("SerineModel.xml")
 
 
 
-#Experimental data
+#Experimental dataset 1
 file = 'R2_data_in_moles.xlsx'
 experimental_data = pd.ExcelFile(file)
 experimental_data = experimental_data.parse('Sheet1')
@@ -104,6 +104,20 @@ experimental_data = experimental_data.reindex(
     columns=['Time (hours)', 'mol-Glucose', 'mol-Serine', 'C-mol-Biomass'])
 
 print(experimental_data)
+
+#Experimental dataset 2
+file2 = 'R1_data_in_moles.xlsx'
+experimental_data2 = pd.ExcelFile(file2)
+experimental_data2 = experimental_data2.parse('R1_data_in_moles')
+
+experimental_data2.dropna(inplace=True)
+experimental_data2.reset_index(inplace=True, drop=True)
+experimental_data2.to_csv("Data_to_estimate_from.csv", index=False)
+experimental_data2 = experimental_data2.reindex(
+    columns=['Time (hours)', 'mol-Glucose', 'mol-Serine', 'C-mol-Biomass'])
+
+print(experimental_data)
+
 
 # Parameter estimation:
 #parameters = parameter_estimation(modelfermentation)
