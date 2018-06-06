@@ -1,4 +1,6 @@
 import pandas as pd
+import matplotlib
+matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import tellurium as te
 from functions_model import convert_data_to_moles
@@ -55,8 +57,8 @@ model *IDModel()
     
     ######## Functions
     mu := mu_max*(c_glucose/((kc*c_biomass)+c_glucose)) # [1/h]
-    qp_s := alpha*mu/(beta+mu) # [mol_serine/(mol_biomass*h)]
-    qs_g := a*mu + b*qp_s + ms 
+    qp_s := alpha*mu/(beta+mu) # [mol_serine/(c-mol_biomass*h)]
+    qs_g := a*mu + b*qp_s + ms #[mol_glucose/(c-mol_biomass*h)]
     rp_s := qp_s*biomass # [mol/h] 
     r_s := qs_g*biomass # [mol/h]
 
@@ -80,11 +82,15 @@ results = r.simulate(2, 23.5, 100)
 print(results)
 
 
+r.exportToSBML("SerineModel.xml")
+
 #function for data and we need to convert the data to mol, because the units of the compounds is now in g/L.
 #file = 'C002_R2_overview.xlsm'
 #experimental_data = pd.ExcelFile(file)
 #compounds_in_mol,vol = convert_data_to_moles(experimental_data)
 #print(compounds_in_mol)
+
+
 
 #Experimental data
 file = 'R2_data_in_moles.xlsx'
@@ -109,25 +115,26 @@ print(experimental_data)
 
 # Plot of the results from the model and the experimental data
 # When plotting it could be multiplied by 1000 to get mmol
-# plt.figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
-#
-# plt.subplot(3, 2, 1)
-# plt.plot(results[:, 0], (results[:, 3]))
-# plt.scatter(compounds_in_mol['Time [hours]'], compounds_in_mol['Biomass [c-mol]'])
-# plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
-#
-# plt.subplot(2, 2, 2)
-# plt.plot(results[:, 0], results[:, 2])
-# plt.scatter(compounds_in_mol['Time [hours]'], compounds_in_mol['Serine [mol]'])
-# plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
-#
-# plt.subplot(2, 2, 3)
-# plt.plot(results[:, 0], results[:, 1])
-# plt.scatter(compounds_in_mol['Time [hours]'], compounds_in_mol['Glucose [mol]'])
-# plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
-#
-#
-# plt.show()
+plt.figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
+
+plt.subplot(3, 2, 1)
+plt.plot(results[:, 0], (results[:, 3]*1000))
+plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
+plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
+
+plt.subplot(2, 2, 2)
+plt.plot(results[:, 0], results[:, 2]*1000)
+plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
+plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
+
+plt.subplot(2, 2, 3)
+plt.plot(results[:, 0], results[:, 1]*1000)
+plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
+plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
+
+
+plt.show()
+
 
 
 
