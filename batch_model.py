@@ -32,10 +32,10 @@ model *IDModel()
     
     
     ######## Constants
-    alpha = 24.6807; # Check units
-    beta = 67.3047; # Check units
-    mu_max = 0.260172; # [1/h]
-    kc = 1.05221; # [mol/kg] # Kc? 
+    alpha = 0.015#24.6807; # Check units
+    beta = 80.81#67.3047; # Check units
+    mu_max = 56.087#0.260172; # [1/h]
+    kc = 28.54 #1.05221; # [mol/kg] # Kc? 
     a = -0.2572;
     b = -0.7651;
     ms = -0.0046; 
@@ -93,26 +93,28 @@ r.exportToSBML("SerineModel.xml")
 
 
 #Experimental dataset 1
-file = 'R2_data_in_moles.xlsx'
-experimental_data = pd.ExcelFile(file)
-experimental_data = experimental_data.parse('Sheet1')
+#file = 'R2_data_in_moles.csv'
+#experimental_data = pd.ExcelFile(file)
+#experimental_data = experimental_data.parse('Sheet1')
 
+experimental_data = pd.read_csv('R2_data_in_moles.csv')
 experimental_data.dropna(inplace=True)
 experimental_data.reset_index(inplace=True, drop=True)
-experimental_data.to_csv("Data_to_estimate_from.csv", index=False)
+#experimental_data.to_csv("Data_to_estimate_from.csv", index=False)
 experimental_data = experimental_data.reindex(
     columns=['Time (hours)', 'mol-Glucose', 'mol-Serine', 'C-mol-Biomass'])
 
 print(experimental_data)
 
 #Experimental dataset 2
-file2 = 'R1_data_in_moles.xlsx'
-experimental_data2 = pd.ExcelFile(file2)
-experimental_data2 = experimental_data2.parse('R1_data_in_moles')
+# file2 = 'R1_data_in_moles.csv'
+# experimental_data2 = pd.ExcelFile(file2)
+# experimental_data2 = experimental_data2.parse('R1_data_in_moles')
 
+experimental_data2 = pd.read_csv('R1_data_in_moles.csv')
 experimental_data2.dropna(inplace=True)
 experimental_data2.reset_index(inplace=True, drop=True)
-experimental_data2.to_csv("Data_to_estimate_from.csv", index=False)
+#experimental_data2.to_csv("Data_to_estimate_from.csv", index=False)
 experimental_data2 = experimental_data2.reindex(
     columns=['Time (hours)', 'mol-Glucose', 'mol-Serine', 'C-mol-Biomass'])
 
