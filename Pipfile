@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+dash = "*"
+dash-core-components = "*"
+dash-html-components = "*"
+dask = "*"
+loremipsum = "*"
+matplotlib = "*"
+numpy = "*"
+pandas = "*"
+plotly = "*"
+scipy = "*"
+tellurium = "*"
+dash_renderer = "*"
+"beautifulsoup4" = "*"
+xlrd = "*"
+lxml = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "2.7"
