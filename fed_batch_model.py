@@ -57,7 +57,7 @@ model *IDModel()
 
 
     ######## If fed batch
-    at (time > 25): Fin = F0*exp(beta*time)  # Should beta be k here? 
+    at (time > 25): Fin = F0*exp(beta*time)  
 
     ######## Function for volume in batch
     #V := V0-(0.00000121*time) #[m^3]
