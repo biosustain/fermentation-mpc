@@ -66,7 +66,8 @@ os.rename('model_copasi.xml', 'model_copasi.cps')
 
 # Run the parameterestimation in Copasi for the model from the terminal
 # A report of parameters is also written as parameter_report
-os.system("/Applications/COPASI/CopasiSE model_copasi.cps --save mode l_copasi.cps")
+#os.system("/Applications/COPASI/CopasiSE model_copasi.cps --save model_copasi.cps")
+os.system("/Users/s144510/Documents/fermentationtool/CopasiSE model_copasi.cps --save model_copasi.cps")
 
 # Get the result
 os.rename('model_copasi.cps', 'model_copasi.xml')
