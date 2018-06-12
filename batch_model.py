@@ -32,19 +32,19 @@ model *IDModel()
     
     
     ######## Constants
-    alpha = 0.015#24.6807; # Check units
-    beta = 80.81#67.3047; # Check units
-    mu_max = 56.087#0.260172; # [1/h]
-    kc = 28.54 #1.05221; # [mol/kg] # Kc? 
+    alpha = 29.1 #21.542 #24.6807; # Check units
+    beta = 68.8 #90.2844 #67.3047; # Check units
+    mu_max = 0.98 #0.327912 #0.260172; # [1/h]
+    kc = 7.48 #1.24659 #1.05221; # [mol/kg] # Kc? 
     a = -0.2572;
     b = -0.7651;
     ms = -0.0046; 
     
     
     ######## Initial conditions
-    glucose = 8.254856e-06 # [mol] 
+    glucose = 8.254856e-06*1000 # [mol] 
     serine = 0 #c_serine0*comp1 # [mol]
-    biomass = 5.538306e-07 # [mol]
+    biomass = 5.538306e-07*1000 # [mol]
     v0 = 0.00010428; #[m^3]
     
     
@@ -100,9 +100,10 @@ r.exportToSBML("SerineModel.xml")
 experimental_data = pd.read_csv('R2_data_in_moles.csv')
 experimental_data.dropna(inplace=True)
 experimental_data.reset_index(inplace=True, drop=True)
-#experimental_data.to_csv("Data_to_estimate_from.csv", index=False)
+# experimental_data.to_csv("Data_to_estimate_from.csv", index=False)
 experimental_data = experimental_data.reindex(
     columns=['Time (hours)', 'mol-Glucose', 'mol-Serine', 'C-mol-Biomass'])
+experimental_data.to_csv("R2_Data_to_estimate_from.csv", index=False)
 
 print(experimental_data)
 
@@ -134,19 +135,19 @@ print(experimental_data)
 plt.figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
 
 plt.subplot(3, 2, 1)
-plt.plot(results[:, 0], (results[:, 3]*1000))
+plt.plot(results[:, 0], (results[:, 3]))
 plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
 plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
 plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
 
 plt.subplot(2, 2, 2)
-plt.plot(results[:, 0], results[:, 2]*1000)
+plt.plot(results[:, 0], results[:, 2])
 plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
 plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
 plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
 
 plt.subplot(2, 2, 3)
-plt.plot(results[:, 0], results[:, 1]*1000)
+plt.plot(results[:, 0], results[:, 1])
 plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
 plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
 plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
