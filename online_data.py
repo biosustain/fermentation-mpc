@@ -7,7 +7,7 @@ import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 
-
+# make function for the different channels, where the output is the mu values and a mu plot.
 
 # Online dataset
 file = 'MUX_09-03-2018_18-38-27.xls'
@@ -20,18 +20,19 @@ shifted_time = time.shift(periods=-1)
 delta = shifted_time - time
 online_data['delta'] = delta
 
+print(online_data)
 
 # Select the rows and create new dataframe that we will be working with
 selected_data = online_data[(online_data['delta'] >= '00:46:00') & (online_data['delta'] <= '00:47:00')]
-#print(selected_data)
+print(selected_data)
 
 #plt.scatter(selected_data['Time      '], selected_data['CO2 (Vol.%)'])
 #plt.show()
 
 
-
 # Calculation of the CO2 evolution rate
-CER = selected_data['CO2 (Vol.%)'] - 0.04  # unit [(mol_co2/mol_totalgas)/h]
+CER = selected_data['CO2 (Vol.%)']*1 - 0.04*1  # unit [(mol_co2/mol_totalgas)/h]
+
 
 # Reset the selected time, convert it and then use it to calculate tCER
 selected_time = pd.to_timedelta(selected_data['Time      '])
@@ -39,6 +40,7 @@ selected_time.reset_index(inplace=True, drop=True)
 reset_selected_time = selected_time - selected_time[0]
 selected_datetimes = pd.to_datetime(reset_selected_time)
 selected_time = selected_datetimes.dt.time
+print(selected_time)
 
 # convert time to decimals
 selected_time_decimals = pd.DataFrame(columns=['Time'])
@@ -65,6 +67,7 @@ shifted_selected_time_decimals = shifted_selected_time_decimals.T.squeeze()
 selected_time_decimals = selected_time_decimals.T.squeeze()
 
 mu = ((CER + shifted_CER)/2)*(shifted_selected_time_decimals - selected_time_decimals)
+mu = mu / 60
 print(mu)
 
 # Hard to see the CO2
@@ -79,6 +82,7 @@ plt.show()
 
 
 # Check for change in file
+# The method polling is used, which check the status of the file?
 
 # class Monkey(object):
 #     def __init__(self):
@@ -93,4 +97,4 @@ plt.show()
 #             file = '/Users/s144510/Documents/fermentationtool/MUX_09-03-2018_18-38-27.XLS'
 #             online_data = pd.ExcelFile(file)
 #             online_data = experimental_data.parse('Channel 1')
-#
+
