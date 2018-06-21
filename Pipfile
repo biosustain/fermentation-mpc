@@ -19,6 +19,7 @@ dash_renderer = "*"
 "beautifulsoup4" = "*"
 xlrd = "*"
 lxml = "*"
+watchdog = "*"
 
 [dev-packages]
 

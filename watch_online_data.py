@@ -8,6 +8,75 @@ import numpy as np
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
+from plotly import tools
+import plotly
+import plotly.graph_objs as go
+import tellurium as te
+
+
+
+modelfermentation = '''
+model *IDModel()
+
+    ######## Set the compartment to 1, otherwise it will be multiplied by the compounds. 
+    compartment comp1;
+    comp1 =1;
+
+
+    ######## Specify the species in the compartment
+    glucose in comp1; serine in comp1; biomass in comp1;
+
+
+    ######## Constants
+    alpha = 29.1 #21.542 #24.6807; # Check units
+    beta = 68.8 #90.2844 #67.3047; # Check units
+    mu_max = 0.98 #0.327912 #0.260172; # [1/h]
+    kc = 7.48 #1.24659 #1.05221; # [mol/kg] # Kc? 
+    a = -0.2572;
+    b = -0.7651;
+    ms = -0.0046; 
+
+
+    ######## Initial conditions
+    glucose = 8.254856e-06*1000 # [mol] 
+    serine = 0 #c_serine0*comp1 # [mol]
+    biomass = 5.538306e-07*1000 # [mol]
+    v0 = 0.00010428; #[m^3]
+
+
+    ######## Function for volume
+    v := 0.00010302999999999999-(0.00000121*time) #[m^3]
+
+    ######## Concentrations that is used in the equations
+    c_glucose := glucose/v  # [mol/m^3]
+    c_biomass := biomass/v # [mol/m^3] 
+
+    ######## Functions
+    mu := mu_max*(c_glucose/((kc*c_biomass)+c_glucose)) # [1/h]
+    qp_s := alpha*mu/(beta+mu) # [mol_serine/(c-mol_biomass*h)]
+    qs_g := a*mu + b*qp_s + ms #[mol_glucose/(c-mol_biomass*h)]
+    rp_s := qp_s*biomass # [mol/h] 
+    r_s := qs_g*biomass # [mol/h]
+
+
+    ######## Mass Balances    
+    eq_biomass: -> biomass; mu*biomass # [c-mol/h]
+    eq_serine: -> serine; rp_s
+    eq_glucose: -> glucose; r_s # [mol/h]
+
+
+
+    end
+'''
+r = te.loada(modelfermentation)
+
+# We can set the lists so it has the same order as the data
+r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
+
+# Time interval must mach the exact value from the experiment
+results = r.simulate(2, 23.5, 100)
+
+
 
 # To run this we have to save the experimental data everytime there is a change.
 # We can change this in excel by right clicking on the sheet name -> view code
@@ -22,7 +91,11 @@ import matplotlib.pyplot as plt
 
 # Then save it and it saves now automatically in excel every time there is a change
 
-# 1) Problem with the plots.
+# 1) Fix Problem with the plots.
+# 2) make function
+
+
+
 
 class Watcher(object):
     running = True
@@ -65,6 +138,10 @@ class Watcher(object):
 # Call this function each time a change happens
 def custom_action(text):
 
+    #
+    online_data = pd.ExcelFile(file)
+    online_data = online_data.parse('Channel 2')
+
     # Figure out the timedifference, so we can select all the data that corresponds to 1 reactor
     time = pd.to_timedelta(online_data['Time      '])
     shifted_time = time.shift(periods=-1)
@@ -83,7 +160,6 @@ def custom_action(text):
     reset_selected_time = selected_time - selected_time[0]
     selected_datetimes = pd.to_datetime(reset_selected_time)
     selected_time = selected_datetimes.dt.time
-    print(selected_time)
 
     # convert time to decimals
     selected_time_decimals = pd.DataFrame(columns=['Time'])
@@ -108,15 +184,72 @@ def custom_action(text):
     shifted_selected_time_decimals = shifted_selected_time_decimals.T.squeeze()
     selected_time_decimals = selected_time_decimals.T.squeeze()
 
-    mu = ((CER + shifted_CER) / 2) * (shifted_selected_time_decimals - selected_time_decimals)
-    mu = mu / 60
+    tCER = ((CER + shifted_CER) / 2) * (shifted_selected_time_decimals - selected_time_decimals)
+    mu = CER / tCER
+    mu = (mu / 60)
     print(mu)
 
     # Hard to see the CO2
+
+    print(type(mu.values))
+
+
+    trace1 = go.Scatter(
+        x=selected_time_decimals/60,
+        y=selected_data['CO2 (Vol.%)']
+    )
+
+    trace2 = go.Scatter(
+        x=selected_time_decimals/60,
+        y=mu
+    )
+
+    trace3 = go.Scatter(
+        x=results[:, 0],
+        y=results[:, 4]
+    )
+
+    trace4 = go.Scatter(
+        x=results[:, 0],
+        y=results[:, 3]
+    )
+
+    trace5 = go.Scatter(
+        x=results[:, 0],
+        y=results[:, 2]
+    )
+
+    trace6 = go.Scatter(
+        x=results[:, 0],
+        y=results[:, 1]
+    )
+
+
+
+    fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
+                                                              'mu from model', 'Biomass from model',
+                                                              'Serine from model', 'Glucose from model'))
+
+    fig.append_trace(trace1, 1, 1)
+    fig.append_trace(trace2, 1, 2)
+    fig.append_trace(trace3, 1, 3)
+    fig.append_trace(trace4, 2, 1)
+    fig.append_trace(trace5, 2, 2)
+    fig.append_trace(trace6, 2, 3)
+
+    fig['layout'].update(height=800, width=1400, title='Model prediction')
+
+    plotly.offline.plot(fig)
+
+    #plotly.offline.plot(data, filename='basic-scatter',layout=layout)
+
+
+
     #plt.plot(selected_time_decimals, mu)
     #plt.plot(selected_time_decimals, selected_data['CO2 (Vol.%)'])
     #plt.legend(['mul', 'CO2'], loc='upper left')
-    #plt.show()
+
+
 
     # Here we can observe that CO2 has exactly the same structure as the growth rate
     #plt.plot(selected_time_decimals, selected_data['CO2 (Vol.%)'])
@@ -127,12 +260,12 @@ watch_file = 'MUX_09-03-2018_18-38-27.XLS'
 
 # Online dataset
 file = 'MUX_09-03-2018_18-38-27.xls'
-online_data = pd.ExcelFile(file)
-online_data = online_data.parse('Channel 4')
+
 
 
 # watcher = Watcher(watch_file)  # simple
-watcher = Watcher(watch_file, custom_action, text=online_data)  # also call custom action function
+watcher = Watcher(watch_file, custom_action, text=file)  # also call custom action function
 watcher.watch()  # start the watch going
+
 
 # Press ctrl c, to exit the running program.
