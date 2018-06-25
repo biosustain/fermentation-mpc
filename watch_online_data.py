@@ -152,7 +152,7 @@ def custom_action(text):
     selected_data = online_data[(online_data['delta'] >= '00:46:00') & (online_data['delta'] <= '00:47:00')]
 
     # Calculation of the CO2 evolution rate
-    CER = selected_data['CO2 (Vol.%)'] * 1 - 0.04 * 1  # unit [(mol_co2/mol_totalgas)/h]
+    CER = selected_data['CO2 (Vol.%)'] * 10 - 0.04 * 10  # unit [(mol_co2/mol_totalgas)/h]
 
     # Reset the selected time, convert it and then use it to calculate tCER
     selected_time = pd.to_timedelta(selected_data['Time      '])
@@ -241,19 +241,7 @@ def custom_action(text):
 
     plotly.offline.plot(fig)
 
-    #plotly.offline.plot(data, filename='basic-scatter',layout=layout)
 
-
-
-    #plt.plot(selected_time_decimals, mu)
-    #plt.plot(selected_time_decimals, selected_data['CO2 (Vol.%)'])
-    #plt.legend(['mul', 'CO2'], loc='upper left')
-
-
-
-    # Here we can observe that CO2 has exactly the same structure as the growth rate
-    #plt.plot(selected_time_decimals, selected_data['CO2 (Vol.%)'])
-    #plt.show()
 
 watch_file = 'MUX_09-03-2018_18-38-27.XLS'
 

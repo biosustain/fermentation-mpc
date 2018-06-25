@@ -29,18 +29,19 @@ def mu_from_co2(online_data):
     delta = shifted_time - time
     online_data['delta'] = delta
 
-    print(online_data)
+
 
     # Select the rows and create new dataframe that we will be working with
     selected_data = online_data[(online_data['delta'] >= '00:46:00') & (online_data['delta'] <= '00:47:00')]
-    print(selected_data)
+
 
     #plt.scatter(selected_data['Time      '], selected_data['CO2 (Vol.%)'])
     #plt.show()
 
 
     # Calculation of the CO2 evolution rate
-    CER = selected_data['CO2 (Vol.%)']*(10) - 0.04*(10)  # unit [(mol_co2/mol_totalgas)/h]
+    CER = selected_data['CO2 (Vol.%)']*(100) - 0.04*(100)  # unit [(mol_co2/mol_totalgas)/h]
+    print(CER)
 
 
     # Reset the selected time, convert it and then use it to calculate tCER
@@ -49,7 +50,7 @@ def mu_from_co2(online_data):
     reset_selected_time = selected_time - selected_time[0]
     selected_datetimes = pd.to_datetime(reset_selected_time)
     selected_time = selected_datetimes.dt.time
-    print(selected_time)
+
 
     # convert time to decimals
     selected_time_decimals = pd.DataFrame(columns=['Time'])
@@ -68,7 +69,9 @@ def mu_from_co2(online_data):
 
     # Same with CO2 so it corresponds to "next value" of CER
     CER.reset_index(inplace=True, drop=True)
+    print(CER)
     shifted_CER = CER.shift(periods=-1)
+    print(shifted_CER)
 
 
     # Convert to series
@@ -76,17 +79,13 @@ def mu_from_co2(online_data):
     selected_time_decimals = selected_time_decimals.T.squeeze()
 
     tCER = ((CER + shifted_CER)/2)*(shifted_selected_time_decimals - selected_time_decimals)
+    print(tCER)
     mu = CER/tCER
     mu = (mu/60)
-    print(mu)
-    print(shifted_selected_time_decimals)
+
 
     selected_time_decimals_hours = selected_time_decimals/60
 
-    print(tCER)
-    print(CER)
-    print(shifted_selected_time_decimals)
-    print(selected_time_decimals)
 
     # # Hard to see the CO2
     # plt.plot(selected_time_decimals,mu)
