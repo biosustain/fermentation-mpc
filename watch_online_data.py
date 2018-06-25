@@ -139,7 +139,7 @@ class Watcher(object):
 def custom_action(text):
 
     #
-    online_data = pd.ExcelFile(file)
+    online_data = pd.ExcelFile(watch_file)
     online_data = online_data.parse('Channel 2')
 
     # Figure out the timedifference, so we can select all the data that corresponds to 1 reactor
@@ -246,13 +246,9 @@ def custom_action(text):
 watch_file = 'MUX_09-03-2018_18-38-27.XLS'
 
 
-# Online dataset
-file = 'MUX_09-03-2018_18-38-27.xls'
-
-
 
 # watcher = Watcher(watch_file)  # simple
-watcher = Watcher(watch_file, custom_action, text=file)  # also call custom action function
+watcher = Watcher(watch_file, custom_action, text=watch_file)  # also call custom action function
 watcher.watch()  # start the watch going
 
 
