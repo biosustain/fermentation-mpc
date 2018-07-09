@@ -7,11 +7,6 @@ from functions_model import convert_data_to_moles
 from functions_model import parameter_estimation
 #te.setDefaultPlottingEngine("matplotlib")
 
-# The following relevant for the estimation parameters with tellurium
-class SpecialDict(dict):
-
-    def values(self):
-        return list(super().values())
 
 
 # The model starts here:
