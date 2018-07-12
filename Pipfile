@@ -20,6 +20,8 @@ dash_renderer = "*"
 xlrd = "*"
 lxml = "*"
 watchdog = "*"
+flask = "*"
+pyorbital = "*"
 
 [dev-packages]
 

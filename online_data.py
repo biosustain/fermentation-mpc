@@ -18,7 +18,7 @@ import matplotlib.pyplot as plt
 
 
 # Online dataset
-def mu_from_co2(online_data):
+def mu_from_co2():
     # file = 'MUX_09-03-2018_18-38-27.xls'
     # online_data = pd.ExcelFile(file)
     # online_data = online_data.parse('Channel 4')
@@ -97,7 +97,7 @@ def mu_from_co2(online_data):
     # plt.plot(selected_time_decimals,selected_data['CO2 (Vol.%)'])
     # plt.show()
 
-    return mu, selected_time_decimals
+    return mu
 
 
 
