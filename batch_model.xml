@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
+  <model id="IDModel" name="IDModel">
+    <listOfCompartments>
+      <compartment id="comp1" spatialDimensions="3" size="1" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="glucose" compartment="comp1" initialConcentration="0.00163707664302708" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="serine" compartment="comp1" initialConcentration="0.0043464198135391" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+      <species id="biomass" compartment="comp1" initialConcentration="0.0108536910276346" hasOnlySubstanceUnits="false" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="alpha" value="29.1" constant="true"/>
+      <parameter id="beta" value="68.8" constant="true"/>
+      <parameter id="mu_max" value="0.98" constant="true"/>
+      <parameter id="kc" value="7.48" constant="true"/>
+      <parameter id="a" value="-0.2572" constant="true"/>
+      <parameter id="b" value="-0.7651" constant="true"/>
+      <parameter id="ms" value="-0.0046" constant="true"/>
+      <parameter id="v0" value="0.00010428" constant="true"/>
+      <parameter id="v" value="7.4595e-05" constant="false"/>
+      <parameter id="c_glucose" value="21.9461980431273" constant="false"/>
+      <parameter id="c_biomass" value="145.501588948785" constant="false"/>
+      <parameter id="mu" value="0.0193707207138384" constant="false"/>
+      <parameter id="qp_s" value="0.00819083300049754" constant="false"/>
+      <parameter id="qs_g" value="-0.0158489556962799" constant="false"/>
+      <parameter id="rp_s" value="8.89007706463536e-05" constant="false"/>
+      <parameter id="r_s" value="-0.000172019668238091" constant="false"/>
+    </listOfParameters>
+    <listOfInitialAssignments>
+      <initialAssignment symbol="glucose">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <cn type="e-notation"> 8.254856 <sep/> -6 </cn>
+            <cn type="integer"> 1000 </cn>
+          </apply>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="biomass">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <cn type="e-notation"> 5.538306 <sep/> -7 </cn>
+            <cn type="integer"> 1000 </cn>
+          </apply>
+        </math>
+      </initialAssignment>
+    </listOfInitialAssignments>
+    <listOfRules>
+      <assignmentRule variable="v">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <minus/>
+            <cn> 0.00010303 </cn>
+            <apply>
+              <times/>
+              <cn type="e-notation"> 1.21 <sep/> -6 </cn>
+              <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> time </csymbol>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_glucose">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> glucose </ci>
+            <ci> v </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="c_biomass">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <ci> biomass </ci>
+            <ci> v </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="mu">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> mu_max </ci>
+            <apply>
+              <divide/>
+              <ci> c_glucose </ci>
+              <apply>
+                <plus/>
+                <apply>
+                  <times/>
+                  <ci> kc </ci>
+                  <ci> c_biomass </ci>
+                </apply>
+                <ci> c_glucose </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="qp_s">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> alpha </ci>
+              <ci> mu </ci>
+            </apply>
+            <apply>
+              <plus/>
+              <ci> beta </ci>
+              <ci> mu </ci>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="qs_g">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <plus/>
+            <apply>
+              <times/>
+              <ci> a </ci>
+              <ci> mu </ci>
+            </apply>
+            <apply>
+              <times/>
+              <ci> b </ci>
+              <ci> qp_s </ci>
+            </apply>
+            <ci> ms </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="rp_s">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> qp_s </ci>
+            <ci> biomass </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="r_s">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> qs_g </ci>
+            <ci> biomass </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction id="eq_biomass" reversible="true" fast="false">
+        <listOfProducts>
+          <speciesReference species="biomass" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> mu </ci>
+              <ci> biomass </ci>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="eq_serine" reversible="true" fast="false">
+        <listOfProducts>
+          <speciesReference species="serine" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> rp_s </ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="eq_glucose" reversible="true" fast="false">
+        <listOfProducts>
+          <speciesReference species="glucose" stoichiometry="1" constant="true"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <ci> r_s </ci>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+  </model>
+</sbml>
