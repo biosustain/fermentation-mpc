@@ -11,7 +11,6 @@ import os
 import sys
 import time
 import datetime
-#from datetime import datetime, date
 import numpy as np
 from plotly import tools
 import plotly
@@ -20,146 +19,117 @@ import tellurium as te
 from models import batch_model_mu
 
 
-# #Simulate the model
-#
-# #Choose either batch_model or fed_batch
-# r = batch_model()
-#
-# # We can set the lists so it has the same order as the data
-# r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
-#
-# results = r.simulate(2, 23.5, 100)
-# print(results)
-#
-# print(results)
-#
-# # Load the experimental dataset
-#
-# #Experimental dataset 1
-#
-# experimental_data = pd.read_csv('R2_data_in_moles.csv')
-# experimental_data = data(experimental_data)
-#
-# experimental_data2 = pd.read_csv('R1_data_in_moles.csv')
-# experimental_data2 = data(experimental_data2)
-#
-# print(experimental_data)
-# print(experimental_data2)
-#
-#
-# # # Plot of the results from the model and the experimental data
-# plt.figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
-#
-# plt.subplot(3, 2, 1)
-# plt.plot(results[:, 0], (results[:, 3]))
-# plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
-# plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
-# plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
-#
-# plt.subplot(2, 2, 2)
-# plt.plot(results[:, 0], results[:, 2])
-# plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
-# plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
-# plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
-#
-# plt.subplot(2, 2, 3)
-# plt.plot(results[:, 0], results[:, 1])
-# plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
-# plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
-# plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
-#
-#
-# plt.show()
-#
-#
-# # Parameter estimation
-#
-# # Set filename of the two experimental datasets
-# filename_experimental_data1 = "R1_data_in_moles.csv"
-# filename_experimental_data2 = "R2_data_in_moles.csv"
-#
-# # Set lower and upper bounds
-# alpha_lower_bound = "0"
-# alpha_upper_bound = "100"
-# beta_lower_bound = "0"
-# beta_upper_bound = "100"
-# kc_lower_bound = "0"
-# kc_upper_bound = "100"
-# mu_max_lower_bound = "0"
-# mu_max_upper_bound = "100"
-#
-#
-# alpha, beta, kc, mu_max = parameter_estimation(filename_experimental_data1, filename_experimental_data2,
-#                                                alpha_lower_bound, alpha_upper_bound,
-#                                                beta_lower_bound, beta_upper_bound,
-#                                                kc_lower_bound, kc_upper_bound,
-#                                                mu_max_lower_bound, mu_max_upper_bound)
-#
-# print(alpha, beta, kc, mu_max)
-#
-# r = batch_model()
-# r.alpha = float(alpha)
-# r.beta = float(beta)
-# r.kc = float(kc)
-# r.mu_max = float(mu_max)
-# #r.mu = 10 #np.random.uniform(1,50,100)
-# r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
-# results = r.simulate(2, 23.5, 100)
-# print(results)
-# # Update model with optimized parameters
-#
-#
+#Simulate the model
+
+#Choose either batch_model or fed_batch
+r = batch_model()
+
+# We can set the lists so it has the same order as the data
+r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
+
+results = r.simulate(2, 23.5, 100)
+print(results)
+
+
+# Load the experimental data set
+
+# Experimental data set 1
+experimental_data = pd.read_csv('R2_data_in_moles.csv')
+experimental_data = data(experimental_data)
+
+# Experimental data set 2
+experimental_data2 = pd.read_csv('R1_data_in_moles.csv')
+experimental_data2 = data(experimental_data2)
+
+print(experimental_data)
+print(experimental_data2)
+
+
 # # Plot of the results from the model and the experimental data
-# plt.figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
-#
-# plt.subplot(3, 2, 1)
-# plt.plot(results[:, 0], (results[:, 3]))
-# plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
-# plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
-# plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
-#
-# plt.subplot(2, 2, 2)
-# plt.plot(results[:, 0], results[:, 2])
-# plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
-# plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
-# plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
-#
-# plt.subplot(2, 2, 3)
-# plt.plot(results[:, 0], results[:, 1])
-# plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
-# plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
-# plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
-#
-#
-# plt.show()
+plt.figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
 
-# print(np.random.uniform(-1, 0, 1))
-# print(type(np.random.uniform(-1, 0, 1)))
-# print(2)
-# print(type(2))
-#
-#
-# a = batch_model_mu()
-# #values = np.random.uniform(-1, 0, 1) # np.linspace(start=10, stop=11, num=1) #1
-# a.mu = 1.5 #values
-# a.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass']
-# aresults = a.simulate(2, 23.5, 100)
-# print(aresults)
+plt.subplot(3, 2, 1)
+plt.plot(results[:, 0], (results[:, 3]))
+plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
+plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
+plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
+
+plt.subplot(2, 2, 2)
+plt.plot(results[:, 0], results[:, 2])
+plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
+plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
+plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
+
+plt.subplot(2, 2, 3)
+plt.plot(results[:, 0], results[:, 1])
+plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
+plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
+plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
+
+plt.show()
 
 
-#a = batch_model_mu()
-#mu = np.random.uniform(-1, 0, 1)
-#a.mu = mu.astype(float)
-#a.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
-#aresults = a.simulate(2, 23.5, 1)
+# Parameter estimation
 
-# a = batch_model_mu()
-# a.mu = np.random.uniform(-1,0,2)
-# a.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
-# aresults = a.simulate(2, 23.5, 2)
-# print(aresults)
+# Set filename of the two experimental datasets
+filename_experimental_data1 = "R1_data_in_moles.csv"
+filename_experimental_data2 = "R2_data_in_moles.csv"
+
+# Set lower and upper bounds
+alpha_lower_bound = "0"
+alpha_upper_bound = "100"
+beta_lower_bound = "0"
+beta_upper_bound = "100"
+kc_lower_bound = "0"
+kc_upper_bound = "100"
+mu_max_lower_bound = "0"
+mu_max_upper_bound = "100"
+
+alpha, beta, kc, mu_max = parameter_estimation(filename_experimental_data1, filename_experimental_data2,
+                                               alpha_lower_bound, alpha_upper_bound,
+                                               beta_lower_bound, beta_upper_bound,
+                                               kc_lower_bound, kc_upper_bound,
+                                               mu_max_lower_bound, mu_max_upper_bound)
+
+print(alpha, beta, kc, mu_max)
+
+# Update model with optimized parameters
+r = batch_model()
+r.alpha = float(alpha)
+r.beta = float(beta)
+r.kc = float(kc)
+r.mu_max = float(mu_max)
+#r.mu = 10 #np.random.uniform(1,50,100)
+r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
+results = r.simulate(2, 23.5, 100)
+print(results)
 
 
+# Plot of the results from the model and the experimental data
+plt.figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
+
+plt.subplot(3, 2, 1)
+plt.plot(results[:, 0], (results[:, 3]))
+plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
+plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
+plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
+
+plt.subplot(2, 2, 2)
+plt.plot(results[:, 0], results[:, 2])
+plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
+plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
+plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
+
+plt.subplot(2, 2, 3)
+plt.plot(results[:, 0], results[:, 1])
+plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
+plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
+plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
+
+plt.show()
+
+
+# Online data and real time simulation
 class Watcher(object):
     running = True
     refresh_delay_secs = 1
@@ -205,19 +175,20 @@ def custom_action(text):
     online_data = pd.ExcelFile(watch_file)
     online_data = online_data.parse('Sheet1')
 
-    # Figure out the timedifference, so we can select all the data that corresponds to 1 reactor
+    # Calculate the difference in time, so we can select all the data that corresponds to 1 reactor
     time = pd.to_timedelta(online_data['Time      '])
     shifted_time = time.shift(periods=-1)
     delta = shifted_time - time
     online_data['delta'] = delta
 
-    # Select the rows and create new dataframe that we will be working with
+    # Select the rows with difference in time between 46 and 47 minutes
+    # and create new dataframe that we will be working with
     selected_data = online_data[(online_data['delta'] >= '00:46:00') & (online_data['delta'] <= '00:47:00')]
 
     # Calculation of the CO2 evolution rate
-    CER = selected_data['CO2 (Vol.%)'] * 10 - 0.04 * 10  # unit [(mol_co2/mol_totalgas)/h]
+    CER = selected_data['CO2 (Vol.%)'] * 10 - 0.04 * 10  # unit [(mol_co2/mol_totalgas)/min] / [%CO2/min]
 
-    # Reset the selected time, convert it and then use it to calculate tCER
+    # Reset the selected time so it starts from time = 0, convert it and then use it to calculate tCER
     selected_time = pd.to_timedelta(selected_data['Time      '])
     selected_time.reset_index(inplace=True, drop=True)
     reset_selected_time = selected_time - selected_time[0]
@@ -236,10 +207,10 @@ def custom_action(text):
 
     # Calculate tCER
 
-    # Shift the values so it corresponds to "next value" of selected_time_decimals
+    # Shift the values so it corresponds to next value of selected_time_decimals
     shifted_selected_time_decimals = selected_time_decimals.shift(periods=-1)
 
-    # Same with CO2 so it corresponds to "next value" of CER
+    # Same with CO2 so it corresponds to next value of CER
     CER.reset_index(inplace=True, drop=True)
     shifted_CER = CER.shift(periods=-1)
 
@@ -247,99 +218,137 @@ def custom_action(text):
     shifted_selected_time_decimals = shifted_selected_time_decimals.T.squeeze()
     selected_time_decimals = selected_time_decimals.T.squeeze()
 
-    tCER = ((CER + shifted_CER) / 2) * (shifted_selected_time_decimals - selected_time_decimals)
+    tCER = ((CER + shifted_CER) / 2) * (shifted_selected_time_decimals - selected_time_decimals)  # [% CO2]
     mu = CER / tCER
-    mu = (mu / 60) #[1/h]
+    mu = (mu / 60)  # [1/h]
+
+    if np.isnan(mu[0]) == True:
+        print('Needs more time points to simulate data')
+
+    else:
+
+        selected_time_decimals_hours = selected_time_decimals/60
+
+        r = batch_model_mu()
+        r.mu = mu[0]
+        r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
+
+        start_time = selected_time_decimals_hours[0]
+        end_time = selected_time_decimals_hours.iloc[1]
+        results = r.simulate(start_time, end_time, 2)
 
 
-    selected_time_decimals_hours = selected_time_decimals/60
+        # we probably didnt have to simulate since we just want the first row.
+        # But it makes it easier to make the dataframe
+        initial_values = results[0:1]
+        data_frame = pd.DataFrame(initial_values)
+        data_frame.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
+
+        for i in range(0, (len(mu) - 2)):
+            r.reset()
+            r.mu = mu[i+1]
+            start_time = selected_time_decimals_hours[i]
+            end_time = selected_time_decimals_hours[i + 1]
+            results = r.simulate(start_time, end_time, 2)
+            simulated_row = results[-1:]
+            print(simulated_row)
+            new_dataframe = pd.DataFrame(simulated_row)
+            new_dataframe.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
+            data_frame = data_frame.append(new_dataframe, ignore_index=True)
+
+        print(data_frame)
+
+        trace1 = go.Scatter(
+            x=selected_time_decimals_hours,
+            y=selected_data['CO2 (Vol.%)'],
+            name='CO2'
+        )
+
+        trace2 = go.Scatter(
+            x=selected_time_decimals_hours,
+            y=mu,
+            name='mu'
+        )
+
+        trace3 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['mu'],
+            name='mu'
+        )
+
+        trace4 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['biomass'],
+            name='Biomass'
+        )
+
+        trace5 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['serine'],
+            name='Serine'
+        )
+
+        trace6 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['glucose'],
+            name='Glucose'
+        )
+
+        print(data_frame)
+
+        fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
+                                                                  'mu from model', 'Biomass from model',
+                                                                  'Serine from model', 'Glucose from model'))
+
+        fig.append_trace(trace1, 1, 1)
+        fig.append_trace(trace2, 1, 2)
+        fig.append_trace(trace3, 1, 3)
+        fig.append_trace(trace4, 2, 1)
+        fig.append_trace(trace5, 2, 2)
+        fig.append_trace(trace6, 2, 3)
+
+        fig['layout'].update(height=820, width=1420, title='Model prediction',
+        margin=dict(
+                l=110,
+                r=1,
+                b=100,
+                t=110,
+                pad=10
+            ),
+        titlefont=dict(
+            family='Arial, sans-serif',
+            size=30,
+            color='black'
+        ))
 
 
-    r = batch_model_mu()
-    r.mu = mu[0]
-    r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
+        fig['layout']['yaxis1'].update(showgrid=True, title='CO2 (%)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0.65, 1])
+        fig['layout']['yaxis2'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0.65, 1])
+        fig['layout']['yaxis3'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0.65, 1])
+        fig['layout']['yaxis4'].update(showgrid=True, title='Biomass (moles)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0, 0.35])
+        fig['layout']['yaxis5'].update(showgrid=True, title='Serine (moles)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0, 0.35])
+        fig['layout']['yaxis6'].update(showgrid=True, title='Glucose (moles)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0, 0.35])
 
-    starttime = selected_time_decimals_hours[0]
-    endtime = selected_time_decimals_hours.iloc[1]
-    results = r.simulate(starttime, endtime, 2)
+        fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0, 0.27])
+        fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.36, 0.63])
+        fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.72, 0.99])
+        fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0, 0.27])
+        fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.36, 0.63])
+        fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.72, 0.99])
 
-    print(results)
-    # we probably didnt have to simulate since we just want the first row. But it makes it easier to make the dataframe
-    initialvalues = results[0:1]
-    dataframe = pd.DataFrame(initialvalues)
-    dataframe.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
-
-    print(dataframe)
-    print(selected_time_decimals_hours)
-
-    for i in range(0, (len(mu) - 2)):
-        r.reset()
-        r.mu = mu[i+1]
-        starttime = selected_time_decimals_hours[i]
-        endtime = selected_time_decimals_hours[i + 1]
-        results = r.simulate(starttime, endtime, 2)
-        simulated_row = results[-1:]
-        print(simulated_row)
-        new_dataframe = pd.DataFrame(simulated_row)
-        new_dataframe.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
-        dataframe = dataframe.append(new_dataframe, ignore_index=True)
-        print(mu)
-        print(results)
-        print(simulated_row)
-        print(dataframe)
-        print(i)
-
-
-    print(dataframe)
-
-
-
-
-    trace1 = go.Scatter(
-        x=selected_time_decimals / 60,
-        y=selected_data['CO2 (Vol.%)']
-    )
-
-    trace2 = go.Scatter(
-        x=selected_time_decimals / 60,
-        y=mu
-    )
-
-    trace3 = go.Scatter(
-        x=dataframe['time'],
-        y=dataframe['mu']
-    )
-
-    trace4 = go.Scatter(
-        x=dataframe['time'],
-        y=dataframe['biomass']
-    )
-
-    trace5 = go.Scatter(
-        x=dataframe['time'],
-        y=dataframe['serine']
-    )
-
-    trace6 = go.Scatter(
-        x=dataframe['time'],
-        y=dataframe['glucose']
-    )
-
-    fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
-                                                              'mu from model', 'Biomass from model',
-                                                              'Serine from model', 'Glucose from model'))
-
-    fig.append_trace(trace1, 1, 1)
-    fig.append_trace(trace2, 1, 2)
-    fig.append_trace(trace3, 1, 3)
-    fig.append_trace(trace4, 2, 1)
-    fig.append_trace(trace5, 2, 2)
-    fig.append_trace(trace6, 2, 3)
-
-    fig['layout'].update(height=800, width=1400, title='Model prediction')
-
-    plotly.offline.plot(fig)
-
+        plotly.offline.plot(fig)
 
 
 watch_file = 'MUX_09-03-2018_18-38-27.XLS'
