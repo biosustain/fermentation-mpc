@@ -370,8 +370,6 @@ def custom_action(text):
 
 
 watch_file = 'data/MUX_09-03-2018_18-38-27.XLS'
-
-# watcher = Watcher(watch_file)  # simple
 watcher = Watcher(watch_file, custom_action, text=watch_file)  # also call custom action function
 watcher.watch()  # start the watch going
 
