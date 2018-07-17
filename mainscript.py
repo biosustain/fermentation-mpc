@@ -2,7 +2,6 @@ import pandas as pd
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
-from functions_onlinedata import online
 from models import batch_model
 from models import fed_batch_model
 from experiments import data
@@ -19,9 +18,10 @@ import tellurium as te
 from models import batch_model_mu
 
 
-#Simulate the model
+#  Simulate the model
 
-#Choose either batch_model or fed_batch
+
+# Choose either batch_model or fed_batch
 r = batch_model()
 
 # We can set the lists so it has the same order as the data
@@ -31,49 +31,58 @@ results = r.simulate(2, 23.5, 100)
 print(results)
 
 
-# Load the experimental data set
+#  Load the experimental data set
+
+
+# Set filename of the two experimental datasets
+filename_experimental_data1 = "data/R1_data_in_moles.csv"
+filename_experimental_data2 = "data/R2_data_in_moles.csv"
 
 # Experimental data set 1
-experimental_data = pd.read_csv('R2_data_in_moles.csv')
+experimental_data = pd.read_csv(filename_experimental_data1)
 experimental_data = data(experimental_data)
 
 # Experimental data set 2
-experimental_data2 = pd.read_csv('R1_data_in_moles.csv')
+experimental_data2 = pd.read_csv(filename_experimental_data2)
 experimental_data2 = data(experimental_data2)
 
 print(experimental_data)
 print(experimental_data2)
 
 
-# # Plot of the results from the model and the experimental data
-plt.figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
+#  Plot of the results from the model and the experimental data
+plt.figure(num=None, figsize=(11, 7), dpi=90, facecolor='w', edgecolor='k')
+plt.suptitle('Plot of compounds', fontsize=16)
 
-plt.subplot(3, 2, 1)
+plt.subplot(2, 2, 1)
 plt.plot(results[:, 0], (results[:, 3]))
 plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
 plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
 plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
+plt.xlabel('Time (hours)')
+plt.ylabel('Biomass (c-mole)')
 
 plt.subplot(2, 2, 2)
 plt.plot(results[:, 0], results[:, 2])
 plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
 plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
 plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
+plt.xlabel('Time (hours)')
+plt.ylabel('Serine (mole)')
 
 plt.subplot(2, 2, 3)
 plt.plot(results[:, 0], results[:, 1])
 plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
 plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
 plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
+plt.xlabel('Time (hours)')
+plt.ylabel('Glucose (mole)')
 
 plt.show()
 
 
-# Parameter estimation
+#  Parameter estimation
 
-# Set filename of the two experimental datasets
-filename_experimental_data1 = "R1_data_in_moles.csv"
-filename_experimental_data2 = "R2_data_in_moles.csv"
 
 # Set lower and upper bounds
 alpha_lower_bound = "0"
@@ -93,7 +102,7 @@ alpha, beta, kc, mu_max = parameter_estimation(filename_experimental_data1, file
 
 print(alpha, beta, kc, mu_max)
 
-# Update model with optimized parameters
+#  Update model with optimized parameters
 r = batch_model()
 r.alpha = float(alpha)
 r.beta = float(beta)
@@ -105,31 +114,40 @@ results = r.simulate(2, 23.5, 100)
 print(results)
 
 
-# Plot of the results from the model and the experimental data
+#  Plot of the results from the model and the experimental data
 plt.figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
+plt.suptitle('Plot of compounds with updated optimized parameters', fontsize=16)
 
-plt.subplot(3, 2, 1)
+plt.subplot(2, 2, 1)
 plt.plot(results[:, 0], (results[:, 3]))
 plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
 plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
 plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
+plt.xlabel('Time (hours)')
+plt.ylabel('Biomass (c-mole)')
 
 plt.subplot(2, 2, 2)
 plt.plot(results[:, 0], results[:, 2])
 plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
 plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
 plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
+plt.xlabel('Time (hours)')
+plt.ylabel('Serine (mole)')
 
 plt.subplot(2, 2, 3)
 plt.plot(results[:, 0], results[:, 1])
 plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
 plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
 plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
+plt.xlabel('Time (hours)')
+plt.ylabel('Glucose (mole)')
 
 plt.show()
 
 
-# Online data and real time simulation
+#  Online data and real time simulation
+
+
 class Watcher(object):
     running = True
     refresh_delay_secs = 1
@@ -351,7 +369,7 @@ def custom_action(text):
         plotly.offline.plot(fig)
 
 
-watch_file = 'MUX_09-03-2018_18-38-27.XLS'
+watch_file = 'data/MUX_09-03-2018_18-38-27.XLS'
 
 # watcher = Watcher(watch_file)  # simple
 watcher = Watcher(watch_file, custom_action, text=watch_file)  # also call custom action function

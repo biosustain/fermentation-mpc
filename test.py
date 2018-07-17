@@ -94,74 +94,15 @@
 #     app.run_server(debug=True)
 
 
-# import numpy as np
-# import pandas as pd
-# import matplotlib
-# matplotlib.use('TkAgg')
-# import matplotlib.pyplot as plt
-# import tellurium as te
-#
-# r = te.loada ('''
-# #$Xo -> S1; #1 + Xo*(32+(S1/0.75)^3.2)/(1 +(S1/4.3)^3.2);
-# S1 -> $X1; k1*S1;
-#
-# X1 = 0.0;
-# S1 = 0.5; k1 = 0;
-# ''')
-# #print(r.selections)
-#
-# initValue = 2.0
-# m = r.simulate(0, 2, 3, selections=["time", "S1"])
-# #print(m)
-#
-#
-# for i in range(0,2):
-#     #r.reset()
-#     r['k1'] = initValue
-#     res = r.simulate(0, 2, 3, selections=["S1"])
-#     m = np.concatenate([m, res], axis=1)
-#     #initValue += 1
-#     print(m)
-#     print(r['k1'])
-#     print(initValue)
-#
-#
-# #te.plotArray(m, color="black", alpha=0.7, loc=None,
-# #             xlabel="time", ylabel="[S1]", title="Bistable system");
-#
-#
-#
-# # # Load SBML file
-# # r = te.loada("""
-# # model test
-# #     J0: X0 -> X1; k1*X0;
-# #     X0 = 10; X1=0;
-# #     k1 = 0.2
-# # end
-# # """)
-# #
-# # import matplotlib.pyplot as plt
-# #
-# # # Turn of notices so they don't clutter the output
-# #
-# # for i in range(0, 3):
-# #     result = r.simulate (0, 3,3)
-# #     #r.reset()
-# #     r.k1 = r.k1 + 0.2
-# #     print(result)
-# #     print(r.k1)
-# # # Turn the notices back on
 
 import pandas as pd
 import matplotlib
 matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
-from functions_onlinedata import online
 from models import batch_model
 from models import fed_batch_model
 from experiments import data
 from parest_copasi import parameter_estimation
-import os
 import sys
 import time
 import datetime
@@ -172,51 +113,86 @@ import plotly
 import plotly.graph_objs as go
 import tellurium as te
 from models import batch_model_mu
+import os
+from bs4 import BeautifulSoup
 
+# From cps to xml
+os.rename('model_copasi.cps', 'model_copasi.xml')
 
-r = batch_model_mu()
+soup = BeautifulSoup(open('model_copasi.xml', 'r'), 'xml')
+infile = open('model_copasi.xml', "w")
 
-d = {'0' : 0., '1' : 1., '2' : 2., '3' : np.NaN}
-mu = pd.Series(d)
-r.mu = mu[0]
-r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
+# Choose filename for experimental dataset nr 1
+Experiment_0 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "Experiment"][0]
+file_name = [s for s in Experiment_0.find_all("Parameter") if s["name"] == "File Name"][0]
+file_name["value"] = "data/R1_data_in_moles.csv"
 
-data2 = {'0' : 0., '1' : 1., '2' : 2. ,'3' : 3}
-selected_time_decimals_hours = pd.Series(data2)
+# Choose filename for experimental dataset nr 2
+Experiment_1 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "Experiment_1"][0]
+file_name = [s for s in Experiment_1.find_all("Parameter") if s["name"] == "File Name"][0]
+file_name["value"] = "data/R2_data_in_moles.csv"
 
-starttime = selected_time_decimals_hours[0]
-endtime = selected_time_decimals_hours.iloc[1]
-results = r.simulate(starttime, endtime, 2)
+# Parameters:
 
-initialvalues = results[0:1]
-dataframe = pd.DataFrame(initialvalues)
-dataframe.columns = ['time','glucose', 'serine','biomass','mu']
-#print(dataframe)
+parameter_1 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][0]
+lower_bound_1 = [s for s in parameter_1.find_all('Parameter') if s['name'] == "LowerBound"][0]
+lower_bound_1['value'] = "0"
+upper_bound_1 = [s for s in parameter_1.find_all('Parameter') if s['name'] == "UpperBound"][0]
+upper_bound_1['value'] = "100"
 
+parameter_2 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][1]
+lower_bound_2 = [s for s in parameter_2.find_all('Parameter') if s['name'] == "LowerBound"][0]
+lower_bound_2['value'] = "0"
+upper_bound_2 = [s for s in parameter_2.find_all('Parameter') if s['name'] == "UpperBound"][0]
+upper_bound_2['value'] = "100"
 
+parameter_3 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][2]
+lower_bound_3 = [s for s in parameter_3.find_all('Parameter') if s['name'] == "LowerBound"][0]
+lower_bound_3['value'] = "0"
+upper_bound_3 = [s for s in parameter_3.find_all('Parameter') if s['name'] == "UpperBound"][0]
+upper_bound_3['value'] = "100"
 
-for i in range(0, (len(mu)-2)):
+parameter_4 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][3]
+lower_bound_4 = [s for s in parameter_4.find_all('Parameter') if s['name'] == "LowerBound"][0]
+lower_bound_4['value'] = "0"
+upper_bound_4 = [s for s in parameter_4.find_all('Parameter') if s['name'] == "UpperBound"][0]
+upper_bound_4['value'] = "100"
 
-    r.mu = mu[i+1]
-    starttime = selected_time_decimals_hours[i]
-    endtime = selected_time_decimals_hours[i+1]
-    results = r.simulate(starttime, endtime, 2)
-    simulated_row = results[-1:]
-    new_dataframe = pd.DataFrame(simulated_row)
-    new_dataframe.columns = ['time','glucose', 'serine','biomass','mu']
-    dataframe = dataframe.append(new_dataframe,ignore_index = True)
-    #print(starttime)
-    #print(endtime)
-    #print(results)
-    #print(results)
-    #print(simulated_row)
-    #print(new_dataframe)
-    #print(dataframe)
-    print(i)
+infile.write(soup.prettify().encode(soup.original_encoding))
+infile.close()
 
+# From xml to cps
+os.rename('model_copasi.xml', 'model_copasi.cps')
 
-print(dataframe)
+# Run the parameterestimation in Copasi for the model from the terminal
+# Find the path to CopasiSE, it could be the path given below in the comment
+# os.system("/Applications/COPASI/CopasiSE model_copasi.cps --save model_copasi.cps")
+os.system("/Users/s144510/Documents/fermentationtool/CopasiSE model_copasi.cps --save model_copasi.cps")
 
+# Get the results
+os.rename('model_copasi.cps', 'model_copasi.xml')
+soup = BeautifulSoup(open('model_copasi.xml', 'r'), 'xml')
+
+result_parameter_1 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][0]
+result_parameter_1 = [s for s in result_parameter_1.find_all('Parameter') if s['name'] == "StartValue"][0]
+alpha = result_parameter_1['value']
+
+result_parameter_2 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][1]
+result_parameter_2 = [s for s in result_parameter_2.find_all('Parameter') if s['name'] == "StartValue"][0]
+beta = result_parameter_2['value']
+
+result_parameter_3 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][2]
+result_parameter_3 = [s for s in result_parameter_3.find_all('Parameter') if s['name'] == "StartValue"][0]
+kc = result_parameter_3['value']
+
+result_parameter_4 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][3]
+result_parameter_4 = [s for s in result_parameter_4.find_all('Parameter') if s['name'] == "StartValue"][0]
+mu_max = result_parameter_4['value']
+
+print(alpha,beta,kc,mu_max)
+
+infile.close()
+os.rename('model_copasi.xml', 'model_copasi.cps')
 
 
 

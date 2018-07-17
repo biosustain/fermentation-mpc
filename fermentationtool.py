@@ -10,7 +10,7 @@ from functions_fermentation_tool import stack_data
 from dash.dependencies import Input, Output
 from loremipsum import get_sentences
 
-file = 'c002_r3_overview.xlsm'
+file = 'data/C002_R3_overview.xlsm'
 
 xl = pd.ExcelFile(file)
 
@@ -33,8 +33,6 @@ app = dash.Dash()
 
 app.scripts.config.serve_locally = True  # tabs
 
-vertical = True  # vertical tabs
-
 app.layout = html.Div([
         html.Div(
             dcc.Tabs(
@@ -45,18 +43,12 @@ app.layout = html.Div([
                 ],
                 value=1,  # Sets the default value
                 id='tabs',
-                vertical=vertical,
-                style={
-                    'height': '100vh',
-                    'borderRight': 'thick darkgrey solid',
-                    'textAlign': 'left'
-                }
             ),
-            style={'width': '20%', 'float': 'left'},
+            style={'width': '40%', 'float': 'center'},
     ),
     html.Div(
         html.Div(id='tab-output'),
-        style={'width': '79.5%', 'float': 'right'}
+        style={'width': '79.5%', 'float': 'buttom'}
     )
 ], style={
     'fontFamily': 'Sans-Serif',
