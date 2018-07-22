@@ -6,6 +6,7 @@ from models import batch_model
 from models import fed_batch_model
 from experiments import data
 from parest_copasi import parameter_estimation
+from parest_copasi import parameter_estimation_online
 import os
 import sys
 import time
@@ -28,6 +29,7 @@ r = batch_model()
 r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
 
 results = r.simulate(2, 23.5, 100)
+print(results['glucose'])
 print(results)
 
 
@@ -45,11 +47,11 @@ experimental_data = data(experimental_data)
 # Experimental data set 2
 experimental_data2 = pd.read_csv(filename_experimental_data2)
 experimental_data2 = data(experimental_data2)
-
-print(experimental_data)
-print(experimental_data2)
-
-
+#
+# print(experimental_data)
+# print(experimental_data2)
+#
+#
 #  Plot of the results from the model and the experimental data
 plt.figure(num=None, figsize=(11, 7), dpi=90, facecolor='w', edgecolor='k')
 plt.suptitle('Plot of compounds', fontsize=16)
@@ -81,9 +83,9 @@ plt.ylabel('Glucose (mole)')
 plt.show()
 
 
-#  Parameter estimation
-
-
+# #  Parameter estimation
+#
+#
 # Set lower and upper bounds
 alpha_lower_bound = "0"
 alpha_upper_bound = "100"
@@ -145,7 +147,7 @@ plt.ylabel('Glucose (mole)')
 plt.show()
 
 
-#  Online data and real time simulation
+# Online data and real time simulation
 
 
 class Watcher(object):
@@ -263,18 +265,39 @@ def custom_action(text):
         data_frame.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
 
         for i in range(0, (len(mu) - 2)):
+            #print(data_frame, "on the top")
+            #print(results,"on the top")
+            #print(data_frame['glucose'].iloc[-1])
             r.reset()
             r.mu = mu[i+1]
+            glucose = data_frame['glucose'].iloc[-1]
+            serine = data_frame['serine'].iloc[-1]
+            biomass = data_frame['biomass'].iloc[-1]
+            print(glucose,serine,biomass)
+
+            alpha_online, beta_online = parameter_estimation_online(filename_experimental_data1,
+                                                                    filename_experimental_data2,
+                                                                    alpha_lower_bound, alpha_upper_bound,
+                                                                    beta_lower_bound, beta_upper_bound,
+                                                                    str(mu[i+1]), str(glucose), str(serine),
+                                                                    str(biomass))
+            print((mu[i+1]))
+            #print(alpha_online,beta_online)
+            r.alpha = float(alpha_online)
+            r.beta = float(beta_online)
             start_time = selected_time_decimals_hours[i]
             end_time = selected_time_decimals_hours[i + 1]
             results = r.simulate(start_time, end_time, 2)
+            #print(results)
             simulated_row = results[-1:]
-            print(simulated_row)
+            #print(simulated_row)
             new_dataframe = pd.DataFrame(simulated_row)
             new_dataframe.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
             data_frame = data_frame.append(new_dataframe, ignore_index=True)
+            #print(data_frame)
+            print("ROUND",i)
 
-        print(data_frame)
+
 
         trace1 = go.Scatter(
             x=selected_time_decimals_hours,
@@ -312,7 +335,6 @@ def custom_action(text):
             name='Glucose'
         )
 
-        print(data_frame)
 
         fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
                                                                   'mu from model', 'Biomass from model',
