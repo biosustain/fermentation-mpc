@@ -22,6 +22,7 @@ lxml = "*"
 watchdog = "*"
 flask = "*"
 pyorbital = "*"
+ast = "*"
 
 [dev-packages]
 

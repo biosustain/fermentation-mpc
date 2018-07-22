@@ -2034,3 +2034,403 @@ Weight				0.0883249			0.11343			1
 
 
 
+Parameter Estimation Task
+
+Problem Description:
+Subtask: 
+Time-Course Task
+
+Problem Description:
+    AutomaticStepSize: 0
+    StepNumber: 100
+    StepSize: 0.01
+    Duration: 1
+    TimeSeriesRequested: 1
+    OutputStartTime: 0
+    Output Event: 0
+    Start in Steady State: 0
+
+Method: Deterministic (LSODA)
+    Integrate Reduced Model: 0
+    Relative Tolerance: 1e-06
+    Absolute Tolerance: 1e-12
+    Max Internal Steps: 10000
+    Max Internal Step Size: 0
+
+
+List of Fitting Items:
+    0 <= Values[alpha].InitialValue <= 100; Start Value = 29.9781
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+    0 <= Values[beta].InitialValue <= 100; Start Value = 75.2896
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+    0 <= Values[kc].InitialValue <= 100; Start Value = 5.08514
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+    0 <= Values[mu_max].InitialValue <= 100; Start Value = 0.780241
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+
+List of Constraint Items:
+
+Method: Random Search
+    Number of Iterations: 100000
+    Random Number Generator: 1
+    Seed: 0
+    Log Verbosity: 0
+
+[Function Evaluations] [Best Value] [Best Parameters]
+1 1.25563e-05 (	29.9781	75.2896	5.08514	0.780241	)
+ Parameter Estimation Result:
+
+Objective Function Value:	1.25563e-05
+Standard Deviation:	0.00042971
+Function Evaluations:	100002
+CPU Time [s]:	42.356
+Evaluations/Second [1/s]:	2360.99
+
+	Parameter	Value	Gradient	Standard Deviation
+	Values[alpha].InitialValue:	29.9781	nan	nan
+	Values[beta].InitialValue:	75.2896	nan	nan
+	Values[kc].InitialValue:	5.08514	nan	nan
+	Values[mu_max].InitialValue:	0.780241	nan	nan
+
+File Name:	/Users/s144510/Documents/fermentationtool/data/R1_data_in_moles.csv
+Experiment:	Experiment
+Mean:	0.000110567
+Objective Value:	7.84156e-06
+Root Mean Square:	0.000466713
+Row	Time	[biomass](Data)	[biomass](Fit)	[biomass](Weighted Error)	[glucose](Data)	[glucose](Fit)	[glucose](Weighted Error)	[serine](Data)	[serine](Fit)	[serine](Weighted Error)	Objective Value	Root Mean Square
+
+1.	2	0.000434779	5.28078e-05	-0.00017696	0.00817978	0.0082236	1.85931e-05	0	1.63298e-05	1.63298e-05	3.19271e-08	0.000103162
+2.	3.5	0.000447258	0.00015932	-0.000133396	0.00812495	0.0081634	1.6318e-05	0	5.83312e-05	5.83312e-05	2.14633e-08	8.45839e-05
+3.	5	0.0013877	0.000432464	-0.000442541	0.00768991	0.00800875	0.000135293	0	0.000166145	0.000166145	2.41751e-07	0.000283873
+4.	6.5	0.00245493	0.000978645	-0.000683932	0.00726655	0.00769837	0.000183236	0	0.000382075	0.000382075	6.4732e-07	0.000464514
+5.	8	0.00298181	0.00180096	-0.000547061	0.0063019	0.00722824	0.000393072	0.000361937	0.000707752	0.000345815	5.7337e-07	0.000437176
+6.	9.5	0.0036309	0.00279705	-0.000386304	0.00589437	0.00665397	0.000322324	0.000532544	0.00110283	0.000570286	5.7835e-07	0.000439071
+7.	11	0.00396996	0.00385608	-5.27565e-05	0.00558341	0.00603694	0.000192445	nan	0.00152331	nan	3.98184e-08	0.0001411
+8.	12.5	0.00456971	0.00490297	0.000154394	0.00496987	0.00541919	0.000190663	0.00136485	0.00193926	0.000574415	3.90142e-07	0.000360621
+9.	14	0.00520982	0.00589523	0.000317536	0.0042424	0.0048249	0.000247174	nan	0.00233371	nan	1.61924e-07	0.000284538
+10.	16	0.00596342	0.00709798	0.00052562	0.00334446	0.00408972	0.000316237	0.00276329	0.00281202	4.87266e-05	3.78656e-07	0.000355273
+11.	18	0.00717897	0.00814758	0.000448737	0.00230528	0.00343006	0.000477278	nan	0.00322955	nan	4.2916e-07	0.000463228
+12.	20	0.0076666	0.00904423	0.00063823	0.0010255	0.00284728	0.000773037	0.00398672	0.00358632	-0.000400396	1.16524e-06	0.000623228
+13.	23	0.0102211	0.0101237	-4.51568e-05	2.28911e-05	0.00210837	0.000884931	0.00556422	0.0040159	-0.00154832	3.18244e-06	0.00102996
+Objective Value				2.17569e-06			2.15386e-06			3.51201e-06
+Root Mean Square				0.000409097			0.00040704			0.000592622
+Weight				0.214628			0.180056			1
+
+File Name:	/Users/s144510/Documents/fermentationtool/data/R2_data_in_moles.csv
+Experiment:	Experiment_1
+Mean:	0.000108599
+Objective Value:	4.7147e-06
+Root Mean Square:	0.000361889
+Row	Time	[biomass](Data)	[biomass](Fit)	[biomass](Weighted Error)	[glucose](Data)	[glucose](Fit)	[glucose](Weighted Error)	[serine](Data)	[serine](Fit)	[serine](Weighted Error)	Objective Value	Root Mean Square
+
+1.	2	0.000553831	5.28078e-05	-0.000148902	0.0082473	0.0082236	-7.98019e-06	0	1.63298e-05	1.63298e-05	2.2502e-08	8.66064e-05
+2.	3.5	0.000717018	0.00015932	-0.000165745	0.00787799	0.0081634	9.61245e-05	0	5.83312e-05	5.83312e-05	4.01139e-08	0.000115634
+3.	5	0.00171748	0.000432464	-0.000381902	0.00719248	0.00800875	0.000274915	0	0.000166145	0.000166145	2.49031e-07	0.000288115
+4.	6.5	0.00265065	0.000978645	-0.00049691	0.00695747	0.00769837	0.000249532	0.000183464	0.000382075	0.000198611	3.48632e-07	0.000340897
+5.	8	0.00321429	0.00180096	-0.000420034	0.00627956	0.00722824	0.00031951	0.000360008	0.000707752	0.000347744	3.99441e-07	0.000364893
+6.	9.5	0.00388331	0.00279705	-0.00032283	0.00572759	0.00665397	0.000312001	0.000706176	0.00110283	0.000396654	3.58899e-07	0.00034588
+7.	11	0.00446749	0.00385608	-0.000181707	0.00506791	0.00603694	0.000326362	nan	0.00152331	nan	1.3953e-07	0.00026413
+8.	12.5	0.00531439	0.00490297	-0.000122272	0.00467803	0.00541919	0.000249619	0.00118737	0.00193926	0.000751898	6.4261e-07	0.000462821
+9.	14	0.00588033	0.00589523	4.42675e-06	0.00413146	0.0048249	0.000233547	nan	0.00233371	nan	5.45636e-08	0.000165172
+10.	16	0.00710699	0.00709798	-2.67725e-06	0.00317767	0.00408972	0.000307172	0.0019386	0.00281202	0.000873417	8.57218e-07	0.000534546
+11.	18	0.00871284	0.00814758	-0.000167991	0.00220047	0.00343006	0.000414118	nan	0.00322955	nan	1.99715e-07	0.000316002
+12.	20	0.0113251	0.00904423	-0.000677849	0.000901145	0.00284728	0.000655446	0.00350342	0.00358632	8.28958e-05	8.95961e-07	0.000546492
+13.	23.5	0.0108653	0.0102752	-0.000175362	2.40088e-05	0.00199978	0.000665427	0.00389472	0.00407622	0.000181498	5.06487e-07	0.000410888
+Objective Value				1.28951e-06			1.7082e-06			1.717e-06
+Root Mean Square				0.000314949			0.000362491			0.000414367
+Weight				0.0883249			0.11343			1
+
+
+
+Parameter Estimation Task
+
+Problem Description:
+Subtask: 
+Time-Course Task
+
+Problem Description:
+    AutomaticStepSize: 0
+    StepNumber: 100
+    StepSize: 0.01
+    Duration: 1
+    TimeSeriesRequested: 1
+    OutputStartTime: 0
+    Output Event: 0
+    Start in Steady State: 0
+
+Method: Deterministic (LSODA)
+    Integrate Reduced Model: 0
+    Relative Tolerance: 1e-06
+    Absolute Tolerance: 1e-12
+    Max Internal Steps: 10000
+    Max Internal Step Size: 0
+
+
+List of Fitting Items:
+    0 <= Values[alpha].InitialValue <= 100; Start Value = 29.9781
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+    0 <= Values[beta].InitialValue <= 100; Start Value = 75.2896
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+    0 <= Values[kc].InitialValue <= 100; Start Value = 5.08514
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+    0 <= Values[mu_max].InitialValue <= 100; Start Value = 0.780241
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+
+List of Constraint Items:
+
+Method: Random Search
+    Number of Iterations: 100000
+    Random Number Generator: 1
+    Seed: 0
+    Log Verbosity: 0
+
+[Function Evaluations] [Best Value] [Best Parameters]
+1 1.25563e-05 (	29.9781	75.2896	5.08514	0.780241	)
+ Parameter Estimation Result:
+
+Objective Function Value:	1.25563e-05
+Standard Deviation:	0.00042971
+Function Evaluations:	100002
+CPU Time [s]:	42.423
+Evaluations/Second [1/s]:	2357.26
+
+	Parameter	Value	Gradient	Standard Deviation
+	Values[alpha].InitialValue:	29.9781	nan	nan
+	Values[beta].InitialValue:	75.2896	nan	nan
+	Values[kc].InitialValue:	5.08514	nan	nan
+	Values[mu_max].InitialValue:	0.780241	nan	nan
+
+File Name:	/Users/s144510/Documents/fermentationtool/data/R1_data_in_moles.csv
+Experiment:	Experiment
+Mean:	0.000110567
+Objective Value:	7.84156e-06
+Root Mean Square:	0.000466713
+Row	Time	[biomass](Data)	[biomass](Fit)	[biomass](Weighted Error)	[glucose](Data)	[glucose](Fit)	[glucose](Weighted Error)	[serine](Data)	[serine](Fit)	[serine](Weighted Error)	Objective Value	Root Mean Square
+
+1.	2	0.000434779	5.28078e-05	-0.00017696	0.00817978	0.0082236	1.85931e-05	0	1.63298e-05	1.63298e-05	3.19271e-08	0.000103162
+2.	3.5	0.000447258	0.00015932	-0.000133396	0.00812495	0.0081634	1.6318e-05	0	5.83312e-05	5.83312e-05	2.14633e-08	8.45839e-05
+3.	5	0.0013877	0.000432464	-0.000442541	0.00768991	0.00800875	0.000135293	0	0.000166145	0.000166145	2.41751e-07	0.000283873
+4.	6.5	0.00245493	0.000978645	-0.000683932	0.00726655	0.00769837	0.000183236	0	0.000382075	0.000382075	6.4732e-07	0.000464514
+5.	8	0.00298181	0.00180096	-0.000547061	0.0063019	0.00722824	0.000393072	0.000361937	0.000707752	0.000345815	5.7337e-07	0.000437176
+6.	9.5	0.0036309	0.00279705	-0.000386304	0.00589437	0.00665397	0.000322324	0.000532544	0.00110283	0.000570286	5.7835e-07	0.000439071
+7.	11	0.00396996	0.00385608	-5.27565e-05	0.00558341	0.00603694	0.000192445	nan	0.00152331	nan	3.98184e-08	0.0001411
+8.	12.5	0.00456971	0.00490297	0.000154394	0.00496987	0.00541919	0.000190663	0.00136485	0.00193926	0.000574415	3.90142e-07	0.000360621
+9.	14	0.00520982	0.00589523	0.000317536	0.0042424	0.0048249	0.000247174	nan	0.00233371	nan	1.61924e-07	0.000284538
+10.	16	0.00596342	0.00709798	0.00052562	0.00334446	0.00408972	0.000316237	0.00276329	0.00281202	4.87266e-05	3.78656e-07	0.000355273
+11.	18	0.00717897	0.00814758	0.000448737	0.00230528	0.00343006	0.000477278	nan	0.00322955	nan	4.2916e-07	0.000463228
+12.	20	0.0076666	0.00904423	0.00063823	0.0010255	0.00284728	0.000773037	0.00398672	0.00358632	-0.000400396	1.16524e-06	0.000623228
+13.	23	0.0102211	0.0101237	-4.51568e-05	2.28911e-05	0.00210837	0.000884931	0.00556422	0.0040159	-0.00154832	3.18244e-06	0.00102996
+Objective Value				2.17569e-06			2.15386e-06			3.51201e-06
+Root Mean Square				0.000409097			0.00040704			0.000592622
+Weight				0.214628			0.180056			1
+
+File Name:	/Users/s144510/Documents/fermentationtool/data/R2_data_in_moles.csv
+Experiment:	Experiment_1
+Mean:	0.000108599
+Objective Value:	4.7147e-06
+Root Mean Square:	0.000361889
+Row	Time	[biomass](Data)	[biomass](Fit)	[biomass](Weighted Error)	[glucose](Data)	[glucose](Fit)	[glucose](Weighted Error)	[serine](Data)	[serine](Fit)	[serine](Weighted Error)	Objective Value	Root Mean Square
+
+1.	2	0.000553831	5.28078e-05	-0.000148902	0.0082473	0.0082236	-7.98019e-06	0	1.63298e-05	1.63298e-05	2.2502e-08	8.66064e-05
+2.	3.5	0.000717018	0.00015932	-0.000165745	0.00787799	0.0081634	9.61245e-05	0	5.83312e-05	5.83312e-05	4.01139e-08	0.000115634
+3.	5	0.00171748	0.000432464	-0.000381902	0.00719248	0.00800875	0.000274915	0	0.000166145	0.000166145	2.49031e-07	0.000288115
+4.	6.5	0.00265065	0.000978645	-0.00049691	0.00695747	0.00769837	0.000249532	0.000183464	0.000382075	0.000198611	3.48632e-07	0.000340897
+5.	8	0.00321429	0.00180096	-0.000420034	0.00627956	0.00722824	0.00031951	0.000360008	0.000707752	0.000347744	3.99441e-07	0.000364893
+6.	9.5	0.00388331	0.00279705	-0.00032283	0.00572759	0.00665397	0.000312001	0.000706176	0.00110283	0.000396654	3.58899e-07	0.00034588
+7.	11	0.00446749	0.00385608	-0.000181707	0.00506791	0.00603694	0.000326362	nan	0.00152331	nan	1.3953e-07	0.00026413
+8.	12.5	0.00531439	0.00490297	-0.000122272	0.00467803	0.00541919	0.000249619	0.00118737	0.00193926	0.000751898	6.4261e-07	0.000462821
+9.	14	0.00588033	0.00589523	4.42675e-06	0.00413146	0.0048249	0.000233547	nan	0.00233371	nan	5.45636e-08	0.000165172
+10.	16	0.00710699	0.00709798	-2.67725e-06	0.00317767	0.00408972	0.000307172	0.0019386	0.00281202	0.000873417	8.57218e-07	0.000534546
+11.	18	0.00871284	0.00814758	-0.000167991	0.00220047	0.00343006	0.000414118	nan	0.00322955	nan	1.99715e-07	0.000316002
+12.	20	0.0113251	0.00904423	-0.000677849	0.000901145	0.00284728	0.000655446	0.00350342	0.00358632	8.28958e-05	8.95961e-07	0.000546492
+13.	23.5	0.0108653	0.0102752	-0.000175362	2.40088e-05	0.00199978	0.000665427	0.00389472	0.00407622	0.000181498	5.06487e-07	0.000410888
+Objective Value				1.28951e-06			1.7082e-06			1.717e-06
+Root Mean Square				0.000314949			0.000362491			0.000414367
+Weight				0.0883249			0.11343			1
+
+
+
+Parameter Estimation Task
+
+Problem Description:
+Subtask: 
+Time-Course Task
+
+Problem Description:
+    AutomaticStepSize: 0
+    StepNumber: 100
+    StepSize: 0.01
+    Duration: 1
+    TimeSeriesRequested: 1
+    OutputStartTime: 0
+    Output Event: 0
+    Start in Steady State: 0
+
+Method: Deterministic (LSODA)
+    Integrate Reduced Model: 0
+    Relative Tolerance: 1e-06
+    Absolute Tolerance: 1e-12
+    Max Internal Steps: 10000
+    Max Internal Step Size: 0
+
+
+List of Fitting Items:
+    0 <= Values[alpha].InitialValue <= 100; Start Value = 29.9781
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+    0 <= Values[beta].InitialValue <= 100; Start Value = 75.2896
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+    0 <= Values[kc].InitialValue <= 100; Start Value = 5.08514
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+    0 <= Values[mu_max].InitialValue <= 100; Start Value = 0.780241
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+
+List of Constraint Items:
+
+Method: Random Search
+    Number of Iterations: 100000
+    Random Number Generator: 1
+    Seed: 0
+    Log Verbosity: 0
+
+[Function Evaluations] [Best Value] [Best Parameters]
+1 1.25563e-05 (	29.9781	75.2896	5.08514	0.780241	)
+Parameter Estimation Task
+
+Problem Description:
+Subtask: 
+Time-Course Task
+
+Problem Description:
+    AutomaticStepSize: 0
+    StepNumber: 100
+    StepSize: 0.01
+    Duration: 1
+    TimeSeriesRequested: 1
+    OutputStartTime: 0
+    Output Event: 0
+    Start in Steady State: 0
+
+Method: Deterministic (LSODA)
+    Integrate Reduced Model: 0
+    Relative Tolerance: 1e-06
+    Absolute Tolerance: 1e-12
+    Max Internal Steps: 10000
+    Max Internal Step Size: 0
+
+
+List of Fitting Items:
+    0 <= Values[alpha].InitialValue <= 100; Start Value = 29.9781
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+    0 <= Values[beta].InitialValue <= 100; Start Value = 75.2896
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+    0 <= Values[kc].InitialValue <= 100; Start Value = 5.08514
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+    0 <= Values[mu_max].InitialValue <= 100; Start Value = 0.780241
+    Affected Experiments:
+      all    Affected Validation Experiments:
+      all
+
+List of Constraint Items:
+
+Method: Random Search
+    Number of Iterations: 100000
+    Random Number Generator: 1
+    Seed: 0
+    Log Verbosity: 0
+
+[Function Evaluations] [Best Value] [Best Parameters]
+1 1.25563e-05 (	29.9781	75.2896	5.08514	0.780241	)
+ Parameter Estimation Result:
+
+Objective Function Value:	1.25563e-05
+Standard Deviation:	0.00042971
+Function Evaluations:	100002
+CPU Time [s]:	44.428
+Evaluations/Second [1/s]:	2250.88
+
+	Parameter	Value	Gradient	Standard Deviation
+	Values[alpha].InitialValue:	29.9781	nan	nan
+	Values[beta].InitialValue:	75.2896	nan	nan
+	Values[kc].InitialValue:	5.08514	nan	nan
+	Values[mu_max].InitialValue:	0.780241	nan	nan
+
+File Name:	/Users/s144510/Documents/fermentationtool/data/R1_data_in_moles.csv
+Experiment:	Experiment
+Mean:	0.000110567
+Objective Value:	7.84156e-06
+Root Mean Square:	0.000466713
+Row	Time	[biomass](Data)	[biomass](Fit)	[biomass](Weighted Error)	[glucose](Data)	[glucose](Fit)	[glucose](Weighted Error)	[serine](Data)	[serine](Fit)	[serine](Weighted Error)	Objective Value	Root Mean Square
+
+1.	2	0.000434779	5.28078e-05	-0.00017696	0.00817978	0.0082236	1.85931e-05	0	1.63298e-05	1.63298e-05	3.19271e-08	0.000103162
+2.	3.5	0.000447258	0.00015932	-0.000133396	0.00812495	0.0081634	1.6318e-05	0	5.83312e-05	5.83312e-05	2.14633e-08	8.45839e-05
+3.	5	0.0013877	0.000432464	-0.000442541	0.00768991	0.00800875	0.000135293	0	0.000166145	0.000166145	2.41751e-07	0.000283873
+4.	6.5	0.00245493	0.000978645	-0.000683932	0.00726655	0.00769837	0.000183236	0	0.000382075	0.000382075	6.4732e-07	0.000464514
+5.	8	0.00298181	0.00180096	-0.000547061	0.0063019	0.00722824	0.000393072	0.000361937	0.000707752	0.000345815	5.7337e-07	0.000437176
+6.	9.5	0.0036309	0.00279705	-0.000386304	0.00589437	0.00665397	0.000322324	0.000532544	0.00110283	0.000570286	5.7835e-07	0.000439071
+7.	11	0.00396996	0.00385608	-5.27565e-05	0.00558341	0.00603694	0.000192445	nan	0.00152331	nan	3.98184e-08	0.0001411
+8.	12.5	0.00456971	0.00490297	0.000154394	0.00496987	0.00541919	0.000190663	0.00136485	0.00193926	0.000574415	3.90142e-07	0.000360621
+9.	14	0.00520982	0.00589523	0.000317536	0.0042424	0.0048249	0.000247174	nan	0.00233371	nan	1.61924e-07	0.000284538
+10.	16	0.00596342	0.00709798	0.00052562	0.00334446	0.00408972	0.000316237	0.00276329	0.00281202	4.87266e-05	3.78656e-07	0.000355273
+11.	18	0.00717897	0.00814758	0.000448737	0.00230528	0.00343006	0.000477278	nan	0.00322955	nan	4.2916e-07	0.000463228
+12.	20	0.0076666	0.00904423	0.00063823	0.0010255	0.00284728	0.000773037	0.00398672	0.00358632	-0.000400396	1.16524e-06	0.000623228
+13.	23	0.0102211	0.0101237	-4.51568e-05	2.28911e-05	0.00210837	0.000884931	0.00556422	0.0040159	-0.00154832	3.18244e-06	0.00102996
+Objective Value				2.17569e-06			2.15386e-06			3.51201e-06
+Root Mean Square				0.000409097			0.00040704			0.000592622
+Weight				0.214628			0.180056			1
+
+File Name:	/Users/s144510/Documents/fermentationtool/data/R2_data_in_moles.csv
+Experiment:	Experiment_1
+Mean:	0.000108599
+Objective Value:	4.7147e-06
+Root Mean Square:	0.000361889
+Row	Time	[biomass](Data)	[biomass](Fit)	[biomass](Weighted Error)	[glucose](Data)	[glucose](Fit)	[glucose](Weighted Error)	[serine](Data)	[serine](Fit)	[serine](Weighted Error)	Objective Value	Root Mean Square
+
+1.	2	0.000553831	5.28078e-05	-0.000148902	0.0082473	0.0082236	-7.98019e-06	0	1.63298e-05	1.63298e-05	2.2502e-08	8.66064e-05
+2.	3.5	0.000717018	0.00015932	-0.000165745	0.00787799	0.0081634	9.61245e-05	0	5.83312e-05	5.83312e-05	4.01139e-08	0.000115634
+3.	5	0.00171748	0.000432464	-0.000381902	0.00719248	0.00800875	0.000274915	0	0.000166145	0.000166145	2.49031e-07	0.000288115
+4.	6.5	0.00265065	0.000978645	-0.00049691	0.00695747	0.00769837	0.000249532	0.000183464	0.000382075	0.000198611	3.48632e-07	0.000340897
+5.	8	0.00321429	0.00180096	-0.000420034	0.00627956	0.00722824	0.00031951	0.000360008	0.000707752	0.000347744	3.99441e-07	0.000364893
+6.	9.5	0.00388331	0.00279705	-0.00032283	0.00572759	0.00665397	0.000312001	0.000706176	0.00110283	0.000396654	3.58899e-07	0.00034588
+7.	11	0.00446749	0.00385608	-0.000181707	0.00506791	0.00603694	0.000326362	nan	0.00152331	nan	1.3953e-07	0.00026413
+8.	12.5	0.00531439	0.00490297	-0.000122272	0.00467803	0.00541919	0.000249619	0.00118737	0.00193926	0.000751898	6.4261e-07	0.000462821
+9.	14	0.00588033	0.00589523	4.42675e-06	0.00413146	0.0048249	0.000233547	nan	0.00233371	nan	5.45636e-08	0.000165172
+10.	16	0.00710699	0.00709798	-2.67725e-06	0.00317767	0.00408972	0.000307172	0.0019386	0.00281202	0.000873417	8.57218e-07	0.000534546
+11.	18	0.00871284	0.00814758	-0.000167991	0.00220047	0.00343006	0.000414118	nan	0.00322955	nan	1.99715e-07	0.000316002
+12.	20	0.0113251	0.00904423	-0.000677849	0.000901145	0.00284728	0.000655446	0.00350342	0.00358632	8.28958e-05	8.95961e-07	0.000546492
+13.	23.5	0.0108653	0.0102752	-0.000175362	2.40088e-05	0.00199978	0.000665427	0.00389472	0.00407622	0.000181498	5.06487e-07	0.000410888
+Objective Value				1.28951e-06			1.7082e-06			1.717e-06
+Root Mean Square				0.000314949			0.000362491			0.000414367
+Weight				0.0883249			0.11343			1
+
+
+

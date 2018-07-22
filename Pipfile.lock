@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "5980b2c95cd9309620771f630886d13351f6c749ac508f181ba4ad64a1beae0f"
+            "sha256": "2670fece87ee0015a1057e9fe73b78c82e07bd898822085d08ef4bb5dc041a2c"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -58,6 +58,14 @@
                 "sha256:e9535b8c84dc9571a48999094fda7f33e63c3f1b74f3e5f3ac0105a58405bb65"
             ],
             "version": "==0.26.2"
+        },
+        "ast": {
+            "hashes": [
+                "sha256:04cf2827c4048d18635ca8f85357a4285d140424ac26028be0dc585f824e07cd",
+                "sha256:dc5b79c6ba11aea72c59c791a0bc5ae483b4c18fec6f643002d6fae24361eba0"
+            ],
+            "index": "pypi",
+            "version": "==0.0.2"
         },
         "atomicwrites": {
             "hashes": [
@@ -536,10 +544,10 @@
         },
         "plotly": {
             "hashes": [
-                "sha256:baab7f8d54f37df89f31d6e6e5d2d4b491bccb79e5d490e25d5762bb762a277c"
+                "sha256:5bd04a0991512fe9008ab986429ff4b4f1448cceda56ed344e0dc709f42e067a"
             ],
             "index": "pypi",
-            "version": "==3.0.0"
+            "version": "==3.0.2"
         },
         "pluggy": {
             "hashes": [

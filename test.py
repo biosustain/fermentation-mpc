@@ -95,370 +95,146 @@
 
 
 
-# import pandas as pd
-# import matplotlib
-# matplotlib.use('TkAgg')
-# import matplotlib.pyplot as plt
-# from models import batch_model
-# from models import fed_batch_model
-# from experiments import data
-# from parest_copasi import parameter_estimation
-# import sys
-# import time
-# import datetime
-# #from datetime import datetime, date
-# import numpy as np
-# from plotly import tools
-# import plotly
-# import plotly.graph_objs as go
-# import tellurium as te
-# from models import batch_model_mu
-# import os
-# from bs4 import BeautifulSoup
-#
-# # From cps to xml
-# os.rename('model_copasi.cps', 'model_copasi.xml')
-#
-# soup = BeautifulSoup(open('model_copasi.xml', 'r'), 'xml')
-# infile = open('model_copasi.xml', "w")
-#
-# # Choose filename for experimental dataset nr 1
-# Experiment_0 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "Experiment"][0]
-# file_name = [s for s in Experiment_0.find_all("Parameter") if s["name"] == "File Name"][0]
-# file_name["value"] = "data/R1_data_in_moles.csv"
-#
-# # Choose filename for experimental dataset nr 2
-# Experiment_1 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "Experiment_1"][0]
-# file_name = [s for s in Experiment_1.find_all("Parameter") if s["name"] == "File Name"][0]
-# file_name["value"] = "data/R2_data_in_moles.csv"
-#
-# # Parameters:
-#
-# parameter_1 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][0]
-# lower_bound_1 = [s for s in parameter_1.find_all('Parameter') if s['name'] == "LowerBound"][0]
-# lower_bound_1['value'] = "0"
-# upper_bound_1 = [s for s in parameter_1.find_all('Parameter') if s['name'] == "UpperBound"][0]
-# upper_bound_1['value'] = "100"
-#
-# parameter_2 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][1]
-# lower_bound_2 = [s for s in parameter_2.find_all('Parameter') if s['name'] == "LowerBound"][0]
-# lower_bound_2['value'] = "0"
-# upper_bound_2 = [s for s in parameter_2.find_all('Parameter') if s['name'] == "UpperBound"][0]
-# upper_bound_2['value'] = "100"
-#
-# parameter_3 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][2]
-# lower_bound_3 = [s for s in parameter_3.find_all('Parameter') if s['name'] == "LowerBound"][0]
-# lower_bound_3['value'] = "0"
-# upper_bound_3 = [s for s in parameter_3.find_all('Parameter') if s['name'] == "UpperBound"][0]
-# upper_bound_3['value'] = "100"
-#
-# parameter_4 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][3]
-# lower_bound_4 = [s for s in parameter_4.find_all('Parameter') if s['name'] == "LowerBound"][0]
-# lower_bound_4['value'] = "0"
-# upper_bound_4 = [s for s in parameter_4.find_all('Parameter') if s['name'] == "UpperBound"][0]
-# upper_bound_4['value'] = "100"
-#
-# infile.write(soup.prettify().encode(soup.original_encoding))
-# infile.close()
-#
-# # From xml to cps
-# os.rename('model_copasi.xml', 'model_copasi.cps')
-#
-# # Run the parameterestimation in Copasi for the model from the terminal
-# # Find the path to CopasiSE, it could be the path given below in the comment
-# # os.system("/Applications/COPASI/CopasiSE model_copasi.cps --save model_copasi.cps")
-# os.system("/Users/s144510/Documents/fermentationtool/CopasiSE model_copasi.cps --save model_copasi.cps")
-#
-# # Get the results
-# os.rename('model_copasi.cps', 'model_copasi.xml')
-# soup = BeautifulSoup(open('model_copasi.xml', 'r'), 'xml')
-#
-# result_parameter_1 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][0]
-# result_parameter_1 = [s for s in result_parameter_1.find_all('Parameter') if s['name'] == "StartValue"][0]
-# alpha = result_parameter_1['value']
-#
-# result_parameter_2 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][1]
-# result_parameter_2 = [s for s in result_parameter_2.find_all('Parameter') if s['name'] == "StartValue"][0]
-# beta = result_parameter_2['value']
-#
-# result_parameter_3 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][2]
-# result_parameter_3 = [s for s in result_parameter_3.find_all('Parameter') if s['name'] == "StartValue"][0]
-# kc = result_parameter_3['value']
-#
-# result_parameter_4 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][3]
-# result_parameter_4 = [s for s in result_parameter_4.find_all('Parameter') if s['name'] == "StartValue"][0]
-# mu_max = result_parameter_4['value']
-#
-# print(alpha,beta,kc,mu_max)
-#
-# infile.close()
-# os.rename('model_copasi.xml', 'model_copasi.cps')
-
-
-
-
-
-
-
-# Import the packages
-
-# The following should be installed
-# pip install dash-core-components==0.13.0-rc5
-# pip install loremipsum
-
-import dash
-import dash_core_components as dcc
-import dash_html_components as html
-import plotly.graph_objs as go
 import pandas as pd
-
-from functions_fermentation_tool import data_to_mass
-from functions_fermentation_tool import stack_data
-
-from dash.dependencies import Input, Output
-from loremipsum import get_sentences
-
-file = 'data/c002_r3_overview.xlsm'
-
-xl = pd.ExcelFile(file)
-
-
-# Loads the sheet we want to work with
-df1 = xl.parse('Off line measurements')
-
-
-# This is used for the experiment section
-df, available_indicators = stack_data(df1)
-
-
-# This is used for the mass section
-# Call the function
-mass_sheet, available_indicatorsMASS = data_to_mass(df1)
-
-
-
-
-# The actual application starts here
-
-app = dash.Dash()
-
-app.scripts.config.serve_locally = True  # tabs
-
-#vertical = True  # vertical tabs
-
-app.layout = html.Div([
-    html.Div(
-        dcc.Tabs(
-            tabs=[
-                {'label': 'Experiments', 'value': 1},
-                {'label': 'Balancing Region', 'value': 2},
-                {'label': 'Mass Plot', 'value': 3}
-            ],
-            value=1,  # Sets the default value (maybe not neccesary)
-            id='tabs'
-        ),
-        style={'width': '20%', 'float': 'left'}
-    ),
-    html.Div(
-        html.Div(id='tab-output'),
-        style={'width': '80%', 'float': 'right'}
-    )
-], style={
-    'fontFamily': 'Sans-Serif',
-    'margin-left': 'auto',
-    'margin-right': 'auto'
-})
-
-
-@app.callback(Output('tab-output', 'children'), [Input('tabs', 'value')])
-def display_content(val):
-
-    if 1 == val:
-        return html.Div([
-            html.Div([
-                html.H2("Generate the plot"),
-                html.Div([
-                    dcc.Dropdown(
-                        id='crossfilter-xaxis-column',
-                        options=[{'label': i, 'value': i} for i in available_indicators],
-                        # label Makes the different options from the dataframe appear, and value can change to another
-                        placeholder="Select the x-axis",
-                        value='Time (hours)'),
-                ],
-                    style={'width': '25%', 'display': 'inline-block'}),
-
-                html.Div([
-                    dcc.Dropdown(
-                        id='crossfilter-yaxis-column',
-                        options=[{'label': i, 'value': i} for i in available_indicators],
-                        # value can later be defined in function - if false then just a string - if true then the value correspons to this in the option
-                        placeholder="Select the y-axis",
-                        value='Glucose ( g/L)'),
-                ],
-                    style={'width': '25%', 'display': 'inline-block'})],
-
-                style={
-                    'borderBottom': 'thin lightgrey solid',
-                    'backgroundColor': 'rgb(250, 250, 250)',
-                    'padding': '10px 5px'}),
-            # This section makes makes the design and placement of the dropdown menues and the title Serine project.
-
-            html.Div([
-                dcc.Graph(
-                    id='crossfilter-indicator-scatter')
-            ],
-                style={'width': '60%', 'display': 'inline-block', 'padding': '0 20'})])
-
-    if 2 == val:
-        return html.Div([
-            html.H2("Generate the plot"),
-            html.Div([
-                dcc.Dropdown(
-                    id='x-axis-column',
-                    options=[{'label': i, 'value': i} for i in available_indicators],
-                    # label Makes the different options from the dataframe appear, and value is used in the callbacks and their corresponding functions
-                    placeholder="Select the x axis"),
-
-            ],
-                style={'width': '25%', 'display': 'inline-block'}),
-
-            html.Div([
-                dcc.Dropdown(
-                    id='y-axis-column',
-                    options=[{'label': i, 'value': i} for i in available_indicators],
-                    multi=False,
-                    placeholder="Select the y-axis"),
-
-            ],
-                style={'width': '25%', 'display': 'inline-block'}),
-
-            html.Div([
-                dcc.Dropdown(
-                    id='volume',
-                    options=[{'label': i, 'value': i} for i in available_indicators],
-                    # value can later be defined in function - if false then just a string - if true then the value correspons to this in the option
-                    placeholder="Select the volume"),
-            ],
-                style={'width': '25%', 'display': 'inline-block'})],
-
-            style={
-                'borderBottom': 'thin lightgrey solid',
-                'backgroundColor': 'rgb(250, 250, 250)',
-                'padding': '10px 5px'})  # This section makes makes the design and placement of the dropdown menues
-
-
-    if 3 == val:
-        return html.Div([
-                dcc.Graph(
-                    id='crossfilter-indicator-scatterMASS')
-            ],
-                style={'width': '60%', 'display': 'inline-block', 'padding': '0 20'})
-
-
-
-# the carbon balance:
-
-app.config[
-    'suppress_callback_exceptions'] = True  # Because we are assigning callbacks to components that are generated by other callbakcs we have to supress the exception
-
-
-@app.callback(
-    dash.dependencies.Output('crossfilter-indicator-scatterMass', 'figure'),
-    [Input('x-axis-column', 'value'),
-     Input('y-axis-column', 'value'),
-     Input('volume', 'value')])
-def update_graph(xaxis_column_name, yaxis_column_name, cross):
-    V = df[df['Variables'] == cross]['Value']
-    xx = df[df['Variables'] == xaxis_column_name]['Value']
-    yy = df[df['Variables'] == yaxis_column_name]['Value']
-    xx = xx.reset_index()  # resetting the index so it corresponds to size of the new column, instead of it having indexes from the dataframe.
-    xx = xx.drop(['index'], axis=1)
-    yy = yy.reset_index()
-    yy = yy.drop(['index'], axis=1)
-    V = V.reset_index()
-    V = V.drop(['index'], axis=1)
-    yy = V * yy
-
-    xx = xx.T.squeeze()  # The T.squeeze converts the dataframe into a serie. Because Dash callback return values need to be serialised into JSON.
-    yy = yy.T.squeeze()
-
-
-    return {
-        'data': [go.Scatter(
-            x=xx,
-            y=yy,
-            mode='markers',
-            marker={
-                'size': 15,
-                'opacity': 0.5,
-                'line': {'width': 0.5, 'color': 'white'}
-            }
-        )],
-        'layout': go.Layout(
-            xaxis={
-                'title': xaxis_column_name,
-            },
-            yaxis={
-                'title': yaxis_column_name,
-            },
-            margin={'l': 40, 'b': 30, 't': 10, 'r': 0},
-            height=450,
-            hovermode='closest'
-        )
-    }
-
-
-
-# the experiment
-
-
-@app.callback(
-    dash.dependencies.Output('crossfilter-indicator-scatter', 'figure'),
-    [dash.dependencies.Input('crossfilter-xaxis-column', 'value'),
-     dash.dependencies.Input('crossfilter-yaxis-column', 'value')])
-def update_graph(xaxis_column_name, yaxis_column_name):
-    return {
-        'data': [go.Scatter(
-            x=df[df['Variables'] == xaxis_column_name]['Value'],
-            y=df[df['Variables'] == yaxis_column_name]['Value'],
-            mode='markers',
-            marker={
-                'size': 15,
-                'opacity': 0.5,
-                'line': {'width': 0.5, 'color': 'white'}
-            }
-        )],
-        'layout': go.Layout(
-            xaxis={
-                'title': xaxis_column_name,
-            },
-            yaxis={
-                'title': yaxis_column_name,
-            },
-            margin={'l': 40, 'b': 30, 't': 10, 'r': 0},
-            height=450,
-            hovermode='closest'
-        )
-    }
-
-
-# The mass plot
-
-app.config['suppress_callback_exceptions'] = True
-
-
-
-if __name__ == '__main__':
-    app.run_server(debug=True)
-
-
-
-
-
-
-
-
-
-
-
-
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
+from models import batch_model
+from models import fed_batch_model
+from experiments import data
+from parest_copasi import parameter_estimation
+import sys
+import time
+import datetime
+#from datetime import datetime, date
+import numpy as np
+from plotly import tools
+import plotly
+import plotly.graph_objs as go
+import tellurium as te
+from models import batch_model_mu
+import os
+from bs4 import BeautifulSoup
+from ast import literal_eval
+
+fermentation_model = '''
+    model *IDModel()
+
+        ######## Set the compartment to 1, otherwise it will be multiplied by the compounds. 
+        compartment comp1;
+        comp1 =1;
+
+
+        ######## Specify the species in the compartment
+        glucose in comp1; serine in comp1; biomass in comp1;
+
+
+        ######## Constants
+        alpha = 21.5 #29.1 #21.542 #24.6807; # Check units
+        beta = 90.3 #68.8 #90.2844 #67.3047; # Check units
+        mu_max = 0.3 #0.98 #0.327912 #0.260172; # [1/h]
+        kc = 1.2 #7.48 #1.24659 #1.05221; # [mol/kg] # Kc? 
+        a = -0.2572;
+        b = -0.7651;
+        ms = -0.0046; 
+
+
+        ######## Initial conditions
+        glucose = 8.254856e-06*1000 # [mol] 
+        serine = 0 #c_serine0*comp1 # [mol]
+        biomass = 5.538306e-07*1000 # [mol]
+        v0 = 0.00010428; #[m^3]
+
+
+        ######## Function for volume
+        v := 0.00010302999999999999-(0.00000121*time) #[m^3]
+
+        ######## Concentrations that is used in the equations
+        c_glucose := glucose/v  # [mol/m^3]
+        c_biomass := biomass/v # [mol/m^3] 
+
+        ######## Functions
+        mu := mu_max*(c_glucose/((kc*c_biomass)+c_glucose)) # [1/h]
+        #qp_s := alpha*mu/(beta+mu) # [mol_serine/(c-mol_biomass*h)]
+        #qs_g := a*mu + b*qp_s + ms #[mol_glucose/(c-mol_biomass*h)]
+        rp_s = 0.5 #qp_s*biomass # [mol/h] 
+        r_s = 0.5 #qs_g*biomass # [mol/h]
+
+
+        ######## Mass Balances    
+        eq_biomass: -> biomass; mu*biomass # [c-mol/h]
+        eq_serine: -> serine; rp_s
+        eq_glucose: -> glucose; r_s # [mol/h]
+
+
+
+        end
+    
+'''
+
+r = te.loada(fermentation_model)
+#r.exportToSBML('TEST-delete.xml')
+
+# We can set the lists so it has the same order as the data
+#r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
+
+#results = r.simulate(2, 23.5, 100)
+
+r.alpha = 0
+r.beta = 3.56
+r.kc = 0
+r.mu_max = 0.2
+
+# We can set the lists so it has the same order as the data
+r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
+
+results = r.simulate(2, 23.5, 100)
+
+#  Load the experimental data set
+
+
+# Set filename of the two experimental datasets
+filename_experimental_data1 = "data/R1_data_in_moles.csv"
+filename_experimental_data2 = "data/R2_data_in_moles.csv"
+
+# Experimental data set 1
+experimental_data = pd.read_csv(filename_experimental_data1)
+experimental_data = data(experimental_data)
+
+# Experimental data set 2
+experimental_data2 = pd.read_csv(filename_experimental_data2)
+experimental_data2 = data(experimental_data2)
+#
+# print(experimental_data)
+# print(experimental_data2)
+#
+#
+#  Plot of the results from the model and the experimental data
+plt.figure(num=None, figsize=(11, 7), dpi=90, facecolor='w', edgecolor='k')
+plt.suptitle('Plot of compounds', fontsize=16)
+
+plt.subplot(2, 2, 1)
+plt.plot(results[:, 0], (results[:, 3]))
+plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
+plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
+plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
+plt.xlabel('Time (hours)')
+plt.ylabel('Biomass (c-mole)')
+
+plt.subplot(2, 2, 2)
+plt.plot(results[:, 0], results[:, 2])
+plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
+plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
+plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
+plt.xlabel('Time (hours)')
+plt.ylabel('Serine (mole)')
+
+plt.subplot(2, 2, 3)
+plt.plot(results[:, 0], results[:, 1])
+plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
+plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
+plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
+plt.xlabel('Time (hours)')
+plt.ylabel('Glucose (mole)')
+
+plt.show()

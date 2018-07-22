@@ -18,10 +18,10 @@ def batch_model():
 
 
         ######## Constants
-        alpha = 29.1 #21.542 #24.6807; # Check units
-        beta = 68.8 #90.2844 #67.3047; # Check units
-        mu_max = 0.98 #0.327912 #0.260172; # [1/h]
-        kc = 7.48 #1.24659 #1.05221; # [mol/kg] # Kc? 
+        alpha = 21.5 #29.1 #21.542 #24.6807; # Check units
+        beta = 90.3 #68.8 #90.2844 #67.3047; # Check units
+        mu_max = 0.3 #0.98 #0.327912 #0.260172; # [1/h]
+        kc = 1.2 #7.48 #1.24659 #1.05221; # [mol/kg] # Kc? 
         a = -0.2572;
         b = -0.7651;
         ms = -0.0046; 
@@ -102,7 +102,7 @@ def batch_model_mu():
 
         ######## Functions
         
-        mu = 0
+        mu = 0.12345 # This mu value is not used, it has this value so it can be easily found in the xml written model
         qp_s := alpha*mu/(beta+mu) # [mol_serine/(c-mol_biomass*h)]
         qs_g := a*mu + b*qp_s + ms #[mol_glucose/(c-mol_biomass*h)]
         rp_s := qp_s*biomass # [mol/h] 
