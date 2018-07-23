@@ -9,6 +9,26 @@ from dash.dependencies import Input, Output
 # pip install pyorbital
 from pyorbital.orbital import Orbital
 
+import pandas as pd
+import matplotlib
+matplotlib.use('TkAgg')
+import matplotlib.pyplot as plt
+from models import batch_model
+from models import fed_batch_model
+from experiments import data
+from parest_copasi import parameter_estimation
+from parest_copasi import parameter_estimation_online
+import os
+import sys
+import time
+import datetime
+import numpy as np
+from plotly import tools
+import plotly
+import plotly.graph_objs as go
+import tellurium as te
+from models import batch_model_mu
+
 satellite = Orbital('TERRA')
 
 app = dash.Dash(__name__)
@@ -29,12 +49,64 @@ app.layout = html.Div(
 @app.callback(Output('live-update-text', 'children'),
               [Input('interval-component', 'n_intervals')])
 def update_metrics(n):
-    lon, lat, alt = satellite.get_lonlatalt(datetime.datetime.now())
+
+    watch_file = 'data/MUX_09-03-2018_18-38-27.XLS'
+    online_data = pd.ExcelFile(watch_file)
+    online_data = online_data.parse('Sheet1')
+
+    # Calculate the difference in time, so we can select all the data that corresponds to 1 reactor
+    time = pd.to_timedelta(online_data['Time      '])
+    shifted_time = time.shift(periods=-1)
+    delta = shifted_time - time
+    online_data['delta'] = delta
+
+    # Select the rows with difference in time between 46 and 47 minutes
+    # and create new dataframe that we will be working with
+    selected_data = online_data[(online_data['delta'] >= '00:46:00') & (online_data['delta'] <= '00:47:00')]
+
+    # Calculation of the CO2 evolution rate
+    CER = selected_data['CO2 (Vol.%)'] * 10 - 0.04 * 10  # unit [(mol_co2/mol_totalgas)/min] / [%CO2/min]
+
+    # Reset the selected time so it starts from time = 0, convert it and then use it to calculate tCER
+    selected_time = pd.to_timedelta(selected_data['Time      '])
+    selected_time.reset_index(inplace=True, drop=True)
+    reset_selected_time = selected_time - selected_time[0]
+    selected_datetimes = pd.to_datetime(reset_selected_time)
+    selected_time = selected_datetimes.dt.time
+
+    # convert time to decimals and in minutes
+    selected_time_decimals = pd.DataFrame(columns=['Time'])
+    for i in range(0, len(selected_time)):
+        h = selected_time[i].strftime('%H')
+        m = selected_time[i].strftime('%M')
+        s = selected_time[i].strftime('%S')
+        result = int(h) * 60 + int(m) + int(s) / 60.0  # [min]
+        selected_time_decimals.loc[
+            i, ['Time']] = result  # This puts the results in the iterated indexes in the Time column
+
+    # Calculate tCER
+
+    # Shift the values so it corresponds to next value of selected_time_decimals
+    shifted_selected_time_decimals = selected_time_decimals.shift(periods=-1)
+
+    # Same with CO2 so it corresponds to next value of CER
+    CER.reset_index(inplace=True, drop=True)
+    shifted_CER = CER.shift(periods=-1)
+
+    # Convert to series
+    shifted_selected_time_decimals = shifted_selected_time_decimals.T.squeeze()
+    selected_time_decimals = selected_time_decimals.T.squeeze()
+
+    tCER = ((CER + shifted_CER) / 2) * (shifted_selected_time_decimals - selected_time_decimals)  # [% CO2]
+    mu = CER / tCER
+    mu = (mu / 60)  # [1/h]
+    #print(mu[-1])
+
+    selected_time_decimals_hours = selected_time_decimals / 60
+
     style = {'padding': '5px', 'fontSize': '16px'}
     return [
-        html.Span('Longitude: {0:.2f}'.format(lon), style=style),
-        html.Span('Latitude: {0:.2f}'.format(lat), style=style),
-        html.Span('Altitude: {0:0.2f}'.format(alt), style=style)
+        html.Span(mu.iloc[-2], style=style)
     ]
 
 

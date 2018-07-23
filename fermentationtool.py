@@ -27,6 +27,7 @@ df, available_indicators = stack_data(df1)
 mass_sheet, available_indicatorsMASS = data_to_mass(df1)
 
 
+
 # The actual application starts here
 
 app = dash.Dash()
@@ -34,101 +35,13 @@ app = dash.Dash()
 app.scripts.config.serve_locally = True  # tabs
 
 app.layout = html.Div([
+html.H1('Awesome fermentation program', style={
+            'textAlign': 'center', 'margin': '10px 0', 'fontFamily': 'system-ui'}),
         html.Div(
             dcc.Tabs(
-                tabs=[
-                    {'label': 'Experiments', 'value': 1},
-                    {'label': 'Balancing Region', 'value': 2},
-                    {'label': 'Mass Plot', 'value': 3}
-                ],
-                value=1,  # Sets the default value
-                id='tabs',
-            ),
-            style={'width': '40%', 'float': 'center'},
-    ),
-    html.Div(
-        html.Div(id='tab-output'),
-        style={'width': '79.5%', 'float': 'buttom'}
-    )
-], style={
-    'fontFamily': 'Sans-Serif',
-    'margin-left': 'auto',
-    'margin-right': 'auto'
-})
-
-
-@app.callback(Output('tab-output', 'children'), [Input('tabs', 'value')])
-def display_content(val):
-    if 3 == val:
-        return html.Div([
-            html.Div([
-                html.H2("Generate the plot"),
-                html.Div([
-                    dcc.Dropdown(
-                        id='crossfilter-xaxis-columnMASS',
-                        options=[{'label': i, 'value': i} for i in available_indicatorsMASS],
-                        placeholder="Select the x-axis",
-                        value = 'Time (hours)'),
-                ],
-                    style={'width': '25%', 'display': 'inline-block'}),
-
-                html.Div([
-                    dcc.Dropdown(
-                        id='crossfilter-yaxis-columnMASS',
-                        options=[{'label': i, 'value': i} for i in available_indicatorsMASS],
-                        placeholder="Select the y-axis",
-                        value = 'Glucose (g)')
-                ],
-                    style={'width': '25%', 'display': 'inline-block'})],
-
-                style={
-                    'borderBottom': 'thin lightgrey solid',
-                    'backgroundColor': 'rgb(250, 250, 250)',
-                    'padding': '10px 5px'}),
-            # This section makes the design and placement of the dropdown menues and the title Serine project.
-
-            html.Div([
-                dcc.Graph(
-                    id='crossfilter-indicator-scatterMASS')
-            ],
-                style={'width': '60%', 'display': 'inline-block', 'padding': '0 20'})]
-        )
-
-    if 2 == val:
-        return html.Div([
-            html.H2("Balancing Region"),
-
-            html.Div([
-                dcc.Dropdown(
-                    id='choose-products',
-                    options=[{'label': i, 'value': i} for i in available_indicators],
-                    placeholder="Select the products",
-                    multi=True),
-                html.Div(id='output-products'),
-            ],
-                style={'width': '25%', 'display': 'inline-block'}),
-
-            html.Div([
-                dcc.Dropdown(
-                    id='choose-substrates',
-                    options=[{'label': i, 'value': i} for i in available_indicators],
-                    placeholder="Select the substrates",
-                    multi=True),
-                html.Div(id='output-substrates'),
-            ],
-
-                style={'width': '25%', 'display': 'inline-block'})
-        ],
-
-            # generate space under dropdown where text should be outputted
-
-            style={
-                'borderBottom': 'thin lightgrey solid',
-                'backgroundColor': 'rgb(250, 250, 250)',
-                'padding': '10px 5px'})
-
-    if 1 == val:
-        return html.Div([
+                children=[
+                    dcc.Tab(label='Experiments', children = [
+html.Div([
             html.Div([
                 html.H2("Generate the plot"),
                 html.Div([
@@ -159,11 +72,83 @@ def display_content(val):
                 dcc.Graph(
                     id='crossfilter-indicator-scatter')
             ],
-                style={'width': '60%', 'display': 'inline-block', 'padding': '0 20'})])
+                style={'width': '100%', 'display': 'inline-block', 'padding': '0 20'})])
+                    ]),
+                    dcc.Tab(label='Balancing Region',children = [
+html.Div([
+            html.H2("Balancing Region"),
 
-        # generate space under dropdown where text should be outputted
+            html.Div([
+                dcc.Dropdown(
+                    id='choose-products',
+                    options=[{'label': i, 'value': i} for i in available_indicators],
+                    placeholder="Select the products",
+                    multi=True),
+                html.Div(id='output-products'),
+            ],
+                style={'width': '25%', 'display': 'inline-block'}),
 
+            html.Div([
+                dcc.Dropdown(
+                    id='choose-substrates',
+                    options=[{'label': i, 'value': i} for i in available_indicators],
+                    placeholder="Select the substrates",
+                    multi=True),
+                html.Div(id='output-substrates'),
+            ],
 
+                style={'width': '25%', 'display': 'inline-block'})
+        ],
+
+            # generate space under dropdown where text should be outputted
+
+            style={
+                'borderBottom': 'thin lightgrey solid',
+                'backgroundColor': 'rgb(250, 250, 250)',
+                'padding': '10px 5px'})
+                    ]),
+                    dcc.Tab(label= 'Mass Plot', children= [
+html.Div([
+            html.Div([
+                html.H2("Generate the plot"),
+                html.Div([
+                    dcc.Dropdown(
+                        id='crossfilter-xaxis-columnMASS',
+                        options=[{'label': i, 'value': i} for i in available_indicatorsMASS],
+                        placeholder="Select the x-axis",
+                        value = 'Time (hours)'),
+                ],
+                    style={'width': '25%', 'display': 'inline-block'}),
+
+                html.Div([
+                    dcc.Dropdown(
+                        id='crossfilter-yaxis-columnMASS',
+                        options=[{'label': i, 'value': i} for i in available_indicatorsMASS],
+                        placeholder="Select the y-axis",
+                        value = 'Glucose (g)')
+                ],
+                    style={'width': '25%', 'display': 'inline-block'})],
+
+                style={
+                    'borderBottom': 'thin lightgrey solid',
+                    'backgroundColor': 'rgb(250, 250, 250)',
+                    'padding': '10px 5px',
+                    'width': '150%', 'display': 'inline-block', 'padding': '0 20'}),
+            # This section makes the design and placement of the dropdown menues and the title Serine project.
+
+            html.Div([
+                dcc.Graph(
+                    id='crossfilter-indicator-scatterMASS')
+            ],
+                style={'width': '100%', 'display': 'inline-block', 'padding': '0 20'})]
+        )
+                    ])
+                ],
+                value=1,  # Sets the default value
+                id='tabs',
+            ),
+            style={'width': '40%', 'float': 'center'},
+    )])
 
 
 # the balancing region
