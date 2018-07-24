@@ -163,13 +163,6 @@ else:
     data_frame = data_frame.append(new_dataframe, ignore_index=True)
 
 
-    print(data_frame,"DATAFRAMIII")
-    print(data_frame.iloc[-1:])
-    print(list(data_frame.iloc[-1]), "LIIIST")
-    print(simulated_row)
-    print(list(simulated_row),"LIST SIMUL ROW")
-
-
 
     wb = load_workbook("output.xlsx")
     ws = wb['Sheet1']
@@ -177,7 +170,16 @@ else:
     ws.append(row)
     wb.save("output.xlsx")
 
+    #wb = load_workbook("output.xlsx")
+    #data_frame = wb['Sheet1']
 
+    file = 'output.xlsx'
+
+    xl = pd.ExcelFile(file)
+
+    # Loads the sheet we want to work with
+    df1 = xl.parse('Sheet1')
+    print(df1)
 
 
 # # Multiple components can update everytime interval gets fired.
