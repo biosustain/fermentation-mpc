@@ -23,6 +23,8 @@ watchdog = "*"
 flask = "*"
 pyorbital = "*"
 ast = "*"
+openpyxl = "*"
+xlwings = "*"
 
 [dev-packages]
 

@@ -51,36 +51,36 @@ experimental_data2 = data(experimental_data2)
 # print(experimental_data)
 # print(experimental_data2)
 #
+# #
+# #  Plot of the results from the model and the experimental data
+# plt.figure(num=None, figsize=(11, 7), dpi=90, facecolor='w', edgecolor='k')
+# plt.suptitle('Plot of compounds', fontsize=16)
 #
-#  Plot of the results from the model and the experimental data
-plt.figure(num=None, figsize=(11, 7), dpi=90, facecolor='w', edgecolor='k')
-plt.suptitle('Plot of compounds', fontsize=16)
-
-plt.subplot(2, 2, 1)
-plt.plot(results[:, 0], (results[:, 3]))
-plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
-plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
-plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
-plt.xlabel('Time (hours)')
-plt.ylabel('Biomass (c-mole)')
-
-plt.subplot(2, 2, 2)
-plt.plot(results[:, 0], results[:, 2])
-plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
-plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
-plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
-plt.xlabel('Time (hours)')
-plt.ylabel('Serine (mole)')
-
-plt.subplot(2, 2, 3)
-plt.plot(results[:, 0], results[:, 1])
-plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
-plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
-plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
-plt.xlabel('Time (hours)')
-plt.ylabel('Glucose (mole)')
-
-plt.show()
+# plt.subplot(2, 2, 1)
+# plt.plot(results[:, 0], (results[:, 3]))
+# plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
+# plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
+# plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
+# plt.xlabel('Time (hours)')
+# plt.ylabel('Biomass (c-mole)')
+#
+# plt.subplot(2, 2, 2)
+# plt.plot(results[:, 0], results[:, 2])
+# plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
+# plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
+# plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
+# plt.xlabel('Time (hours)')
+# plt.ylabel('Serine (mole)')
+#
+# plt.subplot(2, 2, 3)
+# plt.plot(results[:, 0], results[:, 1])
+# plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
+# plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
+# plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
+# plt.xlabel('Time (hours)')
+# plt.ylabel('Glucose (mole)')
+#
+# plt.show()
 
 
 # #  Parameter estimation
@@ -96,55 +96,55 @@ kc_upper_bound = "100"
 mu_max_lower_bound = "0"
 mu_max_upper_bound = "100"
 
-alpha, beta, kc, mu_max = parameter_estimation(filename_experimental_data1, filename_experimental_data2,
-                                               alpha_lower_bound, alpha_upper_bound,
-                                               beta_lower_bound, beta_upper_bound,
-                                               kc_lower_bound, kc_upper_bound,
-                                               mu_max_lower_bound, mu_max_upper_bound)
-
-print(alpha, beta, kc, mu_max)
-
-#  Update model with optimized parameters
-r = batch_model()
-r.alpha = float(alpha)
-r.beta = float(beta)
-r.kc = float(kc)
-r.mu_max = float(mu_max)
-#r.mu = 10 #np.random.uniform(1,50,100)
-r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
-results = r.simulate(2, 23.5, 100)
-print(results)
-
-
-#  Plot of the results from the model and the experimental data
-plt.figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
-plt.suptitle('Plot of compounds with updated optimized parameters', fontsize=16)
-
-plt.subplot(2, 2, 1)
-plt.plot(results[:, 0], (results[:, 3]))
-plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
-plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
-plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
-plt.xlabel('Time (hours)')
-plt.ylabel('Biomass (c-mole)')
-
-plt.subplot(2, 2, 2)
-plt.plot(results[:, 0], results[:, 2])
-plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
-plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
-plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
-plt.xlabel('Time (hours)')
-plt.ylabel('Serine (mole)')
-
-plt.subplot(2, 2, 3)
-plt.plot(results[:, 0], results[:, 1])
-plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
-plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
-plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
-plt.xlabel('Time (hours)')
-plt.ylabel('Glucose (mole)')
-
-plt.show()
+# alpha, beta, kc, mu_max = parameter_estimation(filename_experimental_data1, filename_experimental_data2,
+#                                                alpha_lower_bound, alpha_upper_bound,
+#                                                beta_lower_bound, beta_upper_bound,
+#                                                kc_lower_bound, kc_upper_bound,
+#                                                mu_max_lower_bound, mu_max_upper_bound)
+#
+# print(alpha, beta, kc, mu_max)
+#
+# #  Update model with optimized parameters
+# r = batch_model()
+# r.alpha = float(alpha)
+# r.beta = float(beta)
+# r.kc = float(kc)
+# r.mu_max = float(mu_max)
+# #r.mu = 10 #np.random.uniform(1,50,100)
+# r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
+# results = r.simulate(2, 23.5, 100)
+# print(results)
+#
+#
+# #  Plot of the results from the model and the experimental data
+# plt.figure(num=None, figsize=(10, 7), dpi=80, facecolor='w', edgecolor='k')
+# plt.suptitle('Plot of compounds with updated optimized parameters', fontsize=16)
+#
+# plt.subplot(2, 2, 1)
+# plt.plot(results[:, 0], (results[:, 3]))
+# plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
+# plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
+# plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
+# plt.xlabel('Time (hours)')
+# plt.ylabel('Biomass (c-mole)')
+#
+# plt.subplot(2, 2, 2)
+# plt.plot(results[:, 0], results[:, 2])
+# plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
+# plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
+# plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
+# plt.xlabel('Time (hours)')
+# plt.ylabel('Serine (mole)')
+#
+# plt.subplot(2, 2, 3)
+# plt.plot(results[:, 0], results[:, 1])
+# plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
+# plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
+# plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
+# plt.xlabel('Time (hours)')
+# plt.ylabel('Glucose (mole)')
+#
+# plt.show()
 
 
 # Online data and real time simulation

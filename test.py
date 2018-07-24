@@ -28,139 +28,209 @@ import plotly
 import plotly.graph_objs as go
 import tellurium as te
 from models import batch_model_mu
-
-satellite = Orbital('TERRA')
-
-app = dash.Dash(__name__)
-app.layout = html.Div(
-    html.Div([
-        html.H4('TERRA Satellite Live Feed'),
-        html.Div(id='live-update-text'),
-        dcc.Graph(id='live-update-graph'),
-        dcc.Interval(
-            id='interval-component',
-            interval=1 * 1000,  # in milliseconds
-            n_intervals=0
-        )
-    ])
-)
+#from openpyxl.workbook import Workbook
+import xlwings as xw
+from openpyxl import load_workbook
+from openpyxl.utils.dataframe import dataframe_to_rows
 
 
-@app.callback(Output('live-update-text', 'children'),
-              [Input('interval-component', 'n_intervals')])
-def update_metrics(n):
 
-    watch_file = 'data/MUX_09-03-2018_18-38-27.XLS'
-    online_data = pd.ExcelFile(watch_file)
-    online_data = online_data.parse('Sheet1')
+new_file = 'output.xlsx'
+new_data = pd.ExcelFile(new_file)
+new_data = new_data.parse('Sheet1')
+print(new_data)
+print(len(new_data))
 
-    # Calculate the difference in time, so we can select all the data that corresponds to 1 reactor
-    time = pd.to_timedelta(online_data['Time      '])
-    shifted_time = time.shift(periods=-1)
-    delta = shifted_time - time
-    online_data['delta'] = delta
-
-    # Select the rows with difference in time between 46 and 47 minutes
-    # and create new dataframe that we will be working with
-    selected_data = online_data[(online_data['delta'] >= '00:46:00') & (online_data['delta'] <= '00:47:00')]
-
-    # Calculation of the CO2 evolution rate
-    CER = selected_data['CO2 (Vol.%)'] * 10 - 0.04 * 10  # unit [(mol_co2/mol_totalgas)/min] / [%CO2/min]
-
-    # Reset the selected time so it starts from time = 0, convert it and then use it to calculate tCER
-    selected_time = pd.to_timedelta(selected_data['Time      '])
-    selected_time.reset_index(inplace=True, drop=True)
-    reset_selected_time = selected_time - selected_time[0]
-    selected_datetimes = pd.to_datetime(reset_selected_time)
-    selected_time = selected_datetimes.dt.time
-
-    # convert time to decimals and in minutes
-    selected_time_decimals = pd.DataFrame(columns=['Time'])
-    for i in range(0, len(selected_time)):
-        h = selected_time[i].strftime('%H')
-        m = selected_time[i].strftime('%M')
-        s = selected_time[i].strftime('%S')
-        result = int(h) * 60 + int(m) + int(s) / 60.0  # [min]
-        selected_time_decimals.loc[
-            i, ['Time']] = result  # This puts the results in the iterated indexes in the Time column
-
-    # Calculate tCER
-
-    # Shift the values so it corresponds to next value of selected_time_decimals
-    shifted_selected_time_decimals = selected_time_decimals.shift(periods=-1)
-
-    # Same with CO2 so it corresponds to next value of CER
-    CER.reset_index(inplace=True, drop=True)
-    shifted_CER = CER.shift(periods=-1)
-
-    # Convert to series
-    shifted_selected_time_decimals = shifted_selected_time_decimals.T.squeeze()
-    selected_time_decimals = selected_time_decimals.T.squeeze()
-
-    tCER = ((CER + shifted_CER) / 2) * (shifted_selected_time_decimals - selected_time_decimals)  # [% CO2]
-    mu = CER / tCER
-    mu = (mu / 60)  # [1/h]
-    #print(mu[-1])
-
-    selected_time_decimals_hours = selected_time_decimals / 60
-
-    style = {'padding': '5px', 'fontSize': '16px'}
-    return [
-        html.Span(mu.iloc[-2], style=style)
-    ]
+#writer = pd.ExcelWriter('output.xlsx', engine='openpyxl')
+#data_frame.to_excel(writer, 'Sheet1', index=False)
+#data_frame.to_excel(writer, 'Sheet1', startrow=len(new_data) + 1, index=False, header=False)
+#writer.save()
 
 
-# Multiple components can update everytime interval gets fired.
-@app.callback(Output('live-update-graph', 'figure'),
-              [Input('interval-component', 'n_intervals')])
-def update_graph_live(n):
-    satellite = Orbital('TERRA')
-    data = {
-        'time': [],
-        'Latitude': [],
-        'Longitude': [],
-        'Altitude': []
-    }
-
-    # Collect some data
-    for i in range(180):
-        time = datetime.datetime.now() - datetime.timedelta(seconds=i * 20)
-        lon, lat, alt = satellite.get_lonlatalt(
-            time
-        )
-        data['Longitude'].append(lon)
-        data['Latitude'].append(lat)
-        data['Altitude'].append(alt)
-        data['time'].append(time)
-
-    # Create the graph with subplots
-    fig = plotly.tools.make_subplots(rows=2, cols=1, vertical_spacing=0.2)
-    fig['layout']['margin'] = {
-        'l': 30, 'r': 10, 'b': 30, 't': 10
-    }
-    fig['layout']['legend'] = {'x': 0, 'y': 1, 'xanchor': 'left'}
-
-    fig.append_trace({
-        'x': data['time'],
-        'y': data['Altitude'],
-        'name': 'Altitude',
-        'mode': 'lines+markers',
-        'type': 'scatter'
-    }, 1, 1)
-    fig.append_trace({
-        'x': data['Longitude'],
-        'y': data['Latitude'],
-        'text': data['time'],
-        'name': 'Longitude vs Latitude',
-        'mode': 'lines+markers',
-        'type': 'scatter'
-    }, 2, 1)
-
-    return fig
 
 
-if __name__ == '__main__':
-    app.run_server(debug=True)
+
+
+
+filename_experimental_data1 = "data/R1_data_in_moles.csv"
+filename_experimental_data2 = "data/R2_data_in_moles.csv"
+alpha_lower_bound = "0"
+alpha_upper_bound = "100"
+beta_lower_bound = "0"
+beta_upper_bound = "100"
+
+
+
+watch_file = 'data/MUX_09-03-2018_18-38-27.XLS'
+online_data = pd.ExcelFile(watch_file)
+online_data = online_data.parse('Sheet1')
+
+# Calculate the difference in time, so we can select all the data that corresponds to 1 reactor
+times = pd.to_timedelta(online_data['Time      '])
+shifted_time = times.shift(periods=-1)
+delta = shifted_time - times
+online_data['delta'] = delta
+
+# Select the rows with difference in time between 46 and 47 minutes
+# and create new dataframe that we will be working with
+selected_data = online_data[(online_data['delta'] >= '00:46:00') & (online_data['delta'] <= '00:47:00')]
+
+# Calculation of the CO2 evolution rate
+CER = selected_data['CO2 (Vol.%)'] * 10 - 0.04 * 10  # unit [(mol_co2/mol_totalgas)/min] / [%CO2/min]
+
+# Reset the selected time so it starts from time = 0, convert it and then use it to calculate tCER
+selected_time = pd.to_timedelta(selected_data['Time      '])
+selected_time.reset_index(inplace=True, drop=True)
+reset_selected_time = selected_time - selected_time[0]
+selected_datetimes = pd.to_datetime(reset_selected_time)
+selected_time = selected_datetimes.dt.time
+
+# convert time to decimals and in minutes
+selected_time_decimals = pd.DataFrame(columns=['Time'])
+for i in range(0, len(selected_time)):
+    h = selected_time[i].strftime('%H')
+    m = selected_time[i].strftime('%M')
+    s = selected_time[i].strftime('%S')
+    result = int(h) * 60 + int(m) + int(s) / 60.0  # [min]
+    selected_time_decimals.loc[
+        i, ['Time']] = result  # This puts the results in the iterated indexes in the Time column
+
+# Calculate tCER
+
+# Shift the values so it corresponds to next value of selected_time_decimals
+shifted_selected_time_decimals = selected_time_decimals.shift(periods=-1)
+
+# Same with CO2 so it corresponds to next value of CER
+CER.reset_index(inplace=True, drop=True)
+shifted_CER = CER.shift(periods=-1)
+
+# Convert to series
+shifted_selected_time_decimals = shifted_selected_time_decimals.T.squeeze()
+selected_time_decimals = selected_time_decimals.T.squeeze()
+
+tCER = ((CER + shifted_CER) / 2) * (shifted_selected_time_decimals - selected_time_decimals)  # [% CO2]
+mu = CER / tCER
+mu = (mu / 60)  # [1/h]
+
+if np.isnan(mu[0]) == True:
+    print('Needs more time points to simulate data')
+
+else:
+
+    selected_time_decimals_hours = selected_time_decimals/60
+
+    r = batch_model_mu()
+    r.mu = mu[0]
+    r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
+
+    start_time = selected_time_decimals_hours[0]
+    end_time = selected_time_decimals_hours.iloc[1]
+    results = r.simulate(start_time, end_time, 2)
+
+    print(results, "RESULTS")
+
+
+    # we probably didnt have to simulate since we just want the first row.
+    # But it makes it easier to make the dataframe
+    initial_values = results[0:1]
+    data_frame = pd.DataFrame(initial_values)
+    data_frame.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
+
+    r.reset()
+    r.mu = mu.iloc[-2]
+    glucose = data_frame['glucose'].iloc[-1]
+    serine = data_frame['serine'].iloc[-1]
+    biomass = data_frame['biomass'].iloc[-1]
+    print(glucose, serine, biomass)
+
+    alpha_online, beta_online = parameter_estimation_online(filename_experimental_data1,
+                                                            filename_experimental_data2,
+                                                            alpha_lower_bound, alpha_upper_bound,
+                                                            beta_lower_bound, beta_upper_bound,
+                                                            str(mu.iloc[-2]), str(glucose), str(serine),
+                                                            str(biomass))
+    # print(alpha_online,beta_online)
+    r.alpha = float(alpha_online)
+    r.beta = float(beta_online)
+    start_time = selected_time_decimals_hours.iloc[-2]
+    end_time = selected_time_decimals_hours.iloc[-1]
+    results = r.simulate(start_time, end_time, 2)
+    # print(results)
+    simulated_row = results[-1:]
+    # print(simulated_row)
+    new_dataframe = pd.DataFrame(simulated_row)
+    new_dataframe.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
+    data_frame = data_frame.append(new_dataframe, ignore_index=True)
+
+
+    print(data_frame,"DATAFRAMIII")
+    print(data_frame.iloc[-1:])
+    print(list(data_frame.iloc[-1]), "LIIIST")
+    print(simulated_row)
+    print(list(simulated_row),"LIST SIMUL ROW")
+
+
+
+    wb = load_workbook("output.xlsx")
+    ws = wb['Sheet1']
+    row = list(data_frame.iloc[-1])
+    ws.append(row)
+    wb.save("output.xlsx")
+
+
+
+
+# # Multiple components can update everytime interval gets fired.
+# @app.callback(Output('live-update-graph', 'figure'),
+#               [Input('interval-component', 'n_intervals')])
+# def update_graph_live(n):
+#     satellite = Orbital('TERRA')
+#     data = {
+#         'time': [],
+#         'Latitude': [],
+#         'Longitude': [],
+#         'Altitude': []
+#     }
+#
+#     # Collect some data
+#     for i in range(180):
+#         time = datetime.datetime.now() - datetime.timedelta(seconds=i * 20)
+#         lon, lat, alt = satellite.get_lonlatalt(
+#             time
+#         )
+#         data['Longitude'].append(lon)
+#         data['Latitude'].append(lat)
+#         data['Altitude'].append(alt)
+#         data['time'].append(time)
+#
+#     # Create the graph with subplots
+#     fig = plotly.tools.make_subplots(rows=2, cols=1, vertical_spacing=0.2)
+#     fig['layout']['margin'] = {
+#         'l': 30, 'r': 10, 'b': 30, 't': 10
+#     }
+#     fig['layout']['legend'] = {'x': 0, 'y': 1, 'xanchor': 'left'}
+#
+#     fig.append_trace({
+#         'x': data['time'],
+#         'y': data['Altitude'],
+#         'name': 'Altitude',
+#         'mode': 'lines+markers',
+#         'type': 'scatter'
+#     }, 1, 1)
+#     fig.append_trace({
+#         'x': data['Longitude'],
+#         'y': data['Latitude'],
+#         'text': data['time'],
+#         'name': 'Longitude vs Latitude',
+#         'mode': 'lines+markers',
+#         'type': 'scatter'
+#     }, 2, 1)
+#
+#     return fig
+#
+#
+# if __name__ == '__main__':
+#     app.run_server(debug=True)
 
 
 # Import the packages
