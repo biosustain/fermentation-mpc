@@ -13,7 +13,6 @@ matplotlib = "*"
 numpy = "*"
 pandas = "*"
 plotly = "*"
-scipy = "*"
 tellurium = "*"
 dash_renderer = "*"
 "beautifulsoup4" = "*"
@@ -25,6 +24,9 @@ pyorbital = "*"
 ast = "*"
 openpyxl = "*"
 xlwings = "*"
+dash-table-experiments = "*"
+scipy = "*"
+scikit-learn = "*"
 
 [dev-packages]
 
