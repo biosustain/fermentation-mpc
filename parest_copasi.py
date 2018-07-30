@@ -99,7 +99,11 @@ def parameter_estimation_online(experimental_data1,experimental_data2,
                          mu, glucose, serine, biomass):
     # From cps to xml
 
-    os.rename('model_mu.cps', 'model_mu.xml')
+    try:
+        os.rename('model_mu.cps', 'model_mu.xml')
+    except OSError:
+        pass
+
 
     soup = BeautifulSoup(open('model_mu.xml', 'r'), 'xml')
     infile = open('model_mu.xml', "w")

@@ -1,3 +1,7 @@
+import warnings
+warnings.filterwarnings("ignore", message="numpy.dtype size changed")
+warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
+
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -8,37 +12,37 @@ from functions_fermentation_tool import data_to_mass
 from functions_fermentation_tool import stack_data
 
 from dash.dependencies import Input, Output
-from loremipsum import get_sentences
+#from loremipsum import get_sentences
 
 
-import pandas as pd
+#import pandas as pd
 import matplotlib
 matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
-from models import batch_model
-from models import fed_batch_model
-from experiments import data
-from parest_copasi import parameter_estimation
-from parest_copasi import parameter_estimation_online
+#import matplotlib.pyplot as plt
+#from models import batch_model
+#from models import fed_batch_model
+#from experiments import data
+#from parest_copasi import parameter_estimation
+#from parest_copasi import parameter_estimation_online
 import os
-import sys
-import time
-import datetime
+#import sys
+#import time
+#import datetime
 import numpy as np
-from plotly import tools
-import plotly
-import plotly.graph_objs as go
-import tellurium as te
-from models import batch_model_mu
+#from plotly import tools
+#import plotly
+#import plotly.graph_objs as go
+#import tellurium as te
+#from models import batch_model_mu
 #from openpyxl.workbook import Workbook
-import xlwings as xw
-from openpyxl import load_workbook
-from openpyxl.utils.dataframe import dataframe_to_rows
+#import xlwings as xw
+#from openpyxl import load_workbook
+#from openpyxl.utils.dataframe import dataframe_to_rows
 from monitoring import monitoring
 
 
 
-file = 'data/C002_R3_overview.xlsm'
+file = '/Users/s144510/Documents/fermentationtool/data/C002_R3_overview.xlsm'  #'data/C002_R3_overview.xlsm'
 
 xl = pd.ExcelFile(file)
 
@@ -55,29 +59,50 @@ df, available_indicators = stack_data(df1)
 mass_sheet, available_indicatorsMASS = data_to_mass(df1)
 
 
-
-
-filename_experimental_data1 = "data/R1_data_in_moles.csv"
-filename_experimental_data2 = "data/R2_data_in_moles.csv"
-alpha_lower_bound = "0"
-alpha_upper_bound = "100"
-beta_lower_bound = "0"
-beta_upper_bound = "100"
+# Create output dataframe
+output = pd.DataFrame(columns =  ['time', 'glucose', 'serine', 'biomass', 'mu'])
+writer = pd.ExcelWriter('output.xlsx')
+output.to_excel(writer, 'Sheet1', index=False)
+writer.save()
 
 
 # The actual application starts here
 
 app = dash.Dash()
 
-
+# evt slet det neden under??
 # For the online data integration
-file = 'output.xlsx'
-output = pd.ExcelFile(file)
+# file = '/Users/s144510/Documents/fermentationtool/output.xlsx'
+# output = pd.ExcelFile(file)
+#
+# # Loads the sheet we want to work with
+# dataframe_output = output.parse('Sheet1')
+# online_data_sheet, available_indicators_online = stack_data(dataframe_output)
 
-# Loads the sheet we want to work with
-dataframe_output = output.parse('Sheet1')
-online_data_sheet, available_indicators_online = stack_data(dataframe_output)
 
+
+
+# try: '/Users/s144510/Documents/fermentationtool/mu.xlsx'
+# except NameError: '/Users/s144510/Documents/fermentationtool/mu.xlsx' = None
+
+if os.path.isfile('./Users/s144510/Documents/fermentationtool/mu.xlsx') is False:
+    timeinterval = 30*1000
+
+else:
+    output_values = '/Users/s144510/Documents/fermentationtool/mu.xlsx'
+    output_values = pd.ExcelFile(output_values)
+    # Loads the sheet we want to work with
+    mu_values = output_values.parse('Sheet1')
+
+
+    data_frame_values = '/Users/s144510/Documents/fermentationtool/data_online_integration.xlsx'
+    data_frame_values = pd.ExcelFile(data_frame_values)
+
+    # Loads the sheet we want to work with
+    data_frame = data_frame_values.parse('Sheet1')
+    data_frame = pd.DataFrame(data_frame)
+
+    timeinterval = 2*((30 * ((len(mu_values) - len(data_frame['mu']))+1))*1000)
 
 
 app.scripts.config.serve_locally = True  # tabs
@@ -196,7 +221,7 @@ app.layout = html.Div([
                         dcc.Graph(id='live-update-graph'),
                         dcc.Interval(
                             id='interval-component',
-                            interval=2 * 60 * 1000,  # in milliseconds
+                            interval=timeinterval,  # in milliseconds
                             n_intervals=0
                         )
                     ],
@@ -310,23 +335,32 @@ def update_graph(xaxis_column_name, yaxis_column_name):
 @app.callback(Output('live-update-graph', 'figure'),
               [Input('interval-component', 'n_intervals')])
 def update_graph_live(n):
+    filename_experimental_data1 = "data/R1_data_in_moles.csv"
+    filename_experimental_data2 = "data/R2_data_in_moles.csv"
+    alpha_lower_bound = "0"
+    alpha_upper_bound = "100"
+    beta_lower_bound = "0"
+    beta_upper_bound = "100"
 
     watch_file = 'data/MUX_09-03-2018_18-38-27.XLS'
     online_data = pd.ExcelFile(watch_file)
     online_data = online_data.parse('Sheet1')
     fig = monitoring(online_data,filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
-               alpha_upper_bound, beta_lower_bound,beta_upper_bound)
+                     alpha_upper_bound, beta_lower_bound,beta_upper_bound)
+
+    print(timeinterval/1000,'timeinterval in seconds')
+
 
     return fig
 
 
+
 if __name__ == '__main__':
     app.run_server(debug=True)
-
-
-# When the debug is true we can make changes in the script and safe the file,
-# then it will automatically change the application
-# If it is false one would have to restart the terminal every time there is a change
-
-
 # press ctrl c to stop it from running
+
+try:
+    os.remove('/Users/s144510/Documents/fermentationtool/output.xlsx')
+    os.remove('/Users/s144510/Documents/fermentationtool/mu.xlsx')
+except OSError:
+    pass
