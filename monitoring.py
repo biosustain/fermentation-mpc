@@ -103,14 +103,14 @@ def monitoring(online_data,filename_experimental_data1,filename_experimental_dat
     data_frame.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
 
     # It could be an idea to have this as a temporary file.
-    wb = load_workbook("output.xlsx")
+    wb = load_workbook("/Users/s144510/Documents/fermentationtool/output.xlsx")
     ws = wb['Sheet1']
     row = list(data_frame.iloc[-1])
     ws.append(row)
-    wb.save("output.xlsx")
+    wb.save("/Users/s144510/Documents/fermentationtool/output.xlsx")
 
     #
-    output_values = 'output.xlsx'
+    output_values = '/Users/s144510/Documents/fermentationtool/output.xlsx'
     output_values = pd.ExcelFile(output_values)
 
     # Loads the sheet we want to work with
@@ -118,7 +118,7 @@ def monitoring(online_data,filename_experimental_data1,filename_experimental_dat
 
     data_frame = data_frame.drop_duplicates()
 
-    writer = pd.ExcelWriter('mu.xlsx')
+    writer = pd.ExcelWriter('/Users/s144510/Documents/fermentationtool/mu.xlsx')
     mu.to_excel(writer, 'Sheet1', index = False)
     writer.save()
 
@@ -158,7 +158,7 @@ def monitoring(online_data,filename_experimental_data1,filename_experimental_dat
 
             new_dataframe = pd.DataFrame(simulated_row)
 
-            wb = load_workbook("output.xlsx")
+            wb = load_workbook("/Users/s144510/Documents/fermentationtool/output.xlsx")
             ws = wb['Sheet1']
             row = list(new_dataframe.iloc[-1])
             ws.append(row)
@@ -202,11 +202,11 @@ def monitoring(online_data,filename_experimental_data1,filename_experimental_dat
 
         new_dataframe = pd.DataFrame(simulated_row)
 
-        wb = load_workbook("output.xlsx")
+        wb = load_workbook("/Users/s144510/Documents/fermentationtool/output.xlsx")
         ws = wb['Sheet1']
         row = list(new_dataframe.iloc[-1])
         ws.append(row)
-        wb.save("output.xlsx")
+        wb.save("/Users/s144510/Documents/fermentationtool/output.xlsx")
 
         new_dataframe.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
         data_frame = data_frame.append(new_dataframe, ignore_index=True)
@@ -219,7 +219,7 @@ def monitoring(online_data,filename_experimental_data1,filename_experimental_dat
 
     data_frame = data_frame.drop_duplicates()
 
-    writer = pd.ExcelWriter('data_online_integration.xlsx')
+    writer = pd.ExcelWriter('/Users/s144510/Documents/fermentationtool/data_online_integration.xlsx')
     data_frame.to_excel(writer, 'Sheet1', index = False)
     writer.save()
 

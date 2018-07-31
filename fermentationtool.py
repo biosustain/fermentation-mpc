@@ -39,6 +39,10 @@ import numpy as np
 #from openpyxl import load_workbook
 #from openpyxl.utils.dataframe import dataframe_to_rows
 from monitoring import monitoring
+import threading
+
+from threading import Lock
+lock = Lock()
 
 
 
@@ -61,7 +65,7 @@ mass_sheet, available_indicatorsMASS = data_to_mass(df1)
 
 # Create output dataframe
 output = pd.DataFrame(columns =  ['time', 'glucose', 'serine', 'biomass', 'mu'])
-writer = pd.ExcelWriter('output.xlsx')
+writer = pd.ExcelWriter('/Users/s144510/Documents/fermentationtool/output.xlsx')
 output.to_excel(writer, 'Sheet1', index=False)
 writer.save()
 
@@ -85,24 +89,28 @@ app = dash.Dash()
 # try: '/Users/s144510/Documents/fermentationtool/mu.xlsx'
 # except NameError: '/Users/s144510/Documents/fermentationtool/mu.xlsx' = None
 
-if os.path.isfile('./Users/s144510/Documents/fermentationtool/mu.xlsx') is False:
-    timeinterval = 30*1000
-
-else:
-    output_values = '/Users/s144510/Documents/fermentationtool/mu.xlsx'
-    output_values = pd.ExcelFile(output_values)
-    # Loads the sheet we want to work with
-    mu_values = output_values.parse('Sheet1')
 
 
-    data_frame_values = '/Users/s144510/Documents/fermentationtool/data_online_integration.xlsx'
-    data_frame_values = pd.ExcelFile(data_frame_values)
+# if os.path.isfile('./Users/s144510/Documents/fermentationtool/mu.xlsx') is False:
+#     timeinterval = 30*1000
+#
+# else:
+#     output_values = '/Users/s144510/Documents/fermentationtool/mu.xlsx'
+#     output_values = pd.ExcelFile(output_values)
+#     # Loads the sheet we want to work with
+#     mu_values = output_values.parse('Sheet1')
+#
+#
+#     data_frame_values = '/Users/s144510/Documents/fermentationtool/data_online_integration.xlsx'
+#     data_frame_values = pd.ExcelFile(data_frame_values)
+#
+#     # Loads the sheet we want to work with
+#     data_frame = data_frame_values.parse('Sheet1')
+#     data_frame = pd.DataFrame(data_frame)
+#
+#     timeinterval = 2*((30 * ((len(mu_values) - len(data_frame['mu']))+1))*1000)
 
-    # Loads the sheet we want to work with
-    data_frame = data_frame_values.parse('Sheet1')
-    data_frame = pd.DataFrame(data_frame)
 
-    timeinterval = 2*((30 * ((len(mu_values) - len(data_frame['mu']))+1))*1000)
 
 
 app.scripts.config.serve_locally = True  # tabs
@@ -221,7 +229,7 @@ app.layout = html.Div([
                         dcc.Graph(id='live-update-graph'),
                         dcc.Interval(
                             id='interval-component',
-                            interval=timeinterval,  # in milliseconds
+                            interval=2*60*1000, #timeinterval,  # in milliseconds
                             n_intervals=0
                         )
                     ],
@@ -335,22 +343,23 @@ def update_graph(xaxis_column_name, yaxis_column_name):
 @app.callback(Output('live-update-graph', 'figure'),
               [Input('interval-component', 'n_intervals')])
 def update_graph_live(n):
-    filename_experimental_data1 = "data/R1_data_in_moles.csv"
-    filename_experimental_data2 = "data/R2_data_in_moles.csv"
-    alpha_lower_bound = "0"
-    alpha_upper_bound = "100"
-    beta_lower_bound = "0"
-    beta_upper_bound = "100"
+    def foo():
+        with lock:
+            filename_experimental_data1 = "data/R1_data_in_moles.csv"
+            filename_experimental_data2 = "data/R2_data_in_moles.csv"
+            alpha_lower_bound = "0"
+            alpha_upper_bound = "100"
+            beta_lower_bound = "0"
+            beta_upper_bound = "100"
 
-    watch_file = 'data/MUX_09-03-2018_18-38-27.XLS'
-    online_data = pd.ExcelFile(watch_file)
-    online_data = online_data.parse('Sheet1')
-    fig = monitoring(online_data,filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
-                     alpha_upper_bound, beta_lower_bound,beta_upper_bound)
+            watch_file = '/Users/s144510/Documents/fermentationtool/data/MUX_09-03-2018_18-38-27.XLS'
+            online_data = pd.ExcelFile(watch_file)
+            online_data = online_data.parse('Sheet1')
+            fig = monitoring(online_data,filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
+                             alpha_upper_bound, beta_lower_bound,beta_upper_bound)
 
-    print(timeinterval/1000,'timeinterval in seconds')
-
-
+        return fig
+    fig = foo()
     return fig
 
 
