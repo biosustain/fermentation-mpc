@@ -9,9 +9,7 @@ version fermentationtool.py which is build on the framework dash.
 
 ## Requirements
 The project uses pipenv to handle virtual environment.
-Install pipenv with
-
-[Contribution guidelines for this project](https://github.com/pypa/pipenv#installation)
+Install pipenv here [pipenv installation](https://github.com/pypa/pipenv#installation)
 
 ## Installing and requirements
 
