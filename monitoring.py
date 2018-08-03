@@ -3,7 +3,6 @@ import pandas as pd
 import matplotlib
 from parest_copasi import parameter_estimation_online
 from plotly import tools
-from datetime import datetime
 from models import batch_model_mu
 from openpyxl import load_workbook
 matplotlib.use('TkAgg')
@@ -11,6 +10,8 @@ matplotlib.use('TkAgg')
 
 def monitoring(online_data,filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
                alpha_upper_bound, beta_lower_bound,beta_upper_bound):
+
+
     # Calculate the difference in time, so we can select all the data that corresponds to 1 reactor
 
     time = pd.to_timedelta(online_data['Time      '])
