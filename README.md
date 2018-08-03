@@ -13,9 +13,12 @@ Install pipenv here [pipenv installation](https://github.com/pypa/pipenv#install
 
 ## Installing and requirements
 
-The pipfile
-If you are using pipenv, you can install the necessary packages
+To run the project
+```
+pipenv shell
+```
 
+Install the necessary dependencies
 ```
 pipenv install
 ```
