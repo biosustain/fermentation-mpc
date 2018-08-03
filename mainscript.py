@@ -27,6 +27,10 @@ r = batch_model()
 
 # We can set the lists so it has the same order as the data
 r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
+# r.a -0.3551480592
+# r.ms = 0.0644
+# r.b = -1.30
+
 
 results = r.simulate(2, 23.5, 100)
 print(results['glucose'])
@@ -52,35 +56,35 @@ experimental_data2 = data(experimental_data2)
 # print(experimental_data2)
 #
 # #
-# #  Plot of the results from the model and the experimental data
-# plt.figure(num=None, figsize=(11, 7), dpi=90, facecolor='w', edgecolor='k')
-# plt.suptitle('Plot of compounds', fontsize=16)
-#
-# plt.subplot(2, 2, 1)
-# plt.plot(results[:, 0], (results[:, 3]))
-# plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
-# plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
-# plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
-# plt.xlabel('Time (hours)')
-# plt.ylabel('Biomass (c-mole)')
-#
-# plt.subplot(2, 2, 2)
-# plt.plot(results[:, 0], results[:, 2])
-# plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
-# plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
-# plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
-# plt.xlabel('Time (hours)')
-# plt.ylabel('Serine (mole)')
-#
-# plt.subplot(2, 2, 3)
-# plt.plot(results[:, 0], results[:, 1])
-# plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
-# plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
-# plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
-# plt.xlabel('Time (hours)')
-# plt.ylabel('Glucose (mole)')
-#
-# plt.show()
+#  Plot of the results from the model and the experimental data
+plt.figure(num=None, figsize=(11, 7), dpi=90, facecolor='w', edgecolor='k')
+plt.suptitle('Plot of compounds', fontsize=16)
+
+plt.subplot(2, 2, 1)
+plt.plot(results[:, 0], (results[:, 3]))
+plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
+plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
+plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
+plt.xlabel('Time (hours)')
+plt.ylabel('Biomass (c-mole)')
+
+plt.subplot(2, 2, 2)
+plt.plot(results[:, 0], results[:, 2])
+plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
+plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
+plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
+plt.xlabel('Time (hours)')
+plt.ylabel('Serine (mole)')
+
+plt.subplot(2, 2, 3)
+plt.plot(results[:, 0], results[:, 1])
+plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
+plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
+plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
+plt.xlabel('Time (hours)')
+plt.ylabel('Glucose (mole)')
+
+plt.show()
 
 
 # #  Parameter estimation
@@ -150,250 +154,250 @@ mu_max_upper_bound = "100"
 # Online data and real time simulation
 
 
-class Watcher(object):
-    running = True
-    refresh_delay_secs = 1
-
-    # Constructor
-    def __init__(self, watch_file, call_func_on_change=None, *args, **kwargs):
-        self._cached_stamp = 0
-        self.filename = watch_file
-        self.call_func_on_change = call_func_on_change
-        self.args = args
-        self.kwargs = kwargs
-
-    # Look for changes
-    def look(self):
-        stamp = os.stat(self.filename).st_mtime
-        if stamp != self._cached_stamp:
-            self._cached_stamp = stamp
-            # File has changed, so do something...
-            print('File changed')
-            if self.call_func_on_change is not None:
-                self.call_func_on_change(*self.args, **self.kwargs)
-
-    # Keep watching in a loop
-    def watch(self):
-        while self.running:
-            try:
-                # Look for changes
-                time.sleep(self.refresh_delay_secs)
-                self.look()
-            except KeyboardInterrupt:
-                print('\nDone')
-                break
-            except FileNotFoundError:
-                # Action on file not found
-                pass
-            except:
-                print('Unhandled error: %s' % sys.exc_info()[0])
-
-
-# Call this function each time a change happens
-def custom_action(text):
-
-    online_data = pd.ExcelFile(watch_file)
-    online_data = online_data.parse('Sheet1')
-
-    # Calculate the difference in time, so we can select all the data that corresponds to 1 reactor
-    time = pd.to_timedelta(online_data['Time      '])
-    shifted_time = time.shift(periods=-1)
-    delta = shifted_time - time
-    online_data['delta'] = delta
-
-    # Select the rows with difference in time between 46 and 47 minutes
-    # and create new dataframe that we will be working with
-    selected_data = online_data[(online_data['delta'] >= '00:46:00') & (online_data['delta'] <= '00:47:00')]
-
-    # Calculation of the CO2 evolution rate
-    CER = selected_data['CO2 (Vol.%)'] * 10 - 0.04 * 10  # unit [(mol_co2/mol_totalgas)/min] / [%CO2/min]
-
-    # Reset the selected time so it starts from time = 0, convert it and then use it to calculate tCER
-    selected_time = pd.to_timedelta(selected_data['Time      '])
-    selected_time.reset_index(inplace=True, drop=True)
-    reset_selected_time = selected_time - selected_time[0]
-    selected_datetimes = pd.to_datetime(reset_selected_time)
-    selected_time = selected_datetimes.dt.time
-
-    # convert time to decimals and in minutes
-    selected_time_decimals = pd.DataFrame(columns=['Time'])
-    for i in range(0, len(selected_time)):
-        h = selected_time[i].strftime('%H')
-        m = selected_time[i].strftime('%M')
-        s = selected_time[i].strftime('%S')
-        result = int(h) * 60 + int(m) + int(s) / 60.0 # [min]
-        selected_time_decimals.loc[
-            i, ['Time']] = result  # This puts the results in the iterated indexes in the Time column
-
-    # Calculate tCER
-
-    # Shift the values so it corresponds to next value of selected_time_decimals
-    shifted_selected_time_decimals = selected_time_decimals.shift(periods=-1)
-
-    # Same with CO2 so it corresponds to next value of CER
-    CER.reset_index(inplace=True, drop=True)
-    shifted_CER = CER.shift(periods=-1)
-
-    # Convert to series
-    shifted_selected_time_decimals = shifted_selected_time_decimals.T.squeeze()
-    selected_time_decimals = selected_time_decimals.T.squeeze()
-
-    tCER = ((CER + shifted_CER) / 2) * (shifted_selected_time_decimals - selected_time_decimals)  # [% CO2]
-    mu = CER / tCER
-    mu = (mu / 60)  # [1/h]
-
-    if np.isnan(mu[0]) == True:
-        print('Needs more time points to simulate data')
-
-    else:
-
-        selected_time_decimals_hours = selected_time_decimals/60
-
-        r = batch_model_mu()
-        r.mu = mu[0]
-        r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
-
-        start_time = selected_time_decimals_hours[0]
-        end_time = selected_time_decimals_hours.iloc[1]
-        results = r.simulate(start_time, end_time, 2)
-
-
-        # we probably didnt have to simulate since we just want the first row.
-        # But it makes it easier to make the dataframe
-        initial_values = results[0:1]
-        data_frame = pd.DataFrame(initial_values)
-        data_frame.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
-
-        for i in range(0, (len(mu) - 2)):
-            #print(data_frame, "on the top")
-            #print(results,"on the top")
-            #print(data_frame['glucose'].iloc[-1])
-            r.reset()
-            r.mu = mu[i+1]
-            glucose = data_frame['glucose'].iloc[-1]
-            serine = data_frame['serine'].iloc[-1]
-            biomass = data_frame['biomass'].iloc[-1]
-            print(glucose,serine,biomass)
-
-            alpha_online, beta_online = parameter_estimation_online(filename_experimental_data1,
-                                                                    filename_experimental_data2,
-                                                                    alpha_lower_bound, alpha_upper_bound,
-                                                                    beta_lower_bound, beta_upper_bound,
-                                                                    str(mu[i+1]), str(glucose), str(serine),
-                                                                    str(biomass))
-            print((mu[i+1]))
-            #print(alpha_online,beta_online)
-            r.alpha = float(alpha_online)
-            r.beta = float(beta_online)
-            start_time = selected_time_decimals_hours[i]
-            end_time = selected_time_decimals_hours[i + 1]
-            results = r.simulate(start_time, end_time, 2)
-            #print(results)
-            simulated_row = results[-1:]
-            #print(simulated_row)
-            new_dataframe = pd.DataFrame(simulated_row)
-            new_dataframe.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
-            data_frame = data_frame.append(new_dataframe, ignore_index=True)
-            #print(data_frame)
-            print("ROUND",i)
-
-
-
-        trace1 = go.Scatter(
-            x=selected_time_decimals_hours,
-            y=selected_data['CO2 (Vol.%)'],
-            name='CO2'
-        )
-
-        trace2 = go.Scatter(
-            x=selected_time_decimals_hours,
-            y=mu,
-            name='mu'
-        )
-
-        trace3 = go.Scatter(
-            x=data_frame['time'],
-            y=data_frame['mu'],
-            name='mu'
-        )
-
-        trace4 = go.Scatter(
-            x=data_frame['time'],
-            y=data_frame['biomass'],
-            name='Biomass'
-        )
-
-        trace5 = go.Scatter(
-            x=data_frame['time'],
-            y=data_frame['serine'],
-            name='Serine'
-        )
-
-        trace6 = go.Scatter(
-            x=data_frame['time'],
-            y=data_frame['glucose'],
-            name='Glucose'
-        )
-
-
-        fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
-                                                                  'mu from model', 'Biomass from model',
-                                                                  'Serine from model', 'Glucose from model'))
-
-        fig.append_trace(trace1, 1, 1)
-        fig.append_trace(trace2, 1, 2)
-        fig.append_trace(trace3, 1, 3)
-        fig.append_trace(trace4, 2, 1)
-        fig.append_trace(trace5, 2, 2)
-        fig.append_trace(trace6, 2, 3)
-
-        fig['layout'].update(height=820, width=1420, title='Model prediction',
-        margin=dict(
-                l=110,
-                r=1,
-                b=100,
-                t=110,
-                pad=10
-            ),
-        titlefont=dict(
-            family='Arial, sans-serif',
-            size=30,
-            color='black'
-        ))
-
-
-        fig['layout']['yaxis1'].update(showgrid=True, title='CO2 (%)', exponentformat='power', nticks=10,
-                                       tickfont=dict(size=10), domain=[0.65, 1])
-        fig['layout']['yaxis2'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
-                                       tickfont=dict(size=10), domain=[0.65, 1])
-        fig['layout']['yaxis3'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
-                                       tickfont=dict(size=10), domain=[0.65, 1])
-        fig['layout']['yaxis4'].update(showgrid=True, title='Biomass (moles)', exponentformat='power', nticks=10,
-                                       tickfont=dict(size=10), domain=[0, 0.35])
-        fig['layout']['yaxis5'].update(showgrid=True, title='Serine (moles)', exponentformat='power', nticks=10,
-                                       tickfont=dict(size=10), domain=[0, 0.35])
-        fig['layout']['yaxis6'].update(showgrid=True, title='Glucose (moles)', exponentformat='power', nticks=10,
-                                       tickfont=dict(size=10), domain=[0, 0.35])
-
-        fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                       domain=[0, 0.27])
-        fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                       domain=[0.36, 0.63])
-        fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                       domain=[0.72, 0.99])
-        fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                       domain=[0, 0.27])
-        fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                       domain=[0.36, 0.63])
-        fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                       domain=[0.72, 0.99])
-
-        plotly.offline.plot(fig)
-
-
-watch_file = 'data/MUX_09-03-2018_18-38-27.XLS'
-watcher = Watcher(watch_file, custom_action, text=watch_file)  # also call custom action function
-watcher.watch()  # start the watch going
+# class Watcher(object):
+#     running = True
+#     refresh_delay_secs = 1
+#
+#     # Constructor
+#     def __init__(self, watch_file, call_func_on_change=None, *args, **kwargs):
+#         self._cached_stamp = 0
+#         self.filename = watch_file
+#         self.call_func_on_change = call_func_on_change
+#         self.args = args
+#         self.kwargs = kwargs
+#
+#     # Look for changes
+#     def look(self):
+#         stamp = os.stat(self.filename).st_mtime
+#         if stamp != self._cached_stamp:
+#             self._cached_stamp = stamp
+#             # File has changed, so do something...
+#             print('File changed')
+#             if self.call_func_on_change is not None:
+#                 self.call_func_on_change(*self.args, **self.kwargs)
+#
+#     # Keep watching in a loop
+#     def watch(self):
+#         while self.running:
+#             try:
+#                 # Look for changes
+#                 time.sleep(self.refresh_delay_secs)
+#                 self.look()
+#             except KeyboardInterrupt:
+#                 print('\nDone')
+#                 break
+#             except FileNotFoundError:
+#                 # Action on file not found
+#                 pass
+#             except:
+#                 print('Unhandled error: %s' % sys.exc_info()[0])
+#
+#
+# # Call this function each time a change happens
+# def custom_action(text):
+#
+#     online_data = pd.ExcelFile(watch_file)
+#     online_data = online_data.parse('Sheet1')
+#
+#     # Calculate the difference in time, so we can select all the data that corresponds to 1 reactor
+#     time = pd.to_timedelta(online_data['Time      '])
+#     shifted_time = time.shift(periods=-1)
+#     delta = shifted_time - time
+#     online_data['delta'] = delta
+#
+#     # Select the rows with difference in time between 46 and 47 minutes
+#     # and create new dataframe that we will be working with
+#     selected_data = online_data[(online_data['delta'] >= '00:46:00') & (online_data['delta'] <= '00:47:00')]
+#
+#     # Calculation of the CO2 evolution rate
+#     CER = selected_data['CO2 (Vol.%)'] * 10 - 0.04 * 10  # unit [(mol_co2/mol_totalgas)/min] / [%CO2/min]
+#
+#     # Reset the selected time so it starts from time = 0, convert it and then use it to calculate tCER
+#     selected_time = pd.to_timedelta(selected_data['Time      '])
+#     selected_time.reset_index(inplace=True, drop=True)
+#     reset_selected_time = selected_time - selected_time[0]
+#     selected_datetimes = pd.to_datetime(reset_selected_time)
+#     selected_time = selected_datetimes.dt.time
+#
+#     # convert time to decimals and in minutes
+#     selected_time_decimals = pd.DataFrame(columns=['Time'])
+#     for i in range(0, len(selected_time)):
+#         h = selected_time[i].strftime('%H')
+#         m = selected_time[i].strftime('%M')
+#         s = selected_time[i].strftime('%S')
+#         result = int(h) * 60 + int(m) + int(s) / 60.0 # [min]
+#         selected_time_decimals.loc[
+#             i, ['Time']] = result  # This puts the results in the iterated indexes in the Time column
+#
+#     # Calculate tCER
+#
+#     # Shift the values so it corresponds to next value of selected_time_decimals
+#     shifted_selected_time_decimals = selected_time_decimals.shift(periods=-1)
+#
+#     # Same with CO2 so it corresponds to next value of CER
+#     CER.reset_index(inplace=True, drop=True)
+#     shifted_CER = CER.shift(periods=-1)
+#
+#     # Convert to series
+#     shifted_selected_time_decimals = shifted_selected_time_decimals.T.squeeze()
+#     selected_time_decimals = selected_time_decimals.T.squeeze()
+#
+#     tCER = ((CER + shifted_CER) / 2) * (shifted_selected_time_decimals - selected_time_decimals)  # [% CO2]
+#     mu = CER / tCER
+#     mu = (mu / 60)  # [1/h]
+#
+#     if np.isnan(mu[0]) == True:
+#         print('Needs more time points to simulate data')
+#
+#     else:
+#
+#         selected_time_decimals_hours = selected_time_decimals/60
+#
+#         r = batch_model_mu()
+#         r.mu = mu[0]
+#         r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'mu']
+#
+#         start_time = selected_time_decimals_hours[0]
+#         end_time = selected_time_decimals_hours.iloc[1]
+#         results = r.simulate(start_time, end_time, 2)
+#
+#
+#         # we probably didnt have to simulate since we just want the first row.
+#         # But it makes it easier to make the dataframe
+#         initial_values = results[0:1]
+#         data_frame = pd.DataFrame(initial_values)
+#         data_frame.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
+#
+#         for i in range(0, (len(mu) - 2)):
+#             #print(data_frame, "on the top")
+#             #print(results,"on the top")
+#             #print(data_frame['glucose'].iloc[-1])
+#             r.reset()
+#             r.mu = mu[i+1]
+#             glucose = data_frame['glucose'].iloc[-1]
+#             serine = data_frame['serine'].iloc[-1]
+#             biomass = data_frame['biomass'].iloc[-1]
+#             print(glucose,serine,biomass)
+#
+#             alpha_online, beta_online = parameter_estimation_online(filename_experimental_data1,
+#                                                                     filename_experimental_data2,
+#                                                                     alpha_lower_bound, alpha_upper_bound,
+#                                                                     beta_lower_bound, beta_upper_bound,
+#                                                                     str(mu[i+1]), str(glucose), str(serine),
+#                                                                     str(biomass))
+#             print((mu[i+1]))
+#             #print(alpha_online,beta_online)
+#             r.alpha = float(alpha_online)
+#             r.beta = float(beta_online)
+#             start_time = selected_time_decimals_hours[i]
+#             end_time = selected_time_decimals_hours[i + 1]
+#             results = r.simulate(start_time, end_time, 2)
+#             #print(results)
+#             simulated_row = results[-1:]
+#             #print(simulated_row)
+#             new_dataframe = pd.DataFrame(simulated_row)
+#             new_dataframe.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
+#             data_frame = data_frame.append(new_dataframe, ignore_index=True)
+#             #print(data_frame)
+#             print("ROUND",i)
+#
+#
+#
+#         trace1 = go.Scatter(
+#             x=selected_time_decimals_hours,
+#             y=selected_data['CO2 (Vol.%)'],
+#             name='CO2'
+#         )
+#
+#         trace2 = go.Scatter(
+#             x=selected_time_decimals_hours,
+#             y=mu,
+#             name='mu'
+#         )
+#
+#         trace3 = go.Scatter(
+#             x=data_frame['time'],
+#             y=data_frame['mu'],
+#             name='mu'
+#         )
+#
+#         trace4 = go.Scatter(
+#             x=data_frame['time'],
+#             y=data_frame['biomass'],
+#             name='Biomass'
+#         )
+#
+#         trace5 = go.Scatter(
+#             x=data_frame['time'],
+#             y=data_frame['serine'],
+#             name='Serine'
+#         )
+#
+#         trace6 = go.Scatter(
+#             x=data_frame['time'],
+#             y=data_frame['glucose'],
+#             name='Glucose'
+#         )
+#
+#
+#         fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
+#                                                                   'mu from model', 'Biomass from model',
+#                                                                   'Serine from model', 'Glucose from model'))
+#
+#         fig.append_trace(trace1, 1, 1)
+#         fig.append_trace(trace2, 1, 2)
+#         fig.append_trace(trace3, 1, 3)
+#         fig.append_trace(trace4, 2, 1)
+#         fig.append_trace(trace5, 2, 2)
+#         fig.append_trace(trace6, 2, 3)
+#
+#         fig['layout'].update(height=820, width=1420, title='Model prediction',
+#         margin=dict(
+#                 l=110,
+#                 r=1,
+#                 b=100,
+#                 t=110,
+#                 pad=10
+#             ),
+#         titlefont=dict(
+#             family='Arial, sans-serif',
+#             size=30,
+#             color='black'
+#         ))
+#
+#
+#         fig['layout']['yaxis1'].update(showgrid=True, title='CO2 (%)', exponentformat='power', nticks=10,
+#                                        tickfont=dict(size=10), domain=[0.65, 1])
+#         fig['layout']['yaxis2'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+#                                        tickfont=dict(size=10), domain=[0.65, 1])
+#         fig['layout']['yaxis3'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+#                                        tickfont=dict(size=10), domain=[0.65, 1])
+#         fig['layout']['yaxis4'].update(showgrid=True, title='Biomass (moles)', exponentformat='power', nticks=10,
+#                                        tickfont=dict(size=10), domain=[0, 0.35])
+#         fig['layout']['yaxis5'].update(showgrid=True, title='Serine (moles)', exponentformat='power', nticks=10,
+#                                        tickfont=dict(size=10), domain=[0, 0.35])
+#         fig['layout']['yaxis6'].update(showgrid=True, title='Glucose (moles)', exponentformat='power', nticks=10,
+#                                        tickfont=dict(size=10), domain=[0, 0.35])
+#
+#         fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+#                                        domain=[0, 0.27])
+#         fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+#                                        domain=[0.36, 0.63])
+#         fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+#                                        domain=[0.72, 0.99])
+#         fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+#                                        domain=[0, 0.27])
+#         fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+#                                        domain=[0.36, 0.63])
+#         fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+#                                        domain=[0.72, 0.99])
+#
+#         plotly.offline.plot(fig)
+#
+#
+# watch_file = 'data/MUX_09-03-2018_18-38-27.XLS'
+# watcher = Watcher(watch_file, custom_action, text=watch_file)  # also call custom action function
+# watcher.watch()  # start the watch going
 
 
 

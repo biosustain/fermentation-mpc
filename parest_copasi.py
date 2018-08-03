@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 # 3) Set length of experimental data
 # 4) Choose the step size
 # 5) Choose the parameter estimation algorithm
+# 6) Change attributes of estimation algorithm like step size or population size..
 
 
 def parameter_estimation(experimental_data1,experimental_data2,
@@ -97,13 +98,12 @@ def parameter_estimation_online(experimental_data1,experimental_data2,
                          parameter_1_lower_bound,parameter_1_upper_bound,
                          parameter_2_lower_bound,parameter_2_upper_bound,
                          mu, glucose, serine, biomass):
-    #From cps to xml
 
+    #  From cps to xml, if it is not already in an xml format.
     try:
         os.rename('/Users/s144510/Documents/fermentationtool/model_mu.cps', '/Users/s144510/Documents/fermentationtool/model_mu.xml')
     except OSError:
         pass
-
 
     soup = BeautifulSoup(open('/Users/s144510/Documents/fermentationtool/model_mu.xml', 'r'), 'xml')
     infile = open('/Users/s144510/Documents/fermentationtool/model_mu.xml', "w")

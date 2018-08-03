@@ -4,6 +4,7 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 import tellurium as te
 
+
 def batch_model():
     fermentation_model = '''
     model *IDModel()

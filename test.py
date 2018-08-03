@@ -49,9 +49,9 @@ writer.save()
 
 filename_experimental_data1 = "/Users/s144510/Documents/fermentationtool/data/R1_data_in_moles.csv"
 filename_experimental_data2 = "/Users/s144510/Documents/fermentationtool/data/R2_data_in_moles.csv"
-alpha_lower_bound = "-1000"
+alpha_lower_bound = "200"
 alpha_upper_bound = "1000"
-beta_lower_bound = "-1000"
+beta_lower_bound = "200"
 beta_upper_bound = "1000"
 
 watch_file = '/Users/s144510/Documents/fermentationtool/data/MUX_09-03-2018_18-38-27.XLS'
