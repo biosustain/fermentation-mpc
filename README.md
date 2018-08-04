@@ -6,7 +6,7 @@ This program is used for modelling and optimizations of fermentations. It is usi
 mass balances and you can either run and/or change settings in the backend version mainscript.py or run the interface
 version fermentationtool.py which is build on the framework dash.
 
-![Alt text](/Users/s144510/Documents/fermentationtool/interface.png)
+![alt text](/images/interface.png)
 
 
 ## Requirements
