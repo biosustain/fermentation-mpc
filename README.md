@@ -15,7 +15,7 @@ Install pipenv here [pipenv installation](https://github.com/pypa/pipenv#install
 
 ## Installing
 
-To run the project
+To activate the project
 ```
 pipenv shell
 ```
