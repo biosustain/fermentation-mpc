@@ -7,9 +7,9 @@ mass balances and you can either run and/or change settings in the backend versi
 version fermentationtool.py which is build on the framework dash.
 
 ![](/images/interface.png)
-note that these plot are not correct since it is build on 2 different sets of experimental data
+Note that these plot are not correct since it is build on 2 different sets of experimental data.
 
-## Requirements
+## Dependencies
 The project uses pipenv to handle virtual environment. <br />
 Install pipenv here [pipenv installation](https://github.com/pypa/pipenv#installation)
 
@@ -31,18 +31,34 @@ pipenv install
 The program contains 3 different models. One batch model and one fed batch model where the growth rate is defined as
 a function and a batch model mu where the growth rate is defined as constant. The last one is used for the model predictive control.
 
-The model can be loaded and saved as
+The models can be loaded and saved as
 ```
 r = batch_model()
 r = fed_batch_model()
 r = batch_model_mu()
 ```
 
+### Simulation
+
+### Experimental data
+
+### Plot
+
+### Parameter estimation
+
+### Model driven prediction
+
+## Usage of the GUI fermentationtool.py
+
+## Experiments
+
+## Online data integration
 
 
-# Easy plotting of experimental data
 
-# Param
+
+
+
 
 
 
