@@ -2,12 +2,12 @@
 Model predictive control (MPC) for fermentations
 
 ## Description
-This program is used for modelling and optimizations of fermentations. It is using a particular serine model based on
+This program is used for modelling, optimizations and model driven control for fermentations. It is using a particular serine model based on
 mass balances and you can either run and/or change settings in the backend version mainscript.py or run the interface
 version fermentationtool.py which is build on the framework dash.
 
-![](/images/interface.png "note that these plot are not correct since it is build on 2 different experimental data")
-
+![](/images/interface.png)
+note that these plot are not correct since it is build on 2 different sets of experimental data
 
 ## Requirements
 The project uses pipenv to handle virtual environment. <br />
@@ -20,13 +20,29 @@ To run the project
 pipenv shell
 ```
 
-Install the necessary dependencies
+Install the necessary requirements/dependencies?
 ```
 pipenv install
 ```
 
-## How it works
+## Usage of the main script
 
+# Models
+The program contains 3 different models. One batch model and one fed batch model where the growth rate is defined as
+a function and a batch model mu where the growth rate is defined as constant. The last one is used for the model predictive control.
+
+The model can be loaded and saved as
+```
+r = batch_model()
+r = fed_batch_model()
+r = batch_model_mu()
+```
+
+
+
+# Easy plotting of experimental data
+
+# Param
 
 
 
