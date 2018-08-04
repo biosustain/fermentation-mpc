@@ -20,7 +20,7 @@ To activate the project
 pipenv shell
 ```
 
-Install the necessary dependencies?
+Install the necessary dependencies
 ```
 pipenv install
 ```
