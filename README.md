@@ -27,7 +27,7 @@ pipenv install
 
 ## Usage of the main script
 
-# Models
+### Models
 The program contains 3 different models. One batch model and one fed batch model where the growth rate is defined as
 a function and a batch model mu where the growth rate is defined as constant. The last one is used for the model predictive control.
 
