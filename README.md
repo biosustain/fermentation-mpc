@@ -9,7 +9,7 @@ version fermentationtool.py which is build on the framework dash.
 ![](/images/interface.png)
 Note that these plot are not correct since it is build on 2 different sets of experimental data.
 
-## Dependencies
+## Requirements
 The project uses pipenv to handle virtual environment. <br />
 Install pipenv here [pipenv installation](https://github.com/pypa/pipenv#installation)
 
@@ -20,7 +20,7 @@ To activate the project
 pipenv shell
 ```
 
-Install the necessary requirements/dependencies?
+Install the necessary dependencies?
 ```
 pipenv install
 ```
