@@ -154,7 +154,25 @@ app.layout = html.Div([
                             'backgroundColor': 'rgb(250, 250, 250)',
                             'padding': '10px 5px',
                             'width': '180%'})
+                ]),
+
+                dcc.Tab(label='Online data integration (1 reactor)', children=[
+                    html.Div([
+                        html.H2('Model prediction'),
+                        dcc.Graph(id='live-update-graph'),
+                        dcc.Interval(
+                            id='interval-component',
+                            interval=50 * 1000,  # timeinterval,  # in milliseconds
+                            n_intervals=0
+                        )
+                    ],
+                        style={
+                            'borderBottom': 'thin lightgrey solid',
+                            'backgroundColor': 'rgb(250, 250, 250)',
+                            'padding': '10px 5px',
+                            'width': '180%'})
                 ])
+
             ],
             id='tabs',
             vertical=True,
