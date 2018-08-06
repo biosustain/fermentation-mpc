@@ -1,4 +1,3 @@
-import pandas as pd
 import matplotlib
 matplotlib.use('TkAgg')
 import tellurium as te

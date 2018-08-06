@@ -122,6 +122,7 @@ def monitoring(online_data,filename_experimental_data1,filename_experimental_dat
             end_time = selected_time_decimals_hours[i + 1]
             results = r.simulate(start_time, end_time, 2)
             simulated_row = results[-1:]
+            print(simulated_row)
             new_dataframe = pd.DataFrame(simulated_row)
 
             wb = load_workbook("/Users/s144510/Documents/fermentationtool/output.xlsx")

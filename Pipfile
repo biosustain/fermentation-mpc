@@ -16,6 +16,7 @@ tellurium = "*"
 pyorbital = "*"
 openpyxl = "*"
 xlwings = "*"
+joblib = "*"
 
 [dev-packages]
 
