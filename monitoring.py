@@ -9,7 +9,7 @@ matplotlib.use('TkAgg')
 
 
 def monitoring(online_data,filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
-               alpha_upper_bound, beta_lower_bound,beta_upper_bound):
+               alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest):
 
 
     # Calculate the difference in time, so we can select all the data that corresponds to 1 reactor
@@ -108,7 +108,7 @@ def monitoring(online_data,filename_experimental_data1,filename_experimental_dat
                                                                     alpha_lower_bound, alpha_upper_bound,
                                                                     beta_lower_bound, beta_upper_bound,
                                                                     str(mu[i + 1]), str(glucose), str(serine),
-                                                                    str(biomass))
+                                                                    str(biomass), model_for_parest)
             print(alpha_online,beta_online)
             print(biomass)
             print(glucose)
@@ -146,7 +146,7 @@ def monitoring(online_data,filename_experimental_data1,filename_experimental_dat
                                                                 alpha_lower_bound, alpha_upper_bound,
                                                                 beta_lower_bound, beta_upper_bound,
                                                                 str(mu.iloc[-1]), str(glucose), str(serine),
-                                                                str(biomass))
+                                                                str(biomass), model_for_parest)
         r.glucose = glucose
         r.biomass = biomass
         r.serine = serine

@@ -141,10 +141,10 @@ app.layout = html.Div([
 
                 dcc.Tab(label='Online data integration (1 reactor)', children=[
                     html.Div([
-                        html.H2('Model prediction'),
-                        dcc.Graph(id='live-update-graph'),
+                        html.H2('Model prediction for reactor 1'),
+                        dcc.Graph(id='live-update-graph-1'),
                         dcc.Interval(
-                            id='interval-component',
+                            id='interval-component-1',
                             interval=5 * 1000,  # timeinterval,  # in milliseconds
                             n_intervals=0
                         )
@@ -156,13 +156,13 @@ app.layout = html.Div([
                             'width': '180%'})
                 ]),
 
-                dcc.Tab(label='Online data integration (1 reactor)', children=[
+                dcc.Tab(label='Online data integration (2 reactor)', children=[
                     html.Div([
-                        html.H2('Model prediction'),
-                        dcc.Graph(id='live-update-graph'),
+                        html.H2('Model prediction for reactor 2'),
+                        dcc.Graph(id='live-update-graph-2'),
                         dcc.Interval(
-                            id='interval-component',
-                            interval=50 * 1000,  # timeinterval,  # in milliseconds
+                            id='interval-component-2',
+                            interval=5 * 1000,  # timeinterval,  # in milliseconds
                             n_intervals=0
                         )
                     ],
@@ -264,8 +264,10 @@ def update_graph(xaxis_column_name, yaxis_column_name):
 # The online data integration
 
 lock = Lock()
-@app.callback(Output('live-update-graph', 'figure'),
-              [Input('interval-component', 'n_intervals')])
+
+
+@app.callback(Output('live-update-graph-1', 'figure'),
+              [Input('interval-component-1', 'n_intervals')])
 def update_graph_live(n):
     def foo():
         with lock:
@@ -275,15 +277,46 @@ def update_graph_live(n):
             alpha_upper_bound = "1000"
             beta_lower_bound = "-1000"
             beta_upper_bound = "1000"
+            model_for_parest = "model_mu_1"
 
             watch_file = '/Users/s144510/Documents/fermentationtool/data/MUX_09-03-2018_18-38-27.XLS'
             online_data = pd.ExcelFile(watch_file)
             online_data = online_data.parse('Sheet1')
             fig = monitoring(online_data,filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
-                             alpha_upper_bound, beta_lower_bound,beta_upper_bound)
+                             alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest)
 
         return fig
     fig = foo()
+
+    print('running the 1 reactor')
+
+    return fig
+
+
+@app.callback(Output('live-update-graph-2', 'figure'),
+              [Input('interval-component-2', 'n_intervals')])
+def update_graph_live(n):
+    def foo():
+        with lock:
+            filename_experimental_data1 = "data/R1_data_in_moles.csv"
+            filename_experimental_data2 = "data/R2_data_in_moles.csv"
+            alpha_lower_bound = "-1000"
+            alpha_upper_bound = "1000"
+            beta_lower_bound = "-1000"
+            beta_upper_bound = "1000"
+            model_for_parest = "model_mu_2"
+
+            watch_file = '/Users/s144510/Documents/fermentationtool/data/MUX_09-03-2018_18-38-27.XLS'
+            online_data = pd.ExcelFile(watch_file)
+            online_data = online_data.parse('Sheet1')
+            fig = monitoring(online_data,filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
+                             alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest)
+
+        return fig
+    fig = foo()
+
+    print('running the 2 reactor')
+
     return fig
 
 

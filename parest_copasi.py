@@ -97,16 +97,17 @@ def parameter_estimation(experimental_data1,experimental_data2,
 def parameter_estimation_online(experimental_data1,experimental_data2,
                          parameter_1_lower_bound,parameter_1_upper_bound,
                          parameter_2_lower_bound,parameter_2_upper_bound,
-                         mu, glucose, serine, biomass):
+                         mu, glucose, serine, biomass, model_for_parest):
 
     #  From cps to xml, if it is not already in an xml format.
     try:
-        os.rename('/Users/s144510/Documents/fermentationtool/model_mu.cps', '/Users/s144510/Documents/fermentationtool/model_mu.xml')
+        os.rename('/Users/s144510/Documents/fermentationtool/' + model_for_parest + '.cps',
+                  '/Users/s144510/Documents/fermentationtool/' + model_for_parest + '.xml')
     except OSError:
         pass
 
-    soup = BeautifulSoup(open('/Users/s144510/Documents/fermentationtool/model_mu.xml', 'r'), 'xml')
-    infile = open('/Users/s144510/Documents/fermentationtool/model_mu.xml', "w")
+    soup = BeautifulSoup(open('/Users/s144510/Documents/fermentationtool/' + model_for_parest + '.xml', 'r'), 'xml')
+    infile = open('/Users/s144510/Documents/fermentationtool/' + model_for_parest + '.xml', "w")
 
     # Choose filename for experimental dataset nr 1
     Experiment_0 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "Experiment"][0]
@@ -147,16 +148,20 @@ def parameter_estimation_online(experimental_data1,experimental_data2,
     infile.close()
 
     # From xml to cps
-    os.rename('/Users/s144510/Documents/fermentationtool/model_mu.xml', '/Users/s144510/Documents/fermentationtool/model_mu.cps')
+    os.rename('/Users/s144510/Documents/fermentationtool/' + model_for_parest + '.xml',
+              '/Users/s144510/Documents/fermentationtool/' + model_for_parest + '.cps')
 
     # Run the parameterestimation in Copasi for the model from the terminal
     # Find the path to CopasiSE, it could be the path given below in the comment
     # os.system("/Applications/COPASI/CopasiSE model_mu.cps --save model_mu.cps")
-    os.system("/Users/s144510/Documents/fermentationtool/CopasiSE model_mu.cps --save model_mu.cps")
+    os.system("/Users/s144510/Documents/fermentationtool/CopasiSE " +
+              model_for_parest + '.cps --save ' + model_for_parest + ".cps")
 
     # Get the results
-    os.rename('/Users/s144510/Documents/fermentationtool/model_mu.cps', '/Users/s144510/Documents/fermentationtool/model_mu.xml')
-    soup = BeautifulSoup(open('/Users/s144510/Documents/fermentationtool/model_mu.xml', 'r'), 'xml')
+    os.rename('/Users/s144510/Documents/fermentationtool/' + model_for_parest + '.cps',
+              '/Users/s144510/Documents/fermentationtool/' + model_for_parest + '.xml')
+
+    soup = BeautifulSoup(open('/Users/s144510/Documents/fermentationtool/' + model_for_parest + '.xml', 'r'), 'xml')
 
     result_parameter_1 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][0]
     result_parameter_1 = [s for s in result_parameter_1.find_all('Parameter') if s['name'] == "StartValue"][0]
@@ -167,6 +172,7 @@ def parameter_estimation_online(experimental_data1,experimental_data2,
     beta = result_parameter_2['value']
 
     infile.close()
-    os.rename('/Users/s144510/Documents/fermentationtool/model_mu.xml', '/Users/s144510/Documents/fermentationtool/model_mu.cps')
+    os.rename('/Users/s144510/Documents/fermentationtool/' + model_for_parest + '.xml',
+              '/Users/s144510/Documents/fermentationtool/' + model_for_parest + '.cps')
 
     return alpha, beta
