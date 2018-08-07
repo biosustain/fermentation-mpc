@@ -17,6 +17,7 @@ pyorbital = "*"
 openpyxl = "*"
 xlwings = "*"
 joblib = "*"
+multiprocessing = "*"
 
 [dev-packages]
 

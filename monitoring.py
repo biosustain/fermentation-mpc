@@ -9,7 +9,7 @@ matplotlib.use('TkAgg')
 
 
 def monitoring(online_data,filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
-               alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest):
+               alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest, output, mu_string):
 
 
     # Calculate the difference in time, so we can select all the data that corresponds to 1 reactor
@@ -77,20 +77,20 @@ def monitoring(online_data,filename_experimental_data1,filename_experimental_dat
     data_frame.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
 
     # It could be an idea to have this as a temporary file.
-    wb = load_workbook("/Users/s144510/Documents/fermentationtool/output.xlsx")
+    wb = load_workbook("/Users/s144510/Documents/fermentationtool/" + output + ".xlsx")
     ws = wb['Sheet1']
     row = list(data_frame.iloc[-1])
     ws.append(row)
-    wb.save("/Users/s144510/Documents/fermentationtool/output.xlsx")
+    wb.save("/Users/s144510/Documents/fermentationtool/" + output + ".xlsx")
 
-    output_values = '/Users/s144510/Documents/fermentationtool/output.xlsx'
+    output_values = '/Users/s144510/Documents/fermentationtool/' + output + '.xlsx'
     output_values = pd.ExcelFile(output_values)
 
     # Loads the sheet we want to work with
     data_frame = output_values.parse('Sheet1')
     data_frame = data_frame.drop_duplicates()
 
-    writer = pd.ExcelWriter('/Users/s144510/Documents/fermentationtool/mu.xlsx')
+    writer = pd.ExcelWriter('/Users/s144510/Documents/fermentationtool/' + mu_string + '.xlsx')
     mu.to_excel(writer, 'Sheet1', index=False)
     writer.save()
 
@@ -125,11 +125,11 @@ def monitoring(online_data,filename_experimental_data1,filename_experimental_dat
             print(simulated_row)
             new_dataframe = pd.DataFrame(simulated_row)
 
-            wb = load_workbook("/Users/s144510/Documents/fermentationtool/output.xlsx")
+            wb = load_workbook("/Users/s144510/Documents/fermentationtool/" + output + ".xlsx")
             ws = wb['Sheet1']
             row = list(new_dataframe.iloc[-1])
             ws.append(row)
-            wb.save("output.xlsx")
+            wb.save(output + ".xlsx")
 
             new_dataframe.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
             data_frame = data_frame.append(new_dataframe, ignore_index=True)
@@ -158,11 +158,11 @@ def monitoring(online_data,filename_experimental_data1,filename_experimental_dat
         simulated_row = results[-1:]
         new_dataframe = pd.DataFrame(simulated_row)
 
-        wb = load_workbook("/Users/s144510/Documents/fermentationtool/output.xlsx")
+        wb = load_workbook("/Users/s144510/Documents/fermentationtool/" + output + ".xlsx")
         ws = wb['Sheet1']
         row = list(new_dataframe.iloc[-1])
         ws.append(row)
-        wb.save("/Users/s144510/Documents/fermentationtool/output.xlsx")
+        wb.save("/Users/s144510/Documents/fermentationtool/" + output + ".xlsx")
 
         new_dataframe.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
         data_frame = data_frame.append(new_dataframe, ignore_index=True)

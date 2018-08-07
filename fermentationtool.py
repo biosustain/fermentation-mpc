@@ -14,6 +14,8 @@ from threading import Lock
 from functions_fermentation_tool import data_to_mass
 from functions_fermentation_tool import stack_data
 matplotlib.use('TkAgg')
+from datetime import datetime
+from multiprocessing import Process
 
 
 file_name = '/Users/s144510/Documents/fermentationtool/data/C002_R3_overview.xlsm'
@@ -28,12 +30,16 @@ df, available_indicators = stack_data(df1)
 # This is used for the mass section
 mass_sheet, available_indicatorsMASS = data_to_mass(df1)
 
-# Create output data frame used in monitoring
-output = pd.DataFrame(columns =  ['time', 'glucose', 'serine', 'biomass', 'mu'])
-writer = pd.ExcelWriter('/Users/s144510/Documents/fermentationtool/output.xlsx')
-output.to_excel(writer, 'Sheet1', index=False)
+# Create output data frame used in monitoring ( put this in a function)
+output_1 = pd.DataFrame(columns =  ['time', 'glucose', 'serine', 'biomass', 'mu'])
+writer = pd.ExcelWriter('/Users/s144510/Documents/fermentationtool/output_1.xlsx')
+output_1.to_excel(writer, 'Sheet1', index=False)
 writer.save()
 
+output_2 = pd.DataFrame(columns =  ['time', 'glucose', 'serine', 'biomass', 'mu'])
+writer = pd.ExcelWriter('/Users/s144510/Documents/fermentationtool/output_2.xlsx')
+output_2.to_excel(writer, 'Sheet1', index=False)
+writer.save()
 
 # The actual application starts here
 
@@ -268,7 +274,8 @@ lock = Lock()
 
 @app.callback(Output('live-update-graph-1', 'figure'),
               [Input('interval-component-1', 'n_intervals')])
-def update_graph_live(n):
+def update_graph_live_1(n):
+
     def foo():
         with lock:
             filename_experimental_data1 = "data/R1_data_in_moles.csv"
@@ -282,8 +289,12 @@ def update_graph_live(n):
             watch_file = '/Users/s144510/Documents/fermentationtool/data/MUX_09-03-2018_18-38-27.XLS'
             online_data = pd.ExcelFile(watch_file)
             online_data = online_data.parse('Sheet1')
+
+            output = "output_1"
+            mu = "mu_1"
+
             fig = monitoring(online_data,filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
-                             alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest)
+                             alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest, output, mu)
 
         return fig
     fig = foo()
@@ -293,9 +304,22 @@ def update_graph_live(n):
     return fig
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 @app.callback(Output('live-update-graph-2', 'figure'),
               [Input('interval-component-2', 'n_intervals')])
-def update_graph_live(n):
+def update_graph_live_2(n):
+
     def foo():
         with lock:
             filename_experimental_data1 = "data/R1_data_in_moles.csv"
@@ -308,9 +332,13 @@ def update_graph_live(n):
 
             watch_file = '/Users/s144510/Documents/fermentationtool/data/MUX_09-03-2018_18-38-27.XLS'
             online_data = pd.ExcelFile(watch_file)
-            online_data = online_data.parse('Sheet1')
+            online_data = online_data.parse('Channel 2')
+
+            output = "output_2"
+            mu = "mu_2"
+
             fig = monitoring(online_data,filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
-                             alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest)
+                             alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest, output, mu)
 
         return fig
     fig = foo()
@@ -320,13 +348,21 @@ def update_graph_live(n):
     return fig
 
 
+#p1 = Process(target = update_graph_live_1)
+#p1.start()
+#p2 = Process(target = update_graph_live_2)
+#p2.start()
+
+
 if __name__ == '__main__':
     app.run_server(debug=True)
 # press ctrl c to stop it from running
 
 
 try:
-    os.remove('/Users/s144510/Documents/fermentationtool/output.xlsx')
-    os.remove('/Users/s144510/Documents/fermentationtool/mu.xlsx')
+    os.remove('/Users/s144510/Documents/fermentationtool/output_1.xlsx')
+    os.remove('/Users/s144510/Documents/fermentationtool/mu_1.xlsx')
+    os.remove('/Users/s144510/Documents/fermentationtool/output_2.xlsx')
+    os.remove('/Users/s144510/Documents/fermentationtool/mu_2.xlsx')
 except OSError:
     pass
