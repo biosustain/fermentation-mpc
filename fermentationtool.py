@@ -15,7 +15,10 @@ from functions_fermentation_tool import data_to_mass
 from functions_fermentation_tool import stack_data
 matplotlib.use('TkAgg')
 from datetime import datetime
-from multiprocessing import Process
+from multiprocessing import Process, Queue
+from multiprocessing import Pool
+import sys
+sys.setrecursionlimit(10000)
 
 
 file_name = '/Users/s144510/Documents/fermentationtool/data/C002_R3_overview.xlsm'
@@ -272,40 +275,36 @@ def update_graph(xaxis_column_name, yaxis_column_name):
 lock = Lock()
 
 
-@app.callback(Output('live-update-graph-1', 'figure'),
-              [Input('interval-component-1', 'n_intervals')])
-def update_graph_live_1(n):
-
-    def foo():
-        with lock:
-            filename_experimental_data1 = "data/R1_data_in_moles.csv"
-            filename_experimental_data2 = "data/R2_data_in_moles.csv"
-            alpha_lower_bound = "-1000"
-            alpha_upper_bound = "1000"
-            beta_lower_bound = "-1000"
-            beta_upper_bound = "1000"
-            model_for_parest = "model_mu_1"
-
-            watch_file = '/Users/s144510/Documents/fermentationtool/data/MUX_09-03-2018_18-38-27.XLS'
-            online_data = pd.ExcelFile(watch_file)
-            online_data = online_data.parse('Sheet1')
-
-            output = "output_1"
-            mu = "mu_1"
-
-            fig = monitoring(online_data,filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
-                             alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest, output, mu)
-
-        return fig
-    fig = foo()
-
-    print('running the 1 reactor')
-
-    return fig
-
-
-
-
+# @app.callback(Output('live-update-graph-1', 'figure'),
+#               [Input('interval-component-1', 'n_intervals')])
+# def update_graph_live_1(n):
+#
+#     def foo():
+#         with lock:
+#             filename_experimental_data1 = "data/R1_data_in_moles.csv"
+#             filename_experimental_data2 = "data/R2_data_in_moles.csv"
+#             alpha_lower_bound = "-1000"
+#             alpha_upper_bound = "1000"
+#             beta_lower_bound = "-1000"
+#             beta_upper_bound = "1000"
+#             model_for_parest = "model_mu_1"
+#
+#             watch_file = '/Users/s144510/Documents/fermentationtool/data/MUX_09-03-2018_18-38-27.XLS'
+#             online_data = pd.ExcelFile(watch_file)
+#             online_data = online_data.parse('Sheet1')
+#
+#             output = "output_1"
+#             mu = "mu_1"
+#
+#             fig = monitoring(online_data,filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
+#                              alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest, output, mu)
+#
+#         return fig
+#     fig = foo()
+#
+#     print('running the 1 reactor')
+#
+#     return fig
 
 
 
@@ -332,16 +331,25 @@ def update_graph_live_2(n):
 
             watch_file = '/Users/s144510/Documents/fermentationtool/data/MUX_09-03-2018_18-38-27.XLS'
             online_data = pd.ExcelFile(watch_file)
-            online_data = online_data.parse('Channel 2')
+            online_data = online_data.parse('Sheet1')
 
             output = "output_2"
             mu = "mu_2"
 
-            fig = monitoring(online_data,filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
-                             alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest, output, mu)
+            fig = monitoring(online_data, filename_experimental_data1, filename_experimental_data2, alpha_lower_bound,
+                             alpha_upper_bound, beta_lower_bound, beta_upper_bound, model_for_parest, output, mu)
+
+            l1.put(fig)
 
         return fig
-    fig = foo()
+
+    #fig = foo()
+
+    l1 = Queue()
+    p1 = Process(target=foo)
+    p1.start()
+    fig = l1.get()
+    p1.join()
 
     print('running the 2 reactor')
 
