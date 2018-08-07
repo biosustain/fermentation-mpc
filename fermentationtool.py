@@ -314,34 +314,96 @@ lock = Lock()
 
 
 
-
 @app.callback(Output('live-update-graph-2', 'figure'),
               [Input('interval-component-2', 'n_intervals')])
 def update_graph_live_2(n):
 
-    def foo():
-        with lock:
-            filename_experimental_data1 = "data/R1_data_in_moles.csv"
-            filename_experimental_data2 = "data/R2_data_in_moles.csv"
-            alpha_lower_bound = "-1000"
-            alpha_upper_bound = "1000"
-            beta_lower_bound = "-1000"
-            beta_upper_bound = "1000"
-            model_for_parest = "model_mu_2"
+    # load the data from watcher
 
-            watch_file = '/Users/s144510/Documents/fermentationtool/data/MUX_09-03-2018_18-38-27.XLS'
-            online_data = pd.ExcelFile(watch_file)
-            online_data = online_data.parse('Sheet1')
+    trace1 = go.Scatter(
+        x=selected_time_decimals_hours,
+        y=selected_data['CO2 (Vol.%)'],
+        name='CO2',
+        mode='markers'
+    )
 
-            output = "output_2"
-            mu = "mu_2"
+    trace2 = go.Scatter(
+        x=selected_time_decimals_hours,
+        y=mu,
+        name='mu',
+        mode='markers'
+    )
 
-            fig = monitoring(online_data, filename_experimental_data1, filename_experimental_data2, alpha_lower_bound,
-                             alpha_upper_bound, beta_lower_bound, beta_upper_bound, model_for_parest, output, mu)
+    trace3 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['mu'],
+        name='mu'
+    )
 
-            l1.put(fig)
+    trace4 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['biomass'],
+        name='Biomass'
+    )
 
-        return fig
+    trace5 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['serine'],
+        name='Serine'
+    )
+
+    trace6 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['glucose'],
+        name='Glucose'
+    )
+
+    fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
+                                                              'mu from model', 'Biomass from model',
+                                                              'Serine from model', 'Glucose from model'))
+
+    fig.append_trace(trace1, 1, 1)
+    fig.append_trace(trace2, 1, 2)
+    fig.append_trace(trace3, 1, 3)
+    fig.append_trace(trace4, 2, 1)
+    fig.append_trace(trace5, 2, 2)
+    fig.append_trace(trace6, 2, 3)
+
+    fig['layout'].update(height=640, width=1260,
+                         margin=dict(
+                             l=120,
+                             r=100,
+                             b=100,
+                             t=70,
+                             pad=2
+                         ))
+
+    fig['layout']['yaxis1'].update(showgrid=True, title='CO2 (%)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0.65, 1])
+    fig['layout']['yaxis2'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0.65, 1])
+    fig['layout']['yaxis3'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0.65, 1])
+    fig['layout']['yaxis4'].update(showgrid=True, title='Biomass (moles)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0, 0.35])
+    fig['layout']['yaxis5'].update(showgrid=True, title='Serine (moles)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0, 0.35])
+    fig['layout']['yaxis6'].update(showgrid=True, title='Glucose (moles)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0, 0.35])
+
+    fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0, 0.27])
+    fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.36, 0.63])
+    fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.72, 0.99])
+    fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0, 0.27])
+    fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.36, 0.63])
+    fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.72, 0.99])
+
 
     #fig = foo()
 
