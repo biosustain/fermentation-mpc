@@ -9,16 +9,11 @@ import pandas as pd
 import matplotlib
 import os
 from dash.dependencies import Input, Output
-from monitoring import monitoring
 from threading import Lock
 from functions_fermentation_tool import data_to_mass
 from functions_fermentation_tool import stack_data
 matplotlib.use('TkAgg')
-from datetime import datetime
-from multiprocessing import Process, Queue
-from multiprocessing import Pool
-import sys
-sys.setrecursionlimit(10000)
+from plotly import tools
 
 
 file_name = '/Users/s144510/Documents/fermentationtool/data/C002_R3_overview.xlsm'
@@ -32,17 +27,6 @@ df, available_indicators = stack_data(df1)
 
 # This is used for the mass section
 mass_sheet, available_indicatorsMASS = data_to_mass(df1)
-
-# Create output data frame used in monitoring ( put this in a function)
-output_1 = pd.DataFrame(columns =  ['time', 'glucose', 'serine', 'biomass', 'mu'])
-writer = pd.ExcelWriter('/Users/s144510/Documents/fermentationtool/output_1.xlsx')
-output_1.to_excel(writer, 'Sheet1', index=False)
-writer.save()
-
-output_2 = pd.DataFrame(columns =  ['time', 'glucose', 'serine', 'biomass', 'mu'])
-writer = pd.ExcelWriter('/Users/s144510/Documents/fermentationtool/output_2.xlsx')
-output_2.to_excel(writer, 'Sheet1', index=False)
-writer.save()
 
 # The actual application starts here
 
@@ -148,7 +132,7 @@ app.layout = html.Div([
                             style={'width': '100%', 'display': 'inline-block', 'padding': '0 20'})])
                 ]),
 
-                dcc.Tab(label='Online data integration (1 reactor)', children=[
+                dcc.Tab(label='Online data integration (Reactor 1)', children=[
                     html.Div([
                         html.H2('Model prediction for reactor 1'),
                         dcc.Graph(id='live-update-graph-1'),
@@ -165,14 +149,14 @@ app.layout = html.Div([
                             'width': '180%'})
                 ]),
 
-                dcc.Tab(label='Online data integration (2 reactor)', children=[
+                dcc.Tab(label='Online data integration (Reactor 2)', children=[
                     html.Div([
                         html.H2('Model prediction for reactor 2'),
                         dcc.Graph(id='live-update-graph-2'),
                         dcc.Interval(
                             id='interval-component-2',
-                            interval=5 * 1000,  # timeinterval,  # in milliseconds
-                            n_intervals=0
+                            interval=3 * 1000,  # timeinterval,  # in milliseconds
+                            n_intervals=1
                         )
                     ],
                         style={
@@ -180,7 +164,41 @@ app.layout = html.Div([
                             'backgroundColor': 'rgb(250, 250, 250)',
                             'padding': '10px 5px',
                             'width': '180%'})
-                ])
+                ]),
+
+                dcc.Tab(label='Online data integration (Reactor 3)', children=[
+                    html.Div([
+                        html.H2('Model prediction for reactor 3'),
+                        dcc.Graph(id='live-update-graph-3'),
+                        dcc.Interval(
+                            id='interval-component-3',
+                            interval=3 * 1000,  # timeinterval,  # in milliseconds
+                            n_intervals=2
+                        )
+                    ],
+                        style={
+                            'borderBottom': 'thin lightgrey solid',
+                            'backgroundColor': 'rgb(250, 250, 250)',
+                            'padding': '10px 5px',
+                            'width': '180%'})
+                ]),
+
+                dcc.Tab(label='Online data integration (Reactor 4)', children=[
+                    html.Div([
+                        html.H2('Model prediction for reactor 4'),
+                        dcc.Graph(id='live-update-graph-4'),
+                        dcc.Interval(
+                            id='interval-component-4',
+                            interval=5 * 1000,  # timeinterval,  # in milliseconds
+                            n_intervals=3
+                        )
+                    ],
+                        style={
+                            'borderBottom': 'thin lightgrey solid',
+                            'backgroundColor': 'rgb(250, 250, 250)',
+                            'padding': '10px 5px',
+                            'width': '180%'})
+                ]),
 
             ],
             id='tabs',
@@ -272,64 +290,23 @@ def update_graph(xaxis_column_name, yaxis_column_name):
 
 # The online data integration
 
-lock = Lock()
+@app.callback(Output('live-update-graph-1', 'figure'),
+              [Input('interval-component-1', 'n_intervals')])
+def update_graph_live_1(n):
 
-
-# @app.callback(Output('live-update-graph-1', 'figure'),
-#               [Input('interval-component-1', 'n_intervals')])
-# def update_graph_live_1(n):
-#
-#     def foo():
-#         with lock:
-#             filename_experimental_data1 = "data/R1_data_in_moles.csv"
-#             filename_experimental_data2 = "data/R2_data_in_moles.csv"
-#             alpha_lower_bound = "-1000"
-#             alpha_upper_bound = "1000"
-#             beta_lower_bound = "-1000"
-#             beta_upper_bound = "1000"
-#             model_for_parest = "model_mu_1"
-#
-#             watch_file = '/Users/s144510/Documents/fermentationtool/data/MUX_09-03-2018_18-38-27.XLS'
-#             online_data = pd.ExcelFile(watch_file)
-#             online_data = online_data.parse('Sheet1')
-#
-#             output = "output_1"
-#             mu = "mu_1"
-#
-#             fig = monitoring(online_data,filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
-#                              alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest, output, mu)
-#
-#         return fig
-#     fig = foo()
-#
-#     print('running the 1 reactor')
-#
-#     return fig
-
-
-
-
-
-
-
-
-
-@app.callback(Output('live-update-graph-2', 'figure'),
-              [Input('interval-component-2', 'n_intervals')])
-def update_graph_live_2(n):
-
-    # load the data from watcher
+    data_frame = pd.read_csv('output.csv')
+    print(data_frame)
 
     trace1 = go.Scatter(
-        x=selected_time_decimals_hours,
-        y=selected_data['CO2 (Vol.%)'],
+        x=data_frame['time'],
+        y=data_frame['CO2'],
         name='CO2',
         mode='markers'
     )
 
     trace2 = go.Scatter(
-        x=selected_time_decimals_hours,
-        y=mu,
+        x=data_frame['time'],
+        y=data_frame['CO2'],
         name='mu',
         mode='markers'
     )
@@ -404,24 +381,290 @@ def update_graph_live_2(n):
     fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
                                    domain=[0.72, 0.99])
 
-
-    #fig = foo()
-
-    l1 = Queue()
-    p1 = Process(target=foo)
-    p1.start()
-    fig = l1.get()
-    p1.join()
-
-    print('running the 2 reactor')
-
     return fig
 
 
-#p1 = Process(target = update_graph_live_1)
-#p1.start()
-#p2 = Process(target = update_graph_live_2)
-#p2.start()
+@app.callback(Output('live-update-graph-2', 'figure'),
+              [Input('interval-component-2', 'n_intervals')])
+def update_graph_live_2(n):
+
+    # load the data from watcher
+
+    data_frame = pd.read_csv('output_2.csv')
+
+    trace1 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['CO2'],
+        name='CO2',
+        mode='markers'
+    )
+
+    trace2 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['CO2'],
+        name='mu',
+        mode='markers'
+    )
+
+    trace3 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['mu'],
+        name='mu'
+    )
+
+    trace4 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['biomass'],
+        name='Biomass'
+    )
+
+    trace5 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['serine'],
+        name='Serine'
+    )
+
+    trace6 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['glucose'],
+        name='Glucose'
+    )
+
+    fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
+                                                              'mu from model', 'Biomass from model',
+                                                              'Serine from model', 'Glucose from model'))
+
+    fig.append_trace(trace1, 1, 1)
+    fig.append_trace(trace2, 1, 2)
+    fig.append_trace(trace3, 1, 3)
+    fig.append_trace(trace4, 2, 1)
+    fig.append_trace(trace5, 2, 2)
+    fig.append_trace(trace6, 2, 3)
+
+    fig['layout'].update(height=640, width=1260,
+                         margin=dict(
+                             l=120,
+                             r=100,
+                             b=100,
+                             t=70,
+                             pad=2
+                         ))
+
+    fig['layout']['yaxis1'].update(showgrid=True, title='CO2 (%)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0.65, 1])
+    fig['layout']['yaxis2'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0.65, 1])
+    fig['layout']['yaxis3'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0.65, 1])
+    fig['layout']['yaxis4'].update(showgrid=True, title='Biomass (moles)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0, 0.35])
+    fig['layout']['yaxis5'].update(showgrid=True, title='Serine (moles)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0, 0.35])
+    fig['layout']['yaxis6'].update(showgrid=True, title='Glucose (moles)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0, 0.35])
+
+    fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0, 0.27])
+    fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.36, 0.63])
+    fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.72, 0.99])
+    fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0, 0.27])
+    fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.36, 0.63])
+    fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.72, 0.99])
+
+    return fig
+
+@app.callback(Output('live-update-graph-3', 'figure'),
+              [Input('interval-component-3', 'n_intervals')])
+def update_graph_live_3(n):
+
+    # load the data from watcher
+
+    data_frame = pd.read_csv('output_3.csv')
+
+    trace1 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['CO2'],
+        name='CO2',
+        mode='markers'
+    )
+
+    trace2 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['CO2'],
+        name='mu',
+        mode='markers'
+    )
+
+    trace3 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['mu'],
+        name='mu'
+    )
+
+    trace4 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['biomass'],
+        name='Biomass'
+    )
+
+    trace5 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['serine'],
+        name='Serine'
+    )
+
+    trace6 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['glucose'],
+        name='Glucose'
+    )
+
+    fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
+                                                              'mu from model', 'Biomass from model',
+                                                              'Serine from model', 'Glucose from model'))
+
+    fig.append_trace(trace1, 1, 1)
+    fig.append_trace(trace2, 1, 2)
+    fig.append_trace(trace3, 1, 3)
+    fig.append_trace(trace4, 2, 1)
+    fig.append_trace(trace5, 2, 2)
+    fig.append_trace(trace6, 2, 3)
+
+    fig['layout'].update(height=640, width=1260,
+                         margin=dict(
+                             l=120,
+                             r=100,
+                             b=100,
+                             t=70,
+                             pad=2
+                         ))
+
+    fig['layout']['yaxis1'].update(showgrid=True, title='CO2 (%)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0.65, 1])
+    fig['layout']['yaxis2'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0.65, 1])
+    fig['layout']['yaxis3'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0.65, 1])
+    fig['layout']['yaxis4'].update(showgrid=True, title='Biomass (moles)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0, 0.35])
+    fig['layout']['yaxis5'].update(showgrid=True, title='Serine (moles)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0, 0.35])
+    fig['layout']['yaxis6'].update(showgrid=True, title='Glucose (moles)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0, 0.35])
+
+    fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0, 0.27])
+    fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.36, 0.63])
+    fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.72, 0.99])
+    fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0, 0.27])
+    fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.36, 0.63])
+    fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.72, 0.99])
+
+    return fig
+
+@app.callback(Output('live-update-graph-4', 'figure'),
+              [Input('interval-component-4', 'n_intervals')])
+def update_graph_live_4(n):
+
+    # load the data from watcher
+
+    data_frame = pd.read_csv('output_4.csv')
+
+    trace1 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['CO2'],
+        name='CO2',
+        mode='markers'
+    )
+
+    trace2 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['CO2'],
+        name='mu',
+        mode='markers'
+    )
+
+    trace3 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['mu'],
+        name='mu'
+    )
+
+    trace4 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['biomass'],
+        name='Biomass'
+    )
+
+    trace5 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['serine'],
+        name='Serine'
+    )
+
+    trace6 = go.Scatter(
+        x=data_frame['time'],
+        y=data_frame['glucose'],
+        name='Glucose'
+    )
+
+    fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
+                                                              'mu from model', 'Biomass from model',
+                                                              'Serine from model', 'Glucose from model'))
+
+    fig.append_trace(trace1, 1, 1)
+    fig.append_trace(trace2, 1, 2)
+    fig.append_trace(trace3, 1, 3)
+    fig.append_trace(trace4, 2, 1)
+    fig.append_trace(trace5, 2, 2)
+    fig.append_trace(trace6, 2, 3)
+
+    fig['layout'].update(height=640, width=1260,
+                         margin=dict(
+                             l=120,
+                             r=100,
+                             b=100,
+                             t=70,
+                             pad=2
+                         ))
+
+    fig['layout']['yaxis1'].update(showgrid=True, title='CO2 (%)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0.65, 1])
+    fig['layout']['yaxis2'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0.65, 1])
+    fig['layout']['yaxis3'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0.65, 1])
+    fig['layout']['yaxis4'].update(showgrid=True, title='Biomass (moles)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0, 0.35])
+    fig['layout']['yaxis5'].update(showgrid=True, title='Serine (moles)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0, 0.35])
+    fig['layout']['yaxis6'].update(showgrid=True, title='Glucose (moles)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=10), domain=[0, 0.35])
+
+    fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0, 0.27])
+    fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.36, 0.63])
+    fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.72, 0.99])
+    fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0, 0.27])
+    fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.36, 0.63])
+    fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                   domain=[0.72, 0.99])
+
+    return fig
 
 
 if __name__ == '__main__':
@@ -429,10 +672,3 @@ if __name__ == '__main__':
 # press ctrl c to stop it from running
 
 
-try:
-    os.remove('/Users/s144510/Documents/fermentationtool/output_1.xlsx')
-    os.remove('/Users/s144510/Documents/fermentationtool/mu_1.xlsx')
-    os.remove('/Users/s144510/Documents/fermentationtool/output_2.xlsx')
-    os.remove('/Users/s144510/Documents/fermentationtool/mu_2.xlsx')
-except OSError:
-    pass

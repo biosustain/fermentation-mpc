@@ -15,8 +15,8 @@ import time
 from models import batch_model_mu
 
 
-def watcher(online_data, filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
-                       alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest):
+def watcher(output, filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
+                       alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest, Sheet):
     # Online data and real time simulation
 
     class Watcher(object):
@@ -59,6 +59,9 @@ def watcher(online_data, filename_experimental_data1,filename_experimental_data2
 
 
     def custom_action(text):
+
+        online_data = pd.ExcelFile(watch_file)
+        online_data = online_data.parse(Sheet)
 
 
         # Calculate the difference in time, so we can select all the data that corresponds to 1 reactor
@@ -153,14 +156,17 @@ def watcher(online_data, filename_experimental_data1,filename_experimental_data2
             new_dataframe.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
             data_frame = data_frame.append(new_dataframe, ignore_index=True)
 
-        data_frame.to_csv('output.csv', index=False)
+        data_frame['CO2'] = selected_data['CO2 (Vol.%)'].values
+        data_frame.to_csv(output, index=False)
 
-            #return data_frame
-
-        #data_frame = monitoring(online_data, filename_experimental_data1, filename_experimental_data2, alpha_lower_bound,
-                   #alpha_upper_bound, beta_lower_bound, beta_upper_bound, model_for_parest)
         print(data_frame)
+
+        global data_frame
 
     watch_file = 'data/MUX_09-03-2018_18-38-27.XLS'
     watcher = Watcher(watch_file, custom_action, text=watch_file)  # also call custom action function
     watcher.watch()  # start the watch going
+
+    #l1.put(data_frame)
+
+    return data_frame
