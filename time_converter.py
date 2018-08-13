@@ -4,9 +4,7 @@ warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
 import pandas as pd
 import matplotlib
 matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
 from growth_rate_functions import time_to_decimals
-
 
 # R1 = pd.read_csv('data/SER_C016_Reactor1_0,5g-LGlucose.csv')
 # R2 = pd.read_csv('data/SER_C016_Reactor2_1,0g-LGlucose.csv')
@@ -34,31 +32,10 @@ R22 = pd.read_csv('/Users/s144510/Documents/fermentationtool/data/SER_C016_React
 R23 = pd.read_csv('/Users/s144510/Documents/fermentationtool/data/SER_C016_Reactor23_4g-LGlycine_0,02FeedRate.csv')
 R24 = pd.read_csv('/Users/s144510/Documents/fermentationtool/data/SER_C016_Reactor24_4g-LGlycine_0,02FeedRate.csv')
 
+list_data = [R13, R14, R15, R16, R17, R18, R19, R20, R21, R22, R23, R24]
+data_frames = list(map(time_to_decimals, list_data))
 
 
-# date_time = pd.DataFrame(R24['Date Time'].str.split(' ', 1).tolist(),
-#                          columns=['Date', 'Time'])
-
-
-
-#
-listdata = [R13, R14, R15, R16, R17, R18, R19, R20, R21, R22, R23, R24]
-data_frames = list(map(time_to_decimals, listdata))
-
-
-# Get new dataframe out
-for i in (range(len(listdata)+13)):
+# Write dataframe to disk
+for i in (range(len(list_data) + 13)):
     data_frames[i].to_csv('data/fedbatch/R' + str(i+13) + '.csv')
-
-
-
-
-
-
-
-
-
-
-
-
-
