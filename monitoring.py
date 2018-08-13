@@ -2,7 +2,6 @@ import warnings
 warnings.filterwarnings("ignore", message="numpy.dtype size changed")
 warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
 
-
 import matplotlib
 matplotlib.use('TkAgg')
 import pandas as pd
@@ -13,6 +12,7 @@ import os
 import sys
 import time
 from models import batch_model_mu
+from datetime import datetime
 
 
 def watcher(output, filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
@@ -132,12 +132,15 @@ def watcher(output, filename_experimental_data1,filename_experimental_data2,alph
             glucose = data_frame['glucose'].iloc[-1]
             serine = data_frame['serine'].iloc[-1]
             biomass = data_frame['biomass'].iloc[-1]
+            start_time = datetime.now()
             alpha_online, beta_online = parameter_estimation_online(filename_experimental_data1,
                                                                     filename_experimental_data2,
                                                                     alpha_lower_bound, alpha_upper_bound,
                                                                     beta_lower_bound, beta_upper_bound,
                                                                     str(mu[i + 1]), str(glucose), str(serine),
                                                                     str(biomass), model_for_parest)
+            end_time = datetime.now()
+            print('Duration: {}'.format(end_time - start_time))
 
             r.glucose = glucose
             r.biomass = biomass
@@ -154,7 +157,7 @@ def watcher(output, filename_experimental_data1,filename_experimental_data2,alph
             data_frame = data_frame.append(new_dataframe, ignore_index=True)
 
         data_frame['CO2'] = selected_data['CO2 (Vol.%)'].values
-        data_frame.to_csv(output, index=False)
+        data_frame.to_csv('output/' + output, index=False)
 
         print(data_frame)
 
