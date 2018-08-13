@@ -4,7 +4,7 @@ warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
 import pandas as pd
 import matplotlib
 matplotlib.use('TkAgg')
-from growth_rate_functions import time_to_decimals
+from time_converter_function import time_to_decimals
 
 # R1 = pd.read_csv('data/SER_C016_Reactor1_0,5g-LGlucose.csv')
 # R2 = pd.read_csv('data/SER_C016_Reactor2_1,0g-LGlucose.csv')

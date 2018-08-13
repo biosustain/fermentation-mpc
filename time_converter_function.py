@@ -4,7 +4,6 @@ warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
 import pandas as pd
 import matplotlib
 matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
 from datetime import datetime
 import datetime
 

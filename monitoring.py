@@ -16,8 +16,7 @@ from models import batch_model_mu
 
 
 def watcher(output, filename_experimental_data1,filename_experimental_data2,alpha_lower_bound,
-                       alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest, Sheet):
-    # Online data and real time simulation
+            alpha_upper_bound, beta_lower_bound,beta_upper_bound, model_for_parest, Sheet):
 
     class Watcher(object):
         running = True
@@ -109,9 +108,7 @@ def watcher(output, filename_experimental_data1,filename_experimental_data2,alph
             tCER.append(tCER_i)
 
         mu = CER / tCER  # [1/min]
-        print(mu)
         mu = (mu*60)  # [1/h]
-        print(mu)
 
         selected_time_decimals_hours = selected_time_decimals / 60
 
@@ -128,13 +125,13 @@ def watcher(output, filename_experimental_data1,filename_experimental_data2,alph
         data_frame = pd.DataFrame(initial_values)
         data_frame.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
 
+
         for i in range(0, (len(mu) - 1)):
             r.reset()
             r.mu = mu[i + 1]
             glucose = data_frame['glucose'].iloc[-1]
             serine = data_frame['serine'].iloc[-1]
             biomass = data_frame['biomass'].iloc[-1]
-
             alpha_online, beta_online = parameter_estimation_online(filename_experimental_data1,
                                                                     filename_experimental_data2,
                                                                     alpha_lower_bound, alpha_upper_bound,
@@ -161,12 +158,10 @@ def watcher(output, filename_experimental_data1,filename_experimental_data2,alph
 
         print(data_frame)
 
-        global data_frame
+        #global data_frame
 
     watch_file = 'data/MUX_09-03-2018_18-38-27.XLS'
     watcher = Watcher(watch_file, custom_action, text=watch_file)  # also call custom action function
     watcher.watch()  # start the watch going
 
-    #l1.put(data_frame)
 
-    return data_frame
