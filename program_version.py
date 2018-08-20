@@ -244,6 +244,8 @@ def custom_action(text):
     data_frame = pd.DataFrame(initial_values)
     data_frame.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
 
+    model_for_parest = 'parameter_estimation/model_mu_1'
+
     for i in range(0, (len(mu) - 2)):
         r.reset()
         r.mu = mu[i+1]
@@ -255,7 +257,7 @@ def custom_action(text):
                                                                 alpha_lower_bound, alpha_upper_bound,
                                                                 beta_lower_bound, beta_upper_bound,
                                                                 str(mu[i+1]), str(glucose), str(serine),
-                                                                str(biomass))
+                                                                str(biomass), model_for_parest)
         r.alpha = float(alpha_online)
         r.beta = float(beta_online)
         start_time = selected_time_decimals_hours[i]
