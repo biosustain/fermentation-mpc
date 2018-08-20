@@ -244,7 +244,10 @@ def custom_action(text):
     data_frame = pd.DataFrame(initial_values)
     data_frame.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
 
+    # Some of the inputs for the parameter_estimation_online function
     model_for_parest = 'parameter_estimation/model_mu_1'
+    filename_experimental_data1 = "R1_data_in_moles.csv"
+    filename_experimental_data2 = "R2_data_in_moles.csv"
 
     for i in range(0, (len(mu) - 2)):
         r.reset()

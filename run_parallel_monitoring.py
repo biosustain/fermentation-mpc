@@ -11,7 +11,7 @@ alpha_upper_bound = "1000"
 beta_lower_bound = "-1000"
 beta_upper_bound = "1000"
 
-model_for_parest_1 = "model_mu_1"
+model_for_parest_1 = "parameter_estimation/model_mu_1"
 model_for_parest_2 = "parameter_estimation/model_mu_2"
 model_for_parest_3 = "parameter_estimation/model_mu_3"
 model_for_parest_4 = "parameter_estimation/model_mu_4"

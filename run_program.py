@@ -6,7 +6,7 @@ from subprocess import PIPE
 # Run this file to run the program
 
 # The popen class can execute child programs in new processes
-pro1 = subprocess.Popen(["python", "/Users/s144510/Documents/fermentationtool/watcher.py"])
+pro1 = subprocess.Popen(["python", "/Users/s144510/Documents/fermentationtool/run_parallel_monitoring.py"])
 pro2 = subprocess.Popen(["python", "/Users/s144510/Documents/fermentationtool/fermentationtool.py"])
 
 try:
