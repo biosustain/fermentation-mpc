@@ -34,8 +34,8 @@ results = r.simulate(2, 23.5, 100)
 #  Load the experimental data set
 
 # Set filename of the two experimental datasets
-filename_experimental_data1 = "data/R1_data_in_moles.csv"
-filename_experimental_data2 = "data/R2_data_in_moles.csv"
+filename_experimental_data1 = "parameter_estimation/R1_data_in_moles.csv"
+filename_experimental_data2 = "parameter_estimation/R2_data_in_moles.csv"
 
 # Experimental data set 1
 experimental_data = pd.read_csv(filename_experimental_data1)

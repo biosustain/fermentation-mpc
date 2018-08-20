@@ -294,7 +294,7 @@ def update_graph(xaxis_column_name, yaxis_column_name):
               [Input('interval-component-1', 'n_intervals')])
 def update_graph_live_1(n):
 
-    data_frame = pd.read_csv('output.csv')
+    data_frame = pd.read_csv('output/output.csv')
     print(data_frame)
 
     trace1 = go.Scatter(
@@ -390,7 +390,7 @@ def update_graph_live_2(n):
 
     # load the data from watcher
 
-    data_frame = pd.read_csv('output_2.csv')
+    data_frame = pd.read_csv('output/output_2.csv')
 
     trace1 = go.Scatter(
         x=data_frame['time'],
@@ -484,7 +484,7 @@ def update_graph_live_3(n):
 
     # load the data from watcher
 
-    data_frame = pd.read_csv('output_3.csv')
+    data_frame = pd.read_csv('output/output_3.csv')
 
     trace1 = go.Scatter(
         x=data_frame['time'],
@@ -578,7 +578,7 @@ def update_graph_live_4(n):
 
     # load the data from watcher
 
-    data_frame = pd.read_csv('output_4.csv')
+    data_frame = pd.read_csv('output/output_4.csv')
 
     trace1 = go.Scatter(
         x=data_frame['time'],
