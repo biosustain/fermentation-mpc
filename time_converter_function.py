@@ -40,7 +40,5 @@ def time_to_decimals(R):
     # Caclulate the time difference from the beginning, with adding the differences
     for i in range(len(R)-1):
         R['Time (min)'][i+1] = R['Time (min)'][i] + R['Time (min)'][i+1]
-        # timeigen.loc[
-        #     i, ['Timeigen']] = result
 
     return R
