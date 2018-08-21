@@ -32,27 +32,27 @@ p1 = Process(target=watcher,
              args=(output_1, filename_experimental_data1, filename_experimental_data2, alpha_lower_bound,
                    alpha_upper_bound, beta_lower_bound, beta_upper_bound, model_for_parest_1, Sheet))
 
-# p2 = Process(target=watcher,
-#              args=(output_2, filename_experimental_data1, filename_experimental_data2, alpha_lower_bound,
-#                    alpha_upper_bound, beta_lower_bound, beta_upper_bound, model_for_parest_2, Sheet_2))
-#
-# p3 = Process(target=watcher,
-#              args=(output_3, filename_experimental_data1, filename_experimental_data2, alpha_lower_bound,
-#                    alpha_upper_bound, beta_lower_bound, beta_upper_bound, model_for_parest_3, Sheet_3))
-#
-# p4 = Process(target=watcher,
-#              args=(output_4, filename_experimental_data1, filename_experimental_data2, alpha_lower_bound,
-#                    alpha_upper_bound, beta_lower_bound, beta_upper_bound, model_for_parest_4, Sheet_4))
+p2 = Process(target=watcher,
+             args=(output_2, filename_experimental_data1, filename_experimental_data2, alpha_lower_bound,
+                   alpha_upper_bound, beta_lower_bound, beta_upper_bound, model_for_parest_2, Sheet_2))
+
+p3 = Process(target=watcher,
+             args=(output_3, filename_experimental_data1, filename_experimental_data2, alpha_lower_bound,
+                   alpha_upper_bound, beta_lower_bound, beta_upper_bound, model_for_parest_3, Sheet_3))
+
+p4 = Process(target=watcher,
+             args=(output_4, filename_experimental_data1, filename_experimental_data2, alpha_lower_bound,
+                   alpha_upper_bound, beta_lower_bound, beta_upper_bound, model_for_parest_4, Sheet_4))
 p1.start()
-# p2.start()
-# p3.start()
-# p4.start()
+p2.start()
+p3.start()
+p4.start()
 
 try:
     p1.join()
-    # p2.join()
-    # p3.join()
-    # p4.join()
+    p2.join()
+    p3.join()
+    p4.join()
 
 except KeyboardInterrupt:
     print('program exit')

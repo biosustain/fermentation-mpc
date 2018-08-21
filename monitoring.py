@@ -50,7 +50,7 @@ def watcher(output, filename_experimental_data1,filename_experimental_data2,alph
                 except KeyboardInterrupt:
                     print('\nDone')
                     break
-                except FileNotFoundError:
+                except OSError: #FileNotFoundError:
                     # Action on file not found
                     pass
                 except:
