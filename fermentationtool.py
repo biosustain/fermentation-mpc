@@ -290,385 +290,411 @@ def update_graph(xaxis_column_name, yaxis_column_name):
 
 # The online data integration
 
-try:
-    data_frame = pd.read_csv('output/output_1.csv')
+@app.callback(Output('live-update-graph-1', 'figure'),
+              [Input('interval-component-1', 'n_intervals')])
+def update_graph_live_1(n):
 
-    @app.callback(Output('live-update-graph-1', 'figure'),
-                  [Input('interval-component-1', 'n_intervals')])
-    def update_graph_live_1(n):
+    fig = 0
 
-            trace1 = go.Scatter(
-                x=data_frame['time'],
-                y=data_frame['CO2'],
-                name='CO2',
-                mode='markers'
-            )
+    try:
+        data_frame = pd.read_csv('output/output_1.csv')
 
-            trace2 = go.Scatter(
-                x=data_frame['time'],
-                y=data_frame['CO2'],
-                name='mu',
-                mode='markers'
-            )
+        trace1 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['CO2'],
+            name='CO2',
+            mode='markers'
+        )
 
-            trace3 = go.Scatter(
-                x=data_frame['time'],
-                y=data_frame['mu'],
-                name='mu'
-            )
+        trace2 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['CO2'],
+            name='mu',
+            mode='markers'
+        )
 
-            trace4 = go.Scatter(
-                x=data_frame['time'],
-                y=data_frame['biomass'],
-                name='Biomass'
-            )
+        trace3 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['mu'],
+            name='mu'
+        )
 
-            trace5 = go.Scatter(
-                x=data_frame['time'],
-                y=data_frame['serine'],
-                name='Serine'
-            )
+        trace4 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['biomass'],
+            name='Biomass'
+        )
 
-            trace6 = go.Scatter(
-                x=data_frame['time'],
-                y=data_frame['glucose'],
-                name='Glucose'
-            )
+        trace5 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['serine'],
+            name='Serine'
+        )
 
-            fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
-                                                                      'mu from model', 'Biomass from model',
-                                                                      'Serine from model', 'Glucose from model'))
+        trace6 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['glucose'],
+            name='Glucose'
+        )
 
-            fig.append_trace(trace1, 1, 1)
-            fig.append_trace(trace2, 1, 2)
-            fig.append_trace(trace3, 1, 3)
-            fig.append_trace(trace4, 2, 1)
-            fig.append_trace(trace5, 2, 2)
-            fig.append_trace(trace6, 2, 3)
+        fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
+                                                                  'mu from model', 'Biomass from model',
+                                                                  'Serine from model', 'Glucose from model'))
 
-            fig['layout'].update(height=640, width=1260,
-                                 margin=dict(
-                                     l=120,
-                                     r=100,
-                                     b=100,
-                                     t=70,
-                                     pad=2
-                                 ))
+        fig.append_trace(trace1, 1, 1)
+        fig.append_trace(trace2, 1, 2)
+        fig.append_trace(trace3, 1, 3)
+        fig.append_trace(trace4, 2, 1)
+        fig.append_trace(trace5, 2, 2)
+        fig.append_trace(trace6, 2, 3)
 
-            fig['layout']['yaxis1'].update(showgrid=True, title='CO2 (%)', exponentformat='power', nticks=10,
-                                           tickfont=dict(size=10), domain=[0.65, 1])
-            fig['layout']['yaxis2'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
-                                           tickfont=dict(size=10), domain=[0.65, 1])
-            fig['layout']['yaxis3'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
-                                           tickfont=dict(size=10), domain=[0.65, 1])
-            fig['layout']['yaxis4'].update(showgrid=True, title='Biomass (moles)', exponentformat='power', nticks=10,
-                                           tickfont=dict(size=10), domain=[0, 0.35])
-            fig['layout']['yaxis5'].update(showgrid=True, title='Serine (moles)', exponentformat='power', nticks=10,
-                                           tickfont=dict(size=10), domain=[0, 0.35])
-            fig['layout']['yaxis6'].update(showgrid=True, title='Glucose (moles)', exponentformat='power', nticks=10,
-                                           tickfont=dict(size=10), domain=[0, 0.35])
+        fig['layout'].update(height=640, width=1260,
+                             margin=dict(
+                                 l=120,
+                                 r=100,
+                                 b=100,
+                                 t=70,
+                                 pad=2
+                             ))
 
-            fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                           domain=[0, 0.27])
-            fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                           domain=[0.36, 0.63])
-            fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                           domain=[0.72, 0.99])
-            fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                           domain=[0, 0.27])
-            fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                           domain=[0.36, 0.63])
-            fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                           domain=[0.72, 0.99])
+        fig['layout']['yaxis1'].update(showgrid=True, title='CO2 (%)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0.65, 1])
+        fig['layout']['yaxis2'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0.65, 1])
+        fig['layout']['yaxis3'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0.65, 1])
+        fig['layout']['yaxis4'].update(showgrid=True, title='Biomass (moles)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0, 0.35])
+        fig['layout']['yaxis5'].update(showgrid=True, title='Serine (moles)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0, 0.35])
+        fig['layout']['yaxis6'].update(showgrid=True, title='Glucose (moles)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0, 0.35])
 
-            return fig
+        fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0, 0.27])
+        fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.36, 0.63])
+        fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.72, 0.99])
+        fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0, 0.27])
+        fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.36, 0.63])
+        fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.72, 0.99])
 
-except OSError:
-    pass
+    except Exception:
+        print('no output to plot yet')
 
-#
-#
-# @app.callback(Output('live-update-graph-2', 'figure'),
-#               [Input('interval-component-2', 'n_intervals')])
-# def update_graph_live_2(n):
-#
-#     # load the data from watcher
-#
-#     data_frame = pd.read_csv('output/output_2.csv')
-#
-#     trace1 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['CO2'],
-#         name='CO2',
-#         mode='markers'
-#     )
-#
-#     trace2 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['CO2'],
-#         name='mu',
-#         mode='markers'
-#     )
-#
-#     trace3 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['mu'],
-#         name='mu'
-#     )
-#
-#     trace4 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['biomass'],
-#         name='Biomass'
-#     )
-#
-#     trace5 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['serine'],
-#         name='Serine'
-#     )
-#
-#     trace6 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['glucose'],
-#         name='Glucose'
-#     )
-#
-#     fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
-#                                                               'mu from model', 'Biomass from model',
-#                                                               'Serine from model', 'Glucose from model'))
-#
-#     fig.append_trace(trace1, 1, 1)
-#     fig.append_trace(trace2, 1, 2)
-#     fig.append_trace(trace3, 1, 3)
-#     fig.append_trace(trace4, 2, 1)
-#     fig.append_trace(trace5, 2, 2)
-#     fig.append_trace(trace6, 2, 3)
-#
-#     fig['layout'].update(height=640, width=1260,
-#                          margin=dict(
-#                              l=120,
-#                              r=100,
-#                              b=100,
-#                              t=70,
-#                              pad=2
-#                          ))
-#
-#     fig['layout']['yaxis1'].update(showgrid=True, title='CO2 (%)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0.65, 1])
-#     fig['layout']['yaxis2'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0.65, 1])
-#     fig['layout']['yaxis3'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0.65, 1])
-#     fig['layout']['yaxis4'].update(showgrid=True, title='Biomass (moles)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0, 0.35])
-#     fig['layout']['yaxis5'].update(showgrid=True, title='Serine (moles)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0, 0.35])
-#     fig['layout']['yaxis6'].update(showgrid=True, title='Glucose (moles)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0, 0.35])
-#
-#     fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0, 0.27])
-#     fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0.36, 0.63])
-#     fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0.72, 0.99])
-#     fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0, 0.27])
-#     fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0.36, 0.63])
-#     fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0.72, 0.99])
-#
-#     return fig
-#
-# @app.callback(Output('live-update-graph-3', 'figure'),
-#               [Input('interval-component-3', 'n_intervals')])
-# def update_graph_live_3(n):
-#
-#     # load the data from watcher
-#
-#     data_frame = pd.read_csv('output/output_3.csv')
-#
-#     trace1 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['CO2'],
-#         name='CO2',
-#         mode='markers'
-#     )
-#
-#     trace2 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['CO2'],
-#         name='mu',
-#         mode='markers'
-#     )
-#
-#     trace3 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['mu'],
-#         name='mu'
-#     )
-#
-#     trace4 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['biomass'],
-#         name='Biomass'
-#     )
-#
-#     trace5 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['serine'],
-#         name='Serine'
-#     )
-#
-#     trace6 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['glucose'],
-#         name='Glucose'
-#     )
-#
-#     fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
-#                                                               'mu from model', 'Biomass from model',
-#                                                               'Serine from model', 'Glucose from model'))
-#
-#     fig.append_trace(trace1, 1, 1)
-#     fig.append_trace(trace2, 1, 2)
-#     fig.append_trace(trace3, 1, 3)
-#     fig.append_trace(trace4, 2, 1)
-#     fig.append_trace(trace5, 2, 2)
-#     fig.append_trace(trace6, 2, 3)
-#
-#     fig['layout'].update(height=640, width=1260,
-#                          margin=dict(
-#                              l=120,
-#                              r=100,
-#                              b=100,
-#                              t=70,
-#                              pad=2
-#                          ))
-#
-#     fig['layout']['yaxis1'].update(showgrid=True, title='CO2 (%)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0.65, 1])
-#     fig['layout']['yaxis2'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0.65, 1])
-#     fig['layout']['yaxis3'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0.65, 1])
-#     fig['layout']['yaxis4'].update(showgrid=True, title='Biomass (moles)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0, 0.35])
-#     fig['layout']['yaxis5'].update(showgrid=True, title='Serine (moles)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0, 0.35])
-#     fig['layout']['yaxis6'].update(showgrid=True, title='Glucose (moles)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0, 0.35])
-#
-#     fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0, 0.27])
-#     fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0.36, 0.63])
-#     fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0.72, 0.99])
-#     fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0, 0.27])
-#     fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0.36, 0.63])
-#     fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0.72, 0.99])
-#
-#     return fig
-#
-# @app.callback(Output('live-update-graph-4', 'figure'),
-#               [Input('interval-component-4', 'n_intervals')])
-# def update_graph_live_4(n):
-#
-#     # load the data from watcher
-#
-#     data_frame = pd.read_csv('output/output_4.csv')
-#
-#     trace1 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['CO2'],
-#         name='CO2',
-#         mode='markers'
-#     )
-#
-#     trace2 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['CO2'],
-#         name='mu',
-#         mode='markers'
-#     )
-#
-#     trace3 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['mu'],
-#         name='mu'
-#     )
-#
-#     trace4 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['biomass'],
-#         name='Biomass'
-#     )
-#
-#     trace5 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['serine'],
-#         name='Serine'
-#     )
-#
-#     trace6 = go.Scatter(
-#         x=data_frame['time'],
-#         y=data_frame['glucose'],
-#         name='Glucose'
-#     )
-#
-#     fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
-#                                                               'mu from model', 'Biomass from model',
-#                                                               'Serine from model', 'Glucose from model'))
-#
-#     fig.append_trace(trace1, 1, 1)
-#     fig.append_trace(trace2, 1, 2)
-#     fig.append_trace(trace3, 1, 3)
-#     fig.append_trace(trace4, 2, 1)
-#     fig.append_trace(trace5, 2, 2)
-#     fig.append_trace(trace6, 2, 3)
-#
-#     fig['layout'].update(height=640, width=1260,
-#                          margin=dict(
-#                              l=120,
-#                              r=100,
-#                              b=100,
-#                              t=70,
-#                              pad=2
-#                          ))
-#
-#     fig['layout']['yaxis1'].update(showgrid=True, title='CO2 (%)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0.65, 1])
-#     fig['layout']['yaxis2'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0.65, 1])
-#     fig['layout']['yaxis3'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0.65, 1])
-#     fig['layout']['yaxis4'].update(showgrid=True, title='Biomass (moles)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0, 0.35])
-#     fig['layout']['yaxis5'].update(showgrid=True, title='Serine (moles)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0, 0.35])
-#     fig['layout']['yaxis6'].update(showgrid=True, title='Glucose (moles)', exponentformat='power', nticks=10,
-#                                    tickfont=dict(size=10), domain=[0, 0.35])
-#
-#     fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0, 0.27])
-#     fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0.36, 0.63])
-#     fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0.72, 0.99])
-#     fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0, 0.27])
-#     fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0.36, 0.63])
-#     fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-#                                    domain=[0.72, 0.99])
-#
-#     return fig
+    return fig
+
+
+
+@app.callback(Output('live-update-graph-2', 'figure'),
+              [Input('interval-component-2', 'n_intervals')])
+def update_graph_live_2(n):
+
+    # load the data from watcher
+
+    fig = 0
+
+    try:
+
+        data_frame = pd.read_csv('output/output_2.csv')
+
+        trace1 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['CO2'],
+            name='CO2',
+            mode='markers'
+        )
+
+        trace2 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['CO2'],
+            name='mu',
+            mode='markers'
+        )
+
+        trace3 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['mu'],
+            name='mu'
+        )
+
+        trace4 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['biomass'],
+            name='Biomass'
+        )
+
+        trace5 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['serine'],
+            name='Serine'
+        )
+
+        trace6 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['glucose'],
+            name='Glucose'
+        )
+
+        fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
+                                                                  'mu from model', 'Biomass from model',
+                                                                  'Serine from model', 'Glucose from model'))
+
+        fig.append_trace(trace1, 1, 1)
+        fig.append_trace(trace2, 1, 2)
+        fig.append_trace(trace3, 1, 3)
+        fig.append_trace(trace4, 2, 1)
+        fig.append_trace(trace5, 2, 2)
+        fig.append_trace(trace6, 2, 3)
+
+        fig['layout'].update(height=640, width=1260,
+                             margin=dict(
+                                 l=120,
+                                 r=100,
+                                 b=100,
+                                 t=70,
+                                 pad=2
+                             ))
+
+        fig['layout']['yaxis1'].update(showgrid=True, title='CO2 (%)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0.65, 1])
+        fig['layout']['yaxis2'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0.65, 1])
+        fig['layout']['yaxis3'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0.65, 1])
+        fig['layout']['yaxis4'].update(showgrid=True, title='Biomass (moles)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0, 0.35])
+        fig['layout']['yaxis5'].update(showgrid=True, title='Serine (moles)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0, 0.35])
+        fig['layout']['yaxis6'].update(showgrid=True, title='Glucose (moles)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0, 0.35])
+
+        fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0, 0.27])
+        fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.36, 0.63])
+        fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.72, 0.99])
+        fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0, 0.27])
+        fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.36, 0.63])
+        fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.72, 0.99])
+
+    except Exception:
+        print('no output to plot yet')
+
+    return fig
+
+
+
+@app.callback(Output('live-update-graph-3', 'figure'),
+              [Input('interval-component-3', 'n_intervals')])
+def update_graph_live_3(n):
+
+    # load the data from watcher
+
+    fig = 0
+
+    try:
+
+        data_frame = pd.read_csv('output/output_3.csv')
+
+        trace1 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['CO2'],
+            name='CO2',
+            mode='markers'
+        )
+
+        trace2 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['CO2'],
+            name='mu',
+            mode='markers'
+        )
+
+        trace3 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['mu'],
+            name='mu'
+        )
+
+        trace4 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['biomass'],
+            name='Biomass'
+        )
+
+        trace5 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['serine'],
+            name='Serine'
+        )
+
+        trace6 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['glucose'],
+            name='Glucose'
+        )
+
+        fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
+                                                                  'mu from model', 'Biomass from model',
+                                                                  'Serine from model', 'Glucose from model'))
+
+        fig.append_trace(trace1, 1, 1)
+        fig.append_trace(trace2, 1, 2)
+        fig.append_trace(trace3, 1, 3)
+        fig.append_trace(trace4, 2, 1)
+        fig.append_trace(trace5, 2, 2)
+        fig.append_trace(trace6, 2, 3)
+
+        fig['layout'].update(height=640, width=1260,
+                             margin=dict(
+                                 l=120,
+                                 r=100,
+                                 b=100,
+                                 t=70,
+                                 pad=2
+                             ))
+
+        fig['layout']['yaxis1'].update(showgrid=True, title='CO2 (%)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0.65, 1])
+        fig['layout']['yaxis2'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0.65, 1])
+        fig['layout']['yaxis3'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0.65, 1])
+        fig['layout']['yaxis4'].update(showgrid=True, title='Biomass (moles)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0, 0.35])
+        fig['layout']['yaxis5'].update(showgrid=True, title='Serine (moles)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0, 0.35])
+        fig['layout']['yaxis6'].update(showgrid=True, title='Glucose (moles)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0, 0.35])
+
+        fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0, 0.27])
+        fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.36, 0.63])
+        fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.72, 0.99])
+        fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0, 0.27])
+        fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.36, 0.63])
+        fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.72, 0.99])
+
+    except Exception:
+        print('no output to plot yet')
+
+    return fig
+
+
+
+@app.callback(Output('live-update-graph-4', 'figure'),
+              [Input('interval-component-4', 'n_intervals')])
+def update_graph_live_4(n):
+
+    # load the data from watcher
+    fig = 0
+
+    try:
+
+        data_frame = pd.read_csv('output/output_4.csv')
+
+        trace1 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['CO2'],
+            name='CO2',
+            mode='markers'
+        )
+
+        trace2 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['CO2'],
+            name='mu',
+            mode='markers'
+        )
+
+        trace3 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['mu'],
+            name='mu'
+        )
+
+        trace4 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['biomass'],
+            name='Biomass'
+        )
+
+        trace5 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['serine'],
+            name='Serine'
+        )
+
+        trace6 = go.Scatter(
+            x=data_frame['time'],
+            y=data_frame['glucose'],
+            name='Glucose'
+        )
+
+        fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('CO2 online data', 'mu from CO2',
+                                                                  'mu from model', 'Biomass from model',
+                                                                  'Serine from model', 'Glucose from model'))
+
+        fig.append_trace(trace1, 1, 1)
+        fig.append_trace(trace2, 1, 2)
+        fig.append_trace(trace3, 1, 3)
+        fig.append_trace(trace4, 2, 1)
+        fig.append_trace(trace5, 2, 2)
+        fig.append_trace(trace6, 2, 3)
+
+        fig['layout'].update(height=640, width=1260,
+                             margin=dict(
+                                 l=120,
+                                 r=100,
+                                 b=100,
+                                 t=70,
+                                 pad=2
+                             ))
+
+        fig['layout']['yaxis1'].update(showgrid=True, title='CO2 (%)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0.65, 1])
+        fig['layout']['yaxis2'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0.65, 1])
+        fig['layout']['yaxis3'].update(showgrid=True, title='Mu (1/h)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0.65, 1])
+        fig['layout']['yaxis4'].update(showgrid=True, title='Biomass (moles)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0, 0.35])
+        fig['layout']['yaxis5'].update(showgrid=True, title='Serine (moles)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0, 0.35])
+        fig['layout']['yaxis6'].update(showgrid=True, title='Glucose (moles)', exponentformat='power', nticks=10,
+                                       tickfont=dict(size=10), domain=[0, 0.35])
+
+        fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0, 0.27])
+        fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.36, 0.63])
+        fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.72, 0.99])
+        fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0, 0.27])
+        fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.36, 0.63])
+        fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+                                       domain=[0.72, 0.99])
+
+    except Exception:
+        print('no output to plot yet')
+
+    return fig
 
 
 if __name__ == '__main__':
