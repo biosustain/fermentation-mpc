@@ -13,32 +13,36 @@ def batch_model():
 
 
         ######## Specify the species in the compartment
-        glucose in comp1; serine in comp1; biomass in comp1;
+        biomass in comp1; V in comp1; glucose in comp1; serine in comp1; 
 
 
         ######## Constants
-        alpha = 21.5 #29.1 #21.542 #24.6807; # Check units
-        beta = 90.3 #68.8 #90.2844 #67.3047; # Check units
-        mu_max = 0.3 #0.98 #0.327912 #0.260172; # [1/h]
-        kc = 1.2 #7.48 #1.24659 #1.05221; # [mol/kg] # Kc? 
-        a = -0.2572;
-        b = -0.7651;
-        ms = -0.0046; 
+        alpha = 0.05846170603
+        beta = 1.114915272e-10
+        mu_max = 0.2114514111
+        kc = 0.5787273839
+        a = -0.4015362233;
+        b = -0.4237085289;
+        ms = -1.871821912e-10; 
 
 
         ######## Initial conditions
-        glucose = 8.254856e-06*1000 # [mol] 
+        glucose = 8.254856e-03 #*1000 # [mol] 
         serine = 0 #c_serine0*comp1 # [mol]
-        biomass = 5.538306e-07*1000 # [mol]
-        v0 = 0.00010428; #[m^3]
+        biomass = 5.538306e-04 #*1000 # [mol]
+        V = 0.00010428; #[m^3]
+        F = 0; #1.386900023e-6;
 
 
         ######## Function for volume
-        v := 0.00010302999999999999-(0.00000121*time) #[m^3]
+        #v := 0.00010302999999999999-(0.00000121*time) #[m^3]
 
         ######## Concentrations that is used in the equations
-        c_glucose := glucose/v  # [mol/m^3]
-        c_biomass := biomass/v # [mol/m^3] 
+        c_glucose := glucose/V  # [mol/m^3]
+        c_biomass := biomass/V # [mol/m^3] 
+        
+        qp_max = 0.09
+        qs_max = -0.138786
 
         ######## Functions
         mu := mu_max*(c_glucose/((kc*c_biomass)+c_glucose)) # [1/h]
@@ -49,9 +53,10 @@ def batch_model():
 
 
         ######## Mass Balances    
-        eq_biomass: -> biomass; mu*biomass # [c-mol/h]
-        eq_serine: -> serine; rp_s
-        eq_glucose: -> glucose; r_s # [mol/h]
+        eq_biomass: -> biomass; mu*biomass - F*biomass/V # [c-mol/h]
+        eq_serine: -> serine; rp_s - F*serine/V
+        eq_glucose: -> glucose; r_s - F*glucose/V - 0.0001# [mol/h]
+        eq_V: -> V; F 
 
 
 
