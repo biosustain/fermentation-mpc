@@ -18,6 +18,7 @@ openpyxl = "*"
 xlwings = "*"
 joblib = "*"
 multiprocessing = "*"
+xlrd = "*"
 
 [dev-packages]
 
