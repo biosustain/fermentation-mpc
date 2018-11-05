@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sbml xmlns="http://www.sbml.org/sbml/level3/version1/core" level="3" version="1">
+  <model id="IDModel" name="IDModel">
+    <listOfCompartments>
+      <compartment id="comp1" spatialDimensions="3" size="1" constant="true"/>
+    </listOfCompartments>
+    <listOfParameters>
+      <parameter id="mu" value="0" constant="false"/>
+      <parameter id="mu_max" value="0.3938" constant="true"/>
+      <parameter id="Ks" value="1.1879" constant="true"/>
+      <parameter id="Ki" value="141.591" constant="true"/>
+    </listOfParameters>
+    <listOfRules>
+      <assignmentRule variable="mu">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <divide/>
+            <apply>
+              <times/>
+              <ci> mu_max </ci>
+              <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> time </csymbol>
+            </apply>
+            <apply>
+              <plus/>
+              <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> time </csymbol>
+              <ci> Ks </ci>
+              <apply>
+                <divide/>
+                <apply>
+                  <power/>
+                  <csymbol encoding="text" definitionURL="http://www.sbml.org/sbml/symbols/time"> time </csymbol>
+                  <cn type="integer"> 2 </cn>
+                </apply>
+                <ci> Ki </ci>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+    </listOfRules>
+  </model>
+</sbml>

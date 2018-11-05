@@ -128,7 +128,7 @@ def batch_model_mu():
 
 
 def fed_batch_model():
-    fermentation_model = '''
+    mu_model = '''
     model *IDModel()
 
         ######## Set the compartment to 1, otherwise it will be multiplied by the compounds. 
@@ -137,62 +137,53 @@ def fed_batch_model():
 
 
         ######## Specify the species in the compartment
-        Glucose in comp1; Serine in comp1; Biomass in comp1;
+        glucose in comp1; biomass in comp1; serine in comp1; #acetate in comp1
 
 
-
-        alpha = 0.0211; # Check units
-        beta = 0.0195 #67.30468128; # Check units
-        mu_max = 0.329; # [1/h]
-        Kc = 0.549; # [mol/kg] # Kc? 
-        a = -0.235;
-        b = -0.0237;
-        ms = -0.0075; 
-        Fin = 0 #00000121;
-        k = 0.0005;
-        c_glufeed = 1110;
-
+        ######## Constants
+        mu_max = 0.2477 # [1/h]
+        Ks = 1.4344 # [g/L]
+        Ks_qs = 2.6784 # [g/L]
+        Ki = 688309 # [g/L]
+        qs_max = 1.4075 # (g/(g*h))
+        F0 = 0.3
+        mu_set = 0.02
+        alpha = 1.5007
+        beta = 2.7714
 
         ######## Initial conditions
-        Glucose = 0.0031083180000000001 # [mol] 
-        Serine = 1e-08 #c_serine0*comp1 # [mol]
-        Biomass = 0.00043477899999999999 # [mol]
-        #V0 = 0.00010428; #[m^3]
-        V = 0.00010303;
-        F0 = 0.0001; # [m^3/h] # The value of the volume at the end of the batch phase
+        V = 0.1021
+        glucose = 0 # 0.149770*V # [g]
+        biomass = 0.209504 #5.092*V # [g]
+        serine = 0 # [g]
 
-
-
-        ######## If fed batch
-        at (time > 25): Fin = F0*exp(beta*time)  
-
-        ######## Function for volume in batch
-        #V := V0-(0.00000121*time) #[m^3]
+        ######## Feed function
+        Fin := F0*exp(mu_set*time)/1000 # [L/h]
 
 
         ######## Function for volume in fed-batch
-        EqVolume: -> V; Fin
+        EqVolume: -> V; Fin # [L/h]
 
-        ######## Concentrations that is used in the equations
-        c_glucose := Glucose/V  # [mol/m^3]
-        c_biomass := Biomass/V # [mol/m^3] 
+        ######## Initial concentrations
+        c_glucose := glucose/V # [g/L]
+        c_glufeed = 415 # [g/L]
+        c_biomass := biomass/V
+
 
         ######## Functions
-        mu := mu_max*(c_glucose/((Kc*c_biomass)+c_glucose)) # [1/h]
-        qp_s := alpha*mu/(beta+mu) # [mol_serine/(mol_biomass*h)]
-        qs_g := a*mu + b*qp_s + ms 
-        rp_s := qp_s*Biomass # [mol/h] 
-        r_s := qs_g*Biomass # [mol/h]
+        mu := mu_max*c_glucose/(c_glucose+Ks+(c_glucose^2/Ki)) # [1/h]
+        qs := qs_max*c_glucose/(Ks_qs+c_glucose) # [g_substrate/g_biomass h]
+        qp := alpha*mu/(mu+beta)
 
 
-        ######## Mass Balances    
-        EqBiomass: -> Biomass; mu*Biomass # [c-mol/h]
-        EqSerine: -> Serine; rp_s
-        EqGlucose: -> Glucose; r_s + Fin*c_glufeed # [mol/h]
-
+        ######## Mass Balances 
+        eq_biomass: -> biomass; mu*biomass # [g/h]
+        eq_glucose: -> glucose; -qs*biomass + Fin*c_glufeed -0.002 # [g/h]  
+        eq_serine: -> serine; qp*biomass # [g/h]
 
 
         end
     '''
-    r = te.loada(fermentation_model)
+
+    r = te.loada(mu_model)
     return r
