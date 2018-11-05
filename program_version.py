@@ -23,7 +23,7 @@ from models import batch_model_mu
 
 # Choose either batch_model or fed_batch
 r = batch_model()
-r.exportToSBML('models/batch.xml')
+#r.exportToSBML('models/batch.xml')
 
 # We can set the lists so it has the same order as the data
 r.timeCourseSelections = ['time', 'glucose', 'serine', 'biomass', 'V']
@@ -49,43 +49,43 @@ experimental_data = data(experimental_data)
 
 
 # Plot of the results from the model and the experimental data
-plt.figure(num=None, figsize=(11, 7), dpi=90, facecolor='w', edgecolor='k')
-plt.suptitle('Plot of compounds', fontsize=16)
-
-plt.subplot(2, 2, 1)
-plt.plot(results[:, 0], (results[:, 3]))
-plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
-#plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
-plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
-plt.xlabel('Time (hours)')
-plt.ylabel('Biomass (c-mole)')
-
-plt.subplot(2, 2, 2)
-plt.plot(results[:, 0], results[:, 2])
-plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
-#plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
-plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
-plt.xlabel('Time (hours)')
-plt.ylabel('Serine (mole)')
-
-plt.subplot(2, 2, 3)
-plt.plot(results[:, 0], results[:, 1])
-plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
-#plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
-plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
-plt.xlabel('Time (hours)')
-plt.ylabel('Glucose (mole)')
-
-plt.show()
+# plt.figure(num=None, figsize=(11, 7), dpi=90, facecolor='w', edgecolor='k')
+# plt.suptitle('Plot of compounds', fontsize=16)
+#
+# plt.subplot(2, 2, 1)
+# plt.plot(results[:, 0], (results[:, 3]))
+# plt.scatter(experimental_data['Time (hours)'], experimental_data['C-mol-Biomass'])
+# #plt.scatter(experimental_data2['Time (hours)'], experimental_data2['C-mol-Biomass'])
+# plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
+# plt.xlabel('Time (hours)')
+# plt.ylabel('Biomass (c-mole)')
+#
+# plt.subplot(2, 2, 2)
+# plt.plot(results[:, 0], results[:, 2])
+# plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Serine'])
+# #plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Serine'])
+# plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
+# plt.xlabel('Time (hours)')
+# plt.ylabel('Serine (mole)')
+#
+# plt.subplot(2, 2, 3)
+# plt.plot(results[:, 0], results[:, 1])
+# plt.scatter(experimental_data['Time (hours)'], experimental_data['mol-Glucose'])
+# #plt.scatter(experimental_data2['Time (hours)'], experimental_data2['mol-Glucose'])
+# plt.legend(['Glucose from model', 'Glucose from data'], loc='upper left')
+# plt.xlabel('Time (hours)')
+# plt.ylabel('Glucose (mole)')
+#
+# plt.show()
 
 #
 # #  Parameter estimation
 #
 # # Set lower and upper bounds
-# alpha_lower_bound = "0"
-# alpha_upper_bound = "10000"
-# beta_lower_bound = "0"
-# beta_upper_bound = "10000"
+alpha_lower_bound = "0"
+alpha_upper_bound = "10000"
+beta_lower_bound = "0"
+beta_upper_bound = "10000"
 # kc_lower_bound = "0"
 # kc_upper_bound = "100"
 # mu_max_lower_bound = "0"
@@ -246,10 +246,11 @@ def custom_action(text):
     data_frame = pd.DataFrame(initial_values)
     data_frame.columns = ['time', 'glucose', 'serine', 'biomass', 'mu']
 
+
     # Some of the inputs for the parameter_estimation_online function
     model_for_parest = 'parameter_estimation/model_mu_1'
-    filename_experimental_data1 = "R1_data_in_moles.csv"
-    filename_experimental_data2 = "R2_data_in_moles.csv"
+    filename_experimental_data1 = "parameter_estimation/R1_data_in_moles.csv"
+    filename_experimental_data2 = "parameter_estimation/R2_data_in_moles.csv"
 
     for i in range(0, (len(mu) - 2)):
         r.reset()
@@ -257,12 +258,14 @@ def custom_action(text):
         glucose = data_frame['glucose'].iloc[-1]
         serine = data_frame['serine'].iloc[-1]
         biomass = data_frame['biomass'].iloc[-1]
+
         alpha_online, beta_online = parameter_estimation_online(filename_experimental_data1,
                                                                 filename_experimental_data2,
                                                                 alpha_lower_bound, alpha_upper_bound,
                                                                 beta_lower_bound, beta_upper_bound,
                                                                 str(mu[i+1]), str(glucose), str(serine),
                                                                 str(biomass), model_for_parest)
+
         r.alpha = float(alpha_online)
         r.beta = float(beta_online)
         start_time = selected_time_decimals_hours[i]

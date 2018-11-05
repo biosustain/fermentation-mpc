@@ -12,13 +12,16 @@ numpy = "*"
 pandas = "*"
 plotly = "*"
 tellurium = "*"
-"beautifulsoup4" = "*"
+"beautifulsoup4" = "== 4.6.3"
 pyorbital = "*"
 openpyxl = "*"
 xlwings = "*"
 joblib = "*"
 multiprocessing = "*"
 xlrd = "*"
+"bs4" = "*"
+beautifulsoup = "*"
+lxml = "*"
 
 [dev-packages]
 
