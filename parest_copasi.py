@@ -285,7 +285,6 @@ def parameter_estimation_online_fedbatch(experimental_data1,
     os.system("/Users/s144510/Documents/Bachelorproject/fermentation-mpc/CopasiSE " +
               model_for_parest + '.cps --save ' + model_for_parest + ".cps")
 
-    print('AAAAAAH')
     # Get the results
     os.rename('/Users/s144510/Documents/Bachelorproject/fermentation-mpc/' + model_for_parest + '.cps',
               '/Users/s144510/Documents/Bachelorproject/fermentation-mpc/' + model_for_parest + '.xml')

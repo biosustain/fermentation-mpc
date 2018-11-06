@@ -124,8 +124,6 @@ from parest_copasi import parameter_estimation_online_fedbatch
 
 
 
-
-
 # Online data and real time simulation
 #
 class Watcher(object):
@@ -204,6 +202,8 @@ def custom_action(text):
     r = fed_batch_model_mu()
 
 
+
+
     start_time = data_frame_selected_values['Time (hours)'][25:67][25]
     end_time = data_frame_selected_values['Time (hours)'][25:67][26]
 
@@ -217,8 +217,7 @@ def custom_action(text):
     initial_values = results[0:1]
     data_frame = pd.DataFrame(initial_values)
     data_frame.columns = ['time', 'glucose', 'biomass', 'serine', 'mu']
-    mu[25:67] = mu[25:67]*1.0157664644714879
-
+    mu = mu*1.0157664644714879
 
     # Some of the inputs for the parameter_estimation_online function
     for i in range(25, 66): # lav 30 om til 66
@@ -226,6 +225,7 @@ def custom_action(text):
         glucose = data_frame['glucose'].iloc[-1]
         serine = data_frame['serine'].iloc[-1]
         biomass = data_frame['biomass'].iloc[-1]
+
 
         start_time = data_frame_selected_values['Time (hours)'][25:][i]
         end_time = data_frame_selected_values['Time (hours)'][25:][i + 1]
@@ -273,7 +273,7 @@ def custom_action(text):
     # Model simulation (change the time to be from the end of time [-1] and then just + 10 hours or something
     # Update model with optimized parameters
 
-    print(alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max, "YEEES")
+    print(alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max)
 
     f = fed_batch_model()
 
@@ -284,7 +284,8 @@ def custom_action(text):
     f.Ki = float(Ki)
     f.Ks = float(Ks)
     f.mu_max = float(mu_max)
-    f.reset()
+
+    print(f.Ki)
     f.timeCourseSelections = ['time','glucose','biomass','serine','mu']
     fresults = f.simulate(data_frame_selected_values['Time (hours)'][25:67][25], data_frame_selected_values['Time (hours)'][66 + 10], 100)
 
@@ -332,7 +333,7 @@ def custom_action(text):
     )
 
 
-    fig = tools.make_subplots(rows=2, cols=3, subplot_titles=('Biomass from model', 'Serine from model', 'Glucose from model'))
+    fig = tools.make_subplots(rows=1, cols=3, subplot_titles=('Biomass from model', 'Serine from model', 'Glucose from model'))
 
 
     fig.append_trace(trace1, 1, 1)
@@ -361,11 +362,11 @@ def custom_action(text):
 
 
     fig['layout']['yaxis1'].update(showgrid=True, title='Biomass (g)', exponentformat='power', nticks=10,
-                                   tickfont=dict(size=10), domain=[0, 0.35])
+                                   tickfont=dict(size=10), domain=[0.65, 1])
     fig['layout']['yaxis2'].update(showgrid=True, title='Serine (g)', exponentformat='power', nticks=10,
-                                   tickfont=dict(size=10), domain=[0, 0.35])
+                                   tickfont=dict(size=10), domain=[0.65, 1])
     fig['layout']['yaxis3'].update(showgrid=True, title='Glucose (g)', exponentformat='power', nticks=10,
-                                   tickfont=dict(size=10), domain=[0, 0.35])
+                                   tickfont=dict(size=10), domain=[0.65, 1])
 
 
     fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
