@@ -15,6 +15,7 @@ import plotly
 import plotly.graph_objs as go
 from models import fed_batch_model
 from parest_copasi import parameter_estimation_online_fedbatch
+from pathlib import Path
 
 #
 #
@@ -198,18 +199,33 @@ def custom_action(text):
 
     mu = data_frame_selected_values['Bioreactor 24 - CER'] / tCER  # [1/h]
 
-
     r = fed_batch_model_mu()
+    my_file = Path('update_parameters.csv')
 
 
+    try:
+        my_abs_path = my_file.resolve()
+        update_parameters = pd.read_csv(my_abs_path)
 
+        r.alpha = update_parameters['Parameter values'][0]
+        r.beta = update_parameters['Parameter values'][1]
+        r.Ks_qs = update_parameters['Parameter values'][2]
+        r.qs_max = update_parameters['Parameter values'][3]
+        r.Ki = update_parameters['Parameter values'][4]
+        r.Ks = update_parameters['Parameter values'][5]
+        r.mu_max = update_parameters['Parameter values'][6]
 
-    start_time = data_frame_selected_values['Time (hours)'][25:67][25]
-    end_time = data_frame_selected_values['Time (hours)'][25:67][26]
+    except OSError:
+       pass
+
+    # Remember to change the ones below to be the first and the second first value of fed batch phase
+    start_time = data_frame_selected_values['Time (hours)'][25]
+    end_time = data_frame_selected_values['Time (hours)'][26]
 
     # Make fake data
 
     r.timeCourseSelections = ['time','glucose','biomass','serine','mu']
+
 
     results = r.simulate(start_time, end_time, 2)
 
@@ -219,8 +235,9 @@ def custom_action(text):
     data_frame.columns = ['time', 'glucose', 'biomass', 'serine', 'mu']
     mu = mu*1.0157664644714879
 
+
     # Some of the inputs for the parameter_estimation_online function
-    for i in range(25, 66): # lav 30 om til 66
+    for i in range(25, len(mu)-1): # lav 30 om til 66
         r.mu = mu[25:][i + 1]
         glucose = data_frame['glucose'].iloc[-1]
         serine = data_frame['serine'].iloc[-1]
@@ -239,7 +256,7 @@ def custom_action(text):
     data_frame.columns = ['Time (hours)','Glucose (g)','Biomass (g)','Serine (g)','mu']
     data_frame[['Time (hours)','Glucose (g)','Biomass (g)','Serine (g)']].to_csv('parameter_estimation/output_test.csv')
 
-    print(data_frame)
+
     experimental_data1 = 'parameter_estimation/output_test.csv'
 
     parameter_1_lower_bound = "0"
@@ -275,6 +292,10 @@ def custom_action(text):
 
     print(alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max)
 
+    estimated_parameters = pd.DataFrame({'Parameter values': [alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max]})
+    estimated_parameters.to_csv('update_parameters.csv', index = False)
+
+
     f = fed_batch_model()
 
     f.alpha = float(alpha)
@@ -285,9 +306,11 @@ def custom_action(text):
     f.Ks = float(Ks)
     f.mu_max = float(mu_max)
 
-    print(f.Ki)
     f.timeCourseSelections = ['time','glucose','biomass','serine','mu']
-    fresults = f.simulate(data_frame_selected_values['Time (hours)'][25:67][25], data_frame_selected_values['Time (hours)'][66 + 10], 100)
+
+
+    print(data_frame_selected_values['Time (hours)'])
+    fresults = f.simulate(data_frame_selected_values['Time (hours)'][25], data_frame_selected_values['Time (hours)'].iloc[-1]+5, 100)
 
 
     trace1 = go.Scatter(
@@ -332,18 +355,42 @@ def custom_action(text):
         mode='lines'
     )
 
+    trace7 = go.Scatter(
+        x=R24_amounts['Time (hours)'],
+        y=R24_amounts['Biomass (g)'],
+        name='Biomass',
+        mode='markers'
+    )
+
+    trace8 = go.Scatter(
+        x=R24_amounts['Time (hours)'],
+        y=R24_amounts['Serine (g)'],
+        name='Serine',
+        mode='markers'
+    )
+
+    trace9 = go.Scatter(
+        x=R24_amounts['Time (hours)'],
+        y=R24_amounts['Glucose (g)'],
+        name='Glucose',
+        mode='markers'
+    )
+
 
     fig = tools.make_subplots(rows=1, cols=3, subplot_titles=('Biomass from model', 'Serine from model', 'Glucose from model'))
 
 
     fig.append_trace(trace1, 1, 1)
     fig.append_trace(trace4, 1, 1)
+    fig.append_trace(trace7, 1, 1)
 
     fig.append_trace(trace2, 1, 2)
     fig.append_trace(trace5, 1, 2)
+    fig.append_trace(trace8, 1, 2)
 
     fig.append_trace(trace3, 1, 3)
     fig.append_trace(trace6, 1, 3)
+    fig.append_trace(trace9, 1, 3)
 
 
     fig['layout'].update(height=820, width=1420, title='Model prediction',
