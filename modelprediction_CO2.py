@@ -214,8 +214,11 @@ def custom_action(text):
     initial_values = results[0:1]
     data_frame = pd.DataFrame(initial_values)
     data_frame.columns = ['time', 'glucose', 'biomass', 'serine', 'mu']
-    mu = mu*1.0157664644714879
+    #r.mu = 0.075784*1.104293008730403
+    mu = mu*1.1043
+    r.mu = 1.1043*mu[25]
 
+    print(mu[25])
 
     # Some of the inputs for the parameter_estimation_online function
     for i in range(25, len(mu)-1): # lav 30 om til 66
@@ -238,7 +241,9 @@ def custom_action(text):
     data_frame[['Time (hours)','Glucose (g)','Biomass (g)','Serine (g)']].to_csv('parameter_estimation/output_test.csv')
 
 
+    print(data_frame)
     experimental_data1 = 'parameter_estimation/output_test.csv'
+    print(experimental_data1)
 
     parameter_1_lower_bound = "0"
     parameter_1_upper_bound = "10"
@@ -294,63 +299,63 @@ def custom_action(text):
     trace1 = go.Scatter(
         x=data_frame['Time (hours)'],
         y=data_frame['Biomass (g)'],
-        name='Biomass',
+        name='Biomass estimated from model based on CER',
         mode='markers'
     )
 
     trace2 = go.Scatter(
         x=data_frame['Time (hours)'],
         y=data_frame['Serine (g)'],
-        name='Serine',
+        name='Serine estimated from model based on CER',
         mode='markers'
     )
 
     trace3 = go.Scatter(
         x=data_frame['Time (hours)'],
         y=data_frame['Glucose (g)'],
-        name='Glucose',
+        name='Glucose estimated from model based on CER',
         mode='markers'
     )
 
     trace4 = go.Scatter(
         x=fresults[:,0],
         y=fresults[:,2],
-        name='Biomass',
+        name='Biomass from predictive model',
         mode='lines'
     )
 
     trace5 = go.Scatter(
         x=fresults[:,0],
         y=fresults[:,3],
-        name='Serine',
+        name='Serine estimated from predictive model',
         mode='lines'
     )
 
     trace6 = go.Scatter(
         x=fresults[:,0],
         y=fresults[:,1],
-        name='Glucose',
+        name='Glucose estimated from predictive model',
         mode='lines'
     )
 
     trace7 = go.Scatter(
         x=R24_amounts['Time (hours)'],
         y=R24_amounts['Biomass (g)'],
-        name='Biomass',
+        name='Biomass from experiment R24',
         mode='markers'
     )
 
     trace8 = go.Scatter(
         x=R24_amounts['Time (hours)'],
         y=R24_amounts['Serine (g)'],
-        name='Serine',
+        name='Serine from experiment R24',
         mode='markers'
     )
 
     trace9 = go.Scatter(
         x=R24_amounts['Time (hours)'],
         y=R24_amounts['Glucose (g)'],
-        name='Glucose',
+        name='Glucose from experiment R24',
         mode='markers'
     )
 
@@ -386,19 +391,19 @@ def custom_action(text):
     ))
 
 
-    fig['layout']['yaxis1'].update(showgrid=True, title='Biomass (g)', exponentformat='power', nticks=10,
-                                   tickfont=dict(size=10), domain=[0.65, 1])
-    fig['layout']['yaxis2'].update(showgrid=True, title='Serine (g)', exponentformat='power', nticks=10,
-                                   tickfont=dict(size=10), domain=[0.65, 1])
-    fig['layout']['yaxis3'].update(showgrid=True, title='Glucose (g)', exponentformat='power', nticks=10,
-                                   tickfont=dict(size=10), domain=[0.65, 1])
+    fig['layout']['yaxis1'].update(showgrid=True, title='Biomass (g)', exponentformat='power', nticks=12,
+                                   tickfont=dict(size=12), domain=[0.65, 1])
+    fig['layout']['yaxis2'].update(showgrid=True, title='Serine (g)', exponentformat='power', nticks=12,
+                                   tickfont=dict(size=12), domain=[0.65, 1])
+    fig['layout']['yaxis3'].update(showgrid=True, title='Glucose (g)', exponentformat='power', nticks=12,
+                                   tickfont=dict(size=12), domain=[0.65, 1])
 
 
-    fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+    fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=12, tickfont=dict(size=12),
                                    domain=[0, 0.27])
-    fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+    fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=12, tickfont=dict(size=12),
                                    domain=[0.36, 0.63])
-    fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
+    fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=12, tickfont=dict(size=12),
                                    domain=[0.72, 0.99])
 
     plotly.offline.plot(fig)

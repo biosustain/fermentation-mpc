@@ -146,8 +146,8 @@ def fed_batch_model():
         Ks_qs = 2.6784 # [g/L]
         Ki = 688309 # [g/L]
         qs_max = 1.4075 # (g/(g*h))
-        F0 = 0.3
-        mu_set = 0.02
+        F0 = 0.3 # [mL/h]
+        mu_set = 0.02 # [1/h]
         alpha = 1.5007
         beta = 2.7714
 
@@ -167,7 +167,7 @@ def fed_batch_model():
         ######## Initial concentrations
         c_glucose := glucose/V # [g/L]
         c_glufeed = 415 # [g/L]
-        c_biomass := biomass/V
+        c_biomass := biomass/V  # [g/L]
 
 
         ######## Functions
@@ -178,8 +178,12 @@ def fed_batch_model():
 
         ######## Mass Balances 
         eq_biomass: -> biomass; mu*biomass # [g/h]
-        eq_glucose: -> glucose; -qs*biomass + Fin*c_glufeed -0.002 # [g/h]  
+        eq_glucose: -> glucose; -qs*biomass + Fin*c_glufeed # [g/h]  
         eq_serine: -> serine; qp*biomass # [g/h]
+        
+        qpbio := qp*biomass
+        sertiter := serine/V
+        
 
 
         end

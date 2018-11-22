@@ -14,12 +14,12 @@ from plotly import tools
 import plotly
 import plotly.graph_objs as go
 from models import fed_batch_model
-from parest_copasi import parameter_estimation_online_fedbatch
+from parest_copasi import parameter_estimation_online_fedbatch_nomupar
 from pathlib import Path
 
-#
-#
-#
+
+# ITS IMPORTANT TO DELETE THE UPDATE_PARAMETERS.CSV FILE BEFORE RUNNING THE SCRIPT OTHERWISE IT IS INPUTTING OLD PARAMETERS THE FIRST TIME!!!
+
 # watch_file = pd.read_csv('data/SER_C016_Reactor24_4g-LGlycine_0,02FeedRate.csv')
 # online_data = watch_file
 #
@@ -211,9 +211,7 @@ def custom_action(text):
         r.beta = update_parameters['Parameter values'][1]
         r.Ks_qs = update_parameters['Parameter values'][2]
         r.qs_max = update_parameters['Parameter values'][3]
-        r.Ki = update_parameters['Parameter values'][4]
-        r.Ks = update_parameters['Parameter values'][5]
-        r.mu_max = update_parameters['Parameter values'][6]
+
 
     except OSError:
        pass
@@ -222,7 +220,7 @@ def custom_action(text):
     start_time = data_frame_selected_values['Time (hours)'][25]
     end_time = data_frame_selected_values['Time (hours)'][26]
 
-    # Make fake data
+    # Make data
 
     r.timeCourseSelections = ['time','glucose','biomass','serine','mu']
 
@@ -267,32 +265,23 @@ def custom_action(text):
     parameter_3_upper_bound = "10"
     parameter_4_lower_bound = "0"
     parameter_4_upper_bound = "10"
-    parameter_5_lower_bound = "0"
-    parameter_5_upper_bound = "10000000"
-    parameter_6_lower_bound = "0"
-    parameter_6_upper_bound = "10"
-    parameter_7_lower_bound = "0"
-    parameter_7_upper_bound = "10"
 
     model_for_parest = 'online_fedmodel'
 
     #  mu_max
-    alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max = parameter_estimation_online_fedbatch(experimental_data1,
+    alpha, beta, Ks_qs, qs_max = parameter_estimation_online_fedbatch_nomupar(experimental_data1,
                                              parameter_1_lower_bound, parameter_1_upper_bound,
                                              parameter_2_lower_bound, parameter_2_upper_bound,
                                              parameter_3_lower_bound, parameter_3_upper_bound,
                                              parameter_4_lower_bound, parameter_4_upper_bound,
-                                             parameter_5_lower_bound, parameter_5_upper_bound,
-                                             parameter_6_lower_bound, parameter_6_upper_bound,
-                                             parameter_7_lower_bound, parameter_7_upper_bound,
                                              model_for_parest, '1', str(len(data_frame)))
 
     # Model simulation (change the time to be from the end of time [-1] and then just + 10 hours or something
     # Update model with optimized parameters
 
-    print(alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max)
+    print(alpha, beta, Ks_qs, qs_max)
 
-    estimated_parameters = pd.DataFrame({'Parameter values': [alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max]})
+    estimated_parameters = pd.DataFrame({'Parameter values': [alpha, beta, Ks_qs, qs_max]})
     estimated_parameters.to_csv('update_parameters.csv', index = False)
 
 
@@ -302,9 +291,7 @@ def custom_action(text):
     f.beta = float(beta)
     f.Ks_qs = float(Ks_qs)
     f.qs_max = float(qs_max)
-    f.Ki = float(Ki)
-    f.Ks = float(Ks)
-    f.mu_max = float(mu_max)
+
 
     f.timeCourseSelections = ['time','glucose','biomass','serine','mu']
 
