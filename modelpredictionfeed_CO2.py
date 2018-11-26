@@ -17,11 +17,20 @@ from models import fed_batch_model
 from parest_copasi import parameter_estimation_online_fedbatch
 from mpfCO2_functions import model_feed_settings
 from mpfCO2_functions import model_feed_settings_loop
+from pathlib import Path
 
-
+#
+# my_file = Path("mu_set.csv")
+# mu_set_file = 'mu_set.csv'
+#
+# try:
+#     my_abs_path = my_file.resolve()
+#     os.remove(mu_set_file)
+# except OSError:
+#     pass
 
 # Online data and real time simulation
-#
+
 class Watcher(object):
     running = True
     refresh_delay_secs = 1
@@ -69,7 +78,7 @@ def custom_action(text):
     online_data['Time (hours)'] = online_data['Time (min)']/60
 
     # Set filename of the two experimental datasets
-    R23_amounts = pd.read_csv("Preprocess/estimation/fedbatch_amounts/R23_amounts.csv")
+    #R23_amounts = pd.read_csv("Preprocess/estimation/fedbatch_amounts/R23_amounts.csv")
     R24_amounts = pd.read_csv("Preprocess/estimation/fedbatch_amounts/R24_amounts.csv")
 
 
@@ -101,12 +110,8 @@ def custom_action(text):
     start_time = data_frame_selected_values['Time (hours)'][25]
     end_time = data_frame_selected_values['Time (hours)'][26]
 
-    # Make fake data
 
-    # mu_set = 0.02
-    #
-    # mu_set = pd.DataFrame(mu_set)
-    # mu_set.to_csv('mu_set.csv')
+    # Make fake data
 
 
     r.timeCourseSelections = ['time','glucose','biomass','serine','mu', 'V']
@@ -120,6 +125,19 @@ def custom_action(text):
     data_frame.columns = ['time', 'glucose', 'biomass', 'serine', 'mu', 'V']
     mu = mu*1.1043
     r.mu = 1.1043*mu[25]
+    #
+    # try:
+    #     my_abs_path = my_file.resolve()
+    #     mu_set_opdated = pd.read_csv('mu_set.csv')
+    #     print(mu_set_opdated)
+    #     #print(mu_set_opdated['mu_set'].values, 'hello')
+    #
+    #     mu_set_opdated = float(mu_set_opdated['mu_set'].values)
+    #     r.mu_set = mu_set_opdated
+    #     print(r.mu_set)
+    #
+    # except OSError:
+    #     pass
 
 
     # Some of the inputs for the parameter_estimation_online function
@@ -188,75 +206,74 @@ def custom_action(text):
     f.Ki = float(Ki)
     f.Ks = float(Ks)
     f.mu_max = float(mu_max)
-    print(f.getCurrentAntimony())
 
     f.timeCourseSelections = ['time','glucose','biomass','serine','mu','V']
     fresults = f.simulate(data_frame_selected_values['Time (hours)'][25], data_frame_selected_values['Time (hours)'].iloc[-1]+5, 100)
 
     fig = tools.make_subplots(rows=2, cols=3,
-                              subplot_titles=('Biomass from model', 'Serine from model', 'Glucose from model', 'Serine prediction with different feed values', 'Production rate', 'Serine titer'))
+                              subplot_titles=('Biomass from model', 'Serine from model', 'Glucose from model', 'Serine prediction with varying mu_set', 'Production rate prediction with varying mu_set', 'Serine titer prediction with varying mu_set'))
 
 
     trace1 = go.Scatter(
         x=data_frame['Time (hours)'],
         y=data_frame['Biomass (g)'],
-        name='Biomass',
+        name='Biomass from model',
         mode='markers'
     )
 
     trace2 = go.Scatter(
         x=data_frame['Time (hours)'],
         y=data_frame['Serine (g)'],
-        name='Serine',
+        name='Serine from model',
         mode='markers'
     )
 
     trace3 = go.Scatter(
         x=data_frame['Time (hours)'],
         y=data_frame['Glucose (g)'],
-        name='Glucose',
+        name='Glucose from model',
         mode='markers'
     )
 
     trace4 = go.Scatter(
         x=fresults[:,0],
         y=fresults[:,2],
-        name='Biomass',
+        name='Biomass from predictive model',
         mode='lines'
     )
 
     trace5 = go.Scatter(
         x=fresults[:,0],
         y=fresults[:,3],
-        name='Serine',
+        name='Serine from predictive model',
         mode='lines'
     )
 
     trace6 = go.Scatter(
         x=fresults[:,0],
         y=fresults[:,1],
-        name='Glucose',
+        name='Glucose from predictive model',
         mode='lines'
     )
 
     trace7 = go.Scatter(
         x=R24_amounts['Time (hours)'],
         y=R24_amounts['Biomass (g)'],
-        name='Biomass',
+        name='Biomass from experiment R24',
         mode='markers'
     )
 
     trace8 = go.Scatter(
         x=R24_amounts['Time (hours)'],
         y=R24_amounts['Serine (g)'],
-        name='Serine',
+        name='Serine from experiment R24',
         mode='markers'
     )
 
     trace9 = go.Scatter(
         x=R24_amounts['Time (hours)'],
         y=R24_amounts['Glucose (g)'],
-        name='Glucose',
+        name='Glucose from experiment R24',
         mode='markers'
     )
 
@@ -265,12 +282,8 @@ def custom_action(text):
 
     model_feed_settings(fp, data_frame, alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max)
 
-    print(fp.getCurrentAntimony())
     m = fp.simulate(data_frame_selected_values['Time (hours)'].iloc[-1],
                    data_frame_selected_values['Time (hours)'].iloc[-1] + 5, 50, ['time', 'serine'])
-
-    print(fp.getCurrentAntimony())
-    print(data_frame)
 
     fprate = fed_batch_model()
     model_feed_settings(fprate, data_frame, alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max)
@@ -286,11 +299,13 @@ def custom_action(text):
 
 
     par1 = np.linspace(0, fp.mu_set, num=4)
-    par2 = np.linspace(fp.mu_set, 0.16, num=4)
+    par2 = np.linspace(fp.mu_set, 0.1112, num=4)
     par = np.concatenate((par1, par2), axis=None)
     par = np.unique(par)
 
     colors = ["blue", "black", "yellow", "pink", "green", "purple", "orange"]
+
+    print(data_frame)
 
     production_values = []
 
@@ -317,58 +332,57 @@ def custom_action(text):
         simserdf = pd.DataFrame(simser)
         simtiterdf = pd.DataFrame(simtiter)
 
-
+        # Drop the first 2 columns since they are the original ones
         hej.drop([0,1], axis=1, inplace=True)
         simserdf.drop([0, 1], axis=1, inplace=True)
         simtiterdf.drop([0, 1], axis=1, inplace=True)
+        #
+        #
+        # end_productionrates = simserdf.tail(1)
+        # end_productionrates = end_productionrates.iloc[:, 1::2]
+        # add_end_pvalues = pd.DataFrame(end_productionrates.iloc[:,-1].values)
+        #
+        #
+        # production_values.append((add_end_pvalues))
+
+        trace10 = go.Scatter(
+            x=hej.iloc[:, i - 1],
+            y=hej.iloc[:, i],
+            mode='lines',
+            name= 'mu_set =' + "{:.4f}".format(fp.mu_set),
+            marker = dict(color = k)
+        )
+
+        trace12 = go.Scatter(
+            x=simserdf.iloc[:, i - 1],
+            y=simserdf.iloc[:, i],
+            mode='lines',
+            name='mu_set = ' + "{:.4f}".format(fp.mu_set),
+            marker=dict(color = k)
+        )
+
+        trace13 = go.Scatter(
+            x=simtiterdf.iloc[:, i - 1],
+            y=simtiterdf.iloc[:, i],
+            mode='lines',
+            name='mu_set = ' + "{:.4f}".format(fp.mu_set),
+            marker=dict(color=k)
+        )
 
 
-        end_productionrates = simserdf.tail(1)
-        end_productionrates = end_productionrates.iloc[:, 1::2]
-        add_end_pvalues = pd.DataFrame(end_productionrates.iloc[:,-1].values)
-
-
-        production_values.append((add_end_pvalues))
-
-        if i > 0:
-
-            trace10 = go.Scatter(
-                x=hej.iloc[:, i - 1],
-                y=hej.iloc[:, i],
-                mode='lines',
-                name= 'F0 = ' + str(fp.mu_set),
-                marker = dict(color = k)
-            )
-
-            trace12 = go.Scatter(
-                x=simserdf.iloc[:, i - 1],
-                y=simserdf.iloc[:, i],
-                mode='lines',
-                name='F0 = ' + str(fp.mu_set),
-                marker=dict(color = k)
-            )
-
-            trace13 = go.Scatter(
-                x=simtiterdf.iloc[:, i - 1],
-                y=simtiterdf.iloc[:, i],
-                mode='lines',
-                name='F0 = ' + str(fp.mu_set),
-                marker=dict(color=k)
-            )
-
-
-            fig.append_trace(trace10, 2, 1)
-            fig.append_trace(trace12, 2, 2)
-            fig.append_trace(trace13, 2, 3)
-
-    production_values = pd.DataFrame(production_values)
-    par = pd.DataFrame(par)
-    resultqp = pd.concat([production_values, par], axis=1, sort=False)
-    resultqp.columns = ['qp', 'mu_set']
-    maxqp = resultqp.loc[resultqp['qp'].idxmax()]
-
-    print(pd.DataFrame(maxqp).T)
-    #gemmes.to_csv('mu_set.csv')
+        fig.append_trace(trace10, 2, 1)
+        fig.append_trace(trace12, 2, 2)
+        fig.append_trace(trace13, 2, 3)
+    #
+    # production_values = pd.DataFrame(production_values)
+    # par = pd.DataFrame(par)
+    # resultqp = pd.concat([production_values, par], axis=1, sort=False)
+    # resultqp.columns = ['qp', 'mu_set']
+    # maxqp = resultqp.loc[resultqp['qp'].idxmax()]
+    #
+    # maxqp = pd.DataFrame(maxqp).T
+    # #pd.reset.index(maxqp)
+    # maxqp.to_csv('mu_set.csv')
 
 
 
@@ -386,7 +400,7 @@ def custom_action(text):
 
 
 
-    fig['layout'].update(height=820, width=1420, title='Model prediction',
+    fig['layout'].update(height=820, width=1420, title='Model prediction control',
     margin=dict(
             l=110,
             r=1,
