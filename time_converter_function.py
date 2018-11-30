@@ -9,8 +9,19 @@ import datetime
 
 
 def time_to_decimals(R):
+
+    '''
+    Converts time in online data from date time format to decimals
+
+    :param R: file with online data
+    :return: file with online data where the time is now in decimals
+    '''
+
+    print(R)
     date_time = pd.DataFrame(R['Date Time'].str.split(' ',1).tolist(),
                                        columns=['Date','Time'])
+
+    print(date_time)
 
     R = pd.concat([date_time,R],axis=1,sort=False)
     del R['Date Time']

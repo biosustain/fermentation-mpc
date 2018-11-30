@@ -72,6 +72,7 @@ class Watcher(object):
 
 # Call this function each time a change happens
 def custom_action(text):
+
     online_data = pd.read_csv(watch_file)
 
     online_data = (time_to_decimals(online_data))
@@ -142,11 +143,8 @@ def custom_action(text):
 
     # Some of the inputs for the parameter_estimation_online function
     for i in range(25, len(mu)-1): # lav 30 om til 66
-        r.mu = mu[25:][i + 1]
-        glucose = data_frame['glucose'].iloc[-1]
-        serine = data_frame['serine'].iloc[-1]
-        biomass = data_frame['biomass'].iloc[-1]
 
+        r.mu = mu[25:][i + 1]
 
         start_time = data_frame_selected_values['Time (hours)'][25:][i]
         end_time = data_frame_selected_values['Time (hours)'][25:][i + 1]
@@ -211,7 +209,8 @@ def custom_action(text):
     fresults = f.simulate(data_frame_selected_values['Time (hours)'][25], data_frame_selected_values['Time (hours)'].iloc[-1]+5, 100)
 
     fig = tools.make_subplots(rows=2, cols=3,
-                              subplot_titles=('Biomass from model', 'Serine from model', 'Glucose from model', 'Serine prediction with varying mu_set', 'Production rate prediction with varying mu_set', 'Serine titer prediction with varying mu_set'))
+                              subplot_titles=('Biomass from model', 'Serine from model', 'Glucose from model', 'Serine prediction, varying mu_set', 'qp prediction, varying mu_set', 'Serine titer prediction, varying mu_set'),
+                              )
 
 
     trace1 = go.Scatter(
@@ -357,7 +356,7 @@ def custom_action(text):
             x=simserdf.iloc[:, i - 1],
             y=simserdf.iloc[:, i],
             mode='lines',
-            name='mu_set = ' + "{:.4f}".format(fp.mu_set),
+            name= 'mu_set =' + ' = ' + "{:.4f}".format(fp.mu_set),
             marker=dict(color = k)
         )
 
@@ -416,33 +415,36 @@ def custom_action(text):
 
 
     fig['layout']['yaxis1'].update(showgrid=True, title='Biomass (g)', exponentformat='power', nticks=10,
-                                   tickfont=dict(size=10), domain=[0.65, 1])
+                                   tickfont=dict(size=15), domain=[0.65, 1])
+
     fig['layout']['yaxis2'].update(showgrid=True, title='Serine (g)', exponentformat='power', nticks=10,
-                                   tickfont=dict(size=10), domain=[0.65, 1])
+                                   tickfont=dict(size=15), domain=[0.65, 1], titlefont = dict(size = 18))
     fig['layout']['yaxis3'].update(showgrid=True, title='Glucose (g)', exponentformat='power', nticks=10,
-                                   tickfont=dict(size=10), domain=[0.65, 1])
+                                   tickfont=dict(size=15), domain=[0.65, 1], titlefont = dict(size = 18))
 
     fig['layout']['yaxis4'].update(showgrid=True, title='Serine (g)', exponentformat='power', nticks=10,
-                                   tickfont=dict(size=10), domain=[0, 0.35])
-    fig['layout']['yaxis5'].update(showgrid=True, title='qp*biomass (g product/h)', exponentformat='power', nticks=10,
-                                   tickfont=dict(size=10), domain=[0, 0.35])
+                                   tickfont=dict(size=15), domain=[0, 0.35], titlefont = dict(size = 18))
+    fig['layout']['yaxis5'].update(showgrid=True, title='qp*X (g product/h)', exponentformat='power', nticks=10,
+                                   tickfont=dict(size=15), domain=[0, 0.35], titlefont = dict(size = 18))
     fig['layout']['yaxis6'].update(showgrid=True, title='Serine titer (g/L)', exponentformat='power', nticks=10,
-                                   tickfont=dict(size=10), domain=[0, 0.35])
+                                   tickfont=dict(size=15), domain=[0, 0.35], titlefont = dict(size = 18))
 
 
-    fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                   domain=[0, 0.27])
-    fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                   domain=[0.36, 0.63])
-    fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                   domain=[0.72, 0.99])
+    fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=15),
+                                   domain=[0, 0.27], titlefont = dict(size = 18))
+    fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=15),
+                                   domain=[0.36, 0.63], titlefont = dict(size = 18))
+    fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=15),
+                                   domain=[0.72, 0.99], titlefont = dict(size = 18))
 
-    fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                   domain=[0, 0.27])
-    fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                   domain=[0.36, 0.63])
-    fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=10),
-                                   domain=[0.72, 0.99])
+    fig['layout']['xaxis4'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=15),
+                                   domain=[0, 0.27], titlefont = dict(size = 18))
+    fig['layout']['xaxis5'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=15),
+                                   domain=[0.36, 0.63], titlefont = dict(size = 18))
+    fig['layout']['xaxis6'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=15),
+                                   domain=[0.72, 0.99], titlefont = dict(size = 18))
+
+    fig['layout'].update(font = dict(size = 15))
 
     plotly.offline.plot(fig)
 
