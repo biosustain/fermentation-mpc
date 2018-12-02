@@ -29,6 +29,10 @@ Install the necessary dependencies
 pipenv install
 ```
 
+## Preprocess
+The model development and all the preprocess work has been added in the folder "Preprocess".
+This was made in Jupiter Notebook using Python version 3 from Anaconda.
+
 ## Usage of the program
 
 One can choose to use the modelprediction_CO2.py for only prediction or modelpredictionfeed_CO2,
@@ -202,6 +206,8 @@ program knows, when you are using the feeding parameter and then can update all 
 
 There has been added outcommented code in the modelpredictionfeed_CO2.py, which you can use if you are sure, that you will be using a particular feeding value
 (in this case it is production rate) everytime new online data has been registered.
+
+As can be seen in the Pipfile, the Python version used for this program was Python 2.7. It would therefore be ideal, to get the program to work with Python 3.
 
 
 
