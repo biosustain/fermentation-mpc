@@ -4,9 +4,6 @@ import numpy as np
 from models import fed_batch_model_mu
 import matplotlib
 matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
-from parest_copasi import parameter_estimation
-from parest_copasi import parameter_estimation_online
 import os
 import sys
 import time
@@ -61,7 +58,7 @@ class Watcher(object):
 def custom_action(text):
     online_data = pd.read_csv(watch_file)
 
-    # Time from online data is converted to decimals so calculations are possible to makes
+    # Time from online data is converted to decimals so calculations are possible to make
     online_data = (time_to_decimals(online_data))
     online_data['Time (hours)'] = online_data['Time (min)']/60
 
@@ -90,10 +87,10 @@ def custom_action(text):
     # Online growth rate calculations from CER and tCER
     mu = data_frame_selected_values['Bioreactor 24 - CER'] / tCER  # [1/h]
 
-
+    # Load model
     r = fed_batch_model_mu()
 
-    # Remember to change the ones below to be the first and the second first value of fed batch phase
+    # Remember to change the ones below to be the index of the first and the second first value of fed batch phase
     start_time = data_frame_selected_values['Time (hours)'][25]
     end_time = data_frame_selected_values['Time (hours)'][26]
 
@@ -101,7 +98,7 @@ def custom_action(text):
     r.timeCourseSelections = ['time','glucose','biomass','serine','mu']
     results = r.simulate(start_time, end_time, 2)
 
-
+    # make the structure of the data frame with initial values, and multiply mu by the scale factor
     initial_values = results[0:1]
     data_frame = pd.DataFrame(initial_values)
     data_frame.columns = ['time', 'glucose', 'biomass', 'serine', 'mu']
@@ -110,7 +107,7 @@ def custom_action(text):
 
     print(mu[25])
 
-
+    # Simulates all the compounds from the growth rates
     for i in range(25, len(mu)-1):
         r.mu = mu[25:][i + 1]
 
@@ -125,11 +122,11 @@ def custom_action(text):
 
     # The simulated data gets written to a file, which is then used for the model prediction to estimate parameters
     data_frame.columns = ['Time (hours)','Glucose (g)','Biomass (g)','Serine (g)','mu']
-    data_frame[['Time (hours)','Glucose (g)','Biomass (g)','Serine (g)']].to_csv('parameter_estimation/output_test.csv')
+    data_frame[['Time (hours)','Glucose (g)','Biomass (g)','Serine (g)']].to_csv('parameter_estimation/output.csv')
 
 
-    print(data_frame)
-    experimental_data1 = 'parameter_estimation/output_test.csv'
+    # Set the path of the file, so the copasi model can read the data
+    experimental_data1 = 'parameter_estimation/output.csv'
     print(experimental_data1)
 
     # Set bounds for the parameters
@@ -179,7 +176,7 @@ def custom_action(text):
 
     f.timeCourseSelections = ['time','glucose','biomass','serine','mu']
 
-    # Simulate the model into the future
+    # Simulate the model into future time points
     print(data_frame_selected_values['Time (hours)'])
     fresults = f.simulate(data_frame_selected_values['Time (hours)'][25], data_frame_selected_values['Time (hours)'].iloc[-1]+5, 100)
 

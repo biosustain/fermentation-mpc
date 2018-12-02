@@ -4,9 +4,6 @@ import numpy as np
 from models import fed_batch_model_mu
 import matplotlib
 matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
-from parest_copasi import parameter_estimation
-from parest_copasi import parameter_estimation_online
 import os
 import sys
 import time
@@ -19,7 +16,7 @@ from mpfCO2_functions import model_feed_settings
 from mpfCO2_functions import model_feed_settings_loop
 from pathlib import Path
 
-#
+##### For the automatic feeding approach
 # my_file = Path("mu_set.csv")
 # mu_set_file = 'mu_set.csv'
 #
@@ -75,6 +72,7 @@ def custom_action(text):
 
     online_data = pd.read_csv(watch_file)
 
+    # Time from online data is converted to decimals so calculations are possible to make
     online_data = (time_to_decimals(online_data))
     online_data['Time (hours)'] = online_data['Time (min)']/60
 
@@ -82,8 +80,7 @@ def custom_action(text):
     #R23_amounts = pd.read_csv("Preprocess/estimation/fedbatch_amounts/R23_amounts.csv")
     R24_amounts = pd.read_csv("Preprocess/estimation/fedbatch_amounts/R24_amounts.csv")
 
-
-
+    # Use only data from which CER begins
     data_frame_selected_values = online_data[np.isfinite(online_data['Bioreactor 24 - CER'])]
     data_frame_selected_values.reset_index(inplace=True, drop=True)
 
@@ -102,9 +99,10 @@ def custom_action(text):
                          i]) + tCER[i]  # [CO2 %]
         tCER.append(tCER_i)
 
+    # Online growth rate calculations from CER and tCER
     mu = data_frame_selected_values['Bioreactor 24 - CER'] / tCER  # [1/h]
 
-
+    # Load model
     r = fed_batch_model_mu()
 
     # Remember to change the ones below to be the first and the second first value of fed batch phase
@@ -114,19 +112,18 @@ def custom_action(text):
 
     # Make fake data
 
-
+    # Simulate the data with using growth rate from CER
     r.timeCourseSelections = ['time','glucose','biomass','serine','mu', 'V']
-
-
     results = r.simulate(start_time, end_time, 2)
 
-
+    # make the structure of the data frame with initial values, and multiply mu by the scale factor
     initial_values = results[0:1]
     data_frame = pd.DataFrame(initial_values)
     data_frame.columns = ['time', 'glucose', 'biomass', 'serine', 'mu', 'V']
     mu = mu*1.1043
     r.mu = 1.1043*mu[25]
-    #
+
+    ##### For the automatic feeding approach
     # try:
     #     my_abs_path = my_file.resolve()
     #     mu_set_opdated = pd.read_csv('mu_set.csv')
@@ -140,8 +137,7 @@ def custom_action(text):
     # except OSError:
     #     pass
 
-
-    # Some of the inputs for the parameter_estimation_online function
+    # Simulates all the compounds from the growth rates
     for i in range(25, len(mu)-1): # lav 30 om til 66
 
         r.mu = mu[25:][i + 1]
@@ -155,12 +151,14 @@ def custom_action(text):
         new_dataframe.columns = ['time', 'glucose', 'biomass', 'serine', 'mu', 'V']
         data_frame = data_frame.append(new_dataframe, ignore_index=True)
 
+    # The simulated data gets written to a file, which is then used for the model prediction to estimate parameters
     data_frame.columns = ['Time (hours)','Glucose (g)','Biomass (g)','Serine (g)','mu', 'V']
     data_frame[['Time (hours)','Glucose (g)','Biomass (g)','Serine (g)']].to_csv('parameter_estimation/output_test.csv')
 
-
+    # Set the path of the file, so the copasi model can read the data
     experimental_data1 = 'parameter_estimation/output_test.csv'
 
+    # Set bounds for the parameters
     parameter_1_lower_bound = "0"
     parameter_1_upper_bound = "10"
     parameter_2_lower_bound = "0"
@@ -192,9 +190,11 @@ def custom_action(text):
     # Model simulation (change the time to be from the end of time [-1] and then just + 10 hours or something
     # Update model with optimized parameters
 
+    # Update model with optimized parameters
+    # Input the estimated parameters into the fed batch model
     print(alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max)
 
-
+    # Simulate the model into future time points
     f = fed_batch_model()
 
     f.alpha = float(alpha)
@@ -277,6 +277,7 @@ def custom_action(text):
     )
 
 
+    # Simulate predictive models with different feeding parameters
     fp = fed_batch_model()
 
     model_feed_settings(fp, data_frame, alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max)
@@ -297,6 +298,7 @@ def custom_action(text):
                    data_frame_selected_values['Time (hours)'].iloc[-1] + 5, 50, ['time', 'sertiter'])
 
 
+    # The varying parameters
     par1 = np.linspace(0, fp.mu_set, num=4)
     par2 = np.linspace(fp.mu_set, 0.1112, num=4)
     par = np.concatenate((par1, par2), axis=None)
@@ -308,6 +310,7 @@ def custom_action(text):
 
     production_values = []
 
+    # Here the actual simulation starts
     for i, j, k in zip([1, 3, 5, 7, 9, 11, 13], par, colors):
 
 
@@ -335,8 +338,8 @@ def custom_action(text):
         hej.drop([0,1], axis=1, inplace=True)
         simserdf.drop([0, 1], axis=1, inplace=True)
         simtiterdf.drop([0, 1], axis=1, inplace=True)
-        #
-        #
+
+        ##### For the automatic feeding approach
         # end_productionrates = simserdf.tail(1)
         # end_productionrates = end_productionrates.iloc[:, 1::2]
         # add_end_pvalues = pd.DataFrame(end_productionrates.iloc[:,-1].values)
@@ -372,7 +375,8 @@ def custom_action(text):
         fig.append_trace(trace10, 2, 1)
         fig.append_trace(trace12, 2, 2)
         fig.append_trace(trace13, 2, 3)
-    #
+
+    ##### For the automatic feeding approach
     # production_values = pd.DataFrame(production_values)
     # par = pd.DataFrame(par)
     # resultqp = pd.concat([production_values, par], axis=1, sort=False)
