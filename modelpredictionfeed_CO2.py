@@ -330,12 +330,12 @@ def custom_action(text):
                    data_frame_selected_values['Time (hours)'].iloc[-1] + 5, 50, ['time', 'sertiter'])])
 
 
-        hej = pd.DataFrame(m)
+        simsergrams = pd.DataFrame(m)
         simserdf = pd.DataFrame(simser)
         simtiterdf = pd.DataFrame(simtiter)
 
         # Drop the first 2 columns since they are the original ones
-        hej.drop([0,1], axis=1, inplace=True)
+        simsergrams.drop([0,1], axis=1, inplace=True)
         simserdf.drop([0, 1], axis=1, inplace=True)
         simtiterdf.drop([0, 1], axis=1, inplace=True)
 
@@ -348,8 +348,8 @@ def custom_action(text):
         # production_values.append((add_end_pvalues))
 
         trace10 = go.Scatter(
-            x=hej.iloc[:, i - 1],
-            y=hej.iloc[:, i],
+            x=simsergrams.iloc[:, i - 1],
+            y=simsergrams.iloc[:, i],
             mode='lines',
             name= 'mu_set =' + "{:.4f}".format(fp.mu_set),
             marker = dict(color = k)
