@@ -17,6 +17,8 @@ The second row is future prediction on grams of serine, production rate and seri
 The project uses pipenv to handle virtual environment. <br />
 Install pipenv here [pipenv installation](https://github.com/pypa/pipenv#installation)
 
+The command version of Copasi is used for the estimation task
+
 ## Installing
 
 To activate the project
