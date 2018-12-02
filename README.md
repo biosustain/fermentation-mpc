@@ -11,7 +11,7 @@ Smaller configurations has to be made, in order for it to work in a bioreactor s
 
 ![](/images/mpc.png)
 From the first row the model simulation based on online data can be seen with the predictive model. Experimental data is also shown here.
-The second row is future prediction on grams of serine, production rate and serine titer.
+The second row is future prediction on grams of serine, production rate and serine titer with varying feeding parameters.
 
 ## Requirements
 The project uses pipenv to handle virtual environment. <br />
