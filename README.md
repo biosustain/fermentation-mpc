@@ -117,8 +117,91 @@ Then the estimated parameters will be set in the predictive models in the progra
 
 #### Feeding optimization
 
+The following code handles the feeding optimization, since in this case, there are three expressions
+that were chosen to predict with different feeding values (grams of serine, production rate and serine titer), three
+predictive model were made. The par is the feeding values that were chosen to simulate with.
+
+```
+# Simulate predictive models with different feeding parameters
+fp = fed_batch_model()
+
+model_feed_settings(fp, data_frame, alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max)
+
+m = fp.simulate(data_frame_selected_values['Time (hours)'].iloc[-1],
+               data_frame_selected_values['Time (hours)'].iloc[-1] + 5, 50, ['time', 'serine'])
+
+fprate = fed_batch_model()
+model_feed_settings(fprate, data_frame, alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max)
+
+simser = fprate.simulate(data_frame_selected_values['Time (hours)'].iloc[-1],
+               data_frame_selected_values['Time (hours)'].iloc[-1] + 5, 50, ['time', 'qpbio'])
+
+fptiter = fed_batch_model()
+model_feed_settings(fptiter, data_frame, alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max)
+
+simtiter = fptiter.simulate(data_frame_selected_values['Time (hours)'].iloc[-1],
+               data_frame_selected_values['Time (hours)'].iloc[-1] + 5, 50, ['time', 'sertiter'])
+
+
+# The varying parameters
+par1 = np.linspace(0, fp.mu_set, num=4)
+par2 = np.linspace(fp.mu_set, 0.1112, num=4)
+par = np.concatenate((par1, par2), axis=None)
+par = np.unique(par)
+
+colors = ["blue", "black", "yellow", "pink", "green", "purple", "orange"]
+
+print(data_frame)
+
+production_values = []
+
+# Here the actual simulation starts
+for i, j, k in zip([1, 3, 5, 7, 9, 11, 13], par, colors):
+
+
+    model_feed_settings_loop(fp, data_frame, alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max, j)
+
+    m = np.hstack([m,fp.simulate(data_frame_selected_values['Time (hours)'].iloc[-1],
+               data_frame_selected_values['Time (hours)'].iloc[-1] + 5, 50, ['time', 'serine'])])
+
+    model_feed_settings_loop(fprate, data_frame, alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max, j)
+
+    simser = np.hstack([simser,fprate.simulate(data_frame_selected_values['Time (hours)'].iloc[-1],
+               data_frame_selected_values['Time (hours)'].iloc[-1] + 5, 50, ['time', 'qpbio'])])
+
+    model_feed_settings_loop(fptiter, data_frame, alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max, j)
+
+    simtiter = np.hstack([simtiter,fptiter.simulate(data_frame_selected_values['Time (hours)'].iloc[-1],
+               data_frame_selected_values['Time (hours)'].iloc[-1] + 5, 50, ['time', 'sertiter'])])
+
+
+    simsergrams = pd.DataFrame(m)
+    simserdf = pd.DataFrame(simser)
+    simtiterdf = pd.DataFrame(simtiter)
+
+    # Drop the first 2 columns since they are the original ones
+    simsergrams.drop([0,1], axis=1, inplace=True)
+    simserdf.drop([0, 1], axis=1, inplace=True)
+    simtiterdf.drop([0, 1], axis=1, inplace=True)
+```
 
 ### Further development
+
+The program can not yet detect, when the fed batch phase starts, and growth rate were found to not fit the batch phase.
+But it might be able to tryout the program anyway in a bioreactor setup, if the first and second index value of the fed batch phase
+from online data were to be manually typed. In this case it was at 25 and 26. Those are used for the simulation time points.
+
+```
+start_time = data_frame_selected_values['Time (hours)'][25]
+end_time = data_frame_selected_values['Time (hours)'][26]
+```
+
+Further development has to be made, regarding the optimal feeding parameter.
+If you wish to use the optimized parameter value at an undefined time, then further development has to be made, so the
+program knows, when you are using the feeding parameter and then can update all of the models with the new values.
+
+There has been added outcommented code in the modelpredictionfeed_CO2.py, which you can use if you are sure, that you will be using a particular feeding value
+(in this case it is production rate) everytime new online data has been registered.
 
 
 
