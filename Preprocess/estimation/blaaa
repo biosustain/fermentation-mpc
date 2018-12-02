@@ -1,0 +1,972 @@
+
+Optimization Result:
+
+    Objective Function Value:	-inf
+    Function Evaluations:	0
+    CPU Time [s]:	0.000
+    Evaluations/Second [1/s]:	nan
+
+    Values[F0].InitialValue: nan
+
+
+
+Optimization Result:
+
+    Objective Function Value:	-inf
+    Function Evaluations:	0
+    CPU Time [s]:	0.000
+    Evaluations/Second [1/s]:	nan
+
+    Values[F0].InitialValue: nan
+
+
+
+Optimization Result:
+
+    Objective Function Value:	-inf
+    Function Evaluations:	0
+    CPU Time [s]:	0.000
+    Evaluations/Second [1/s]:	nan
+
+    Values[F0].InitialValue: nan
+    Values[mu_set].InitialValue: nan
+
+
+
+Optimization Result:
+
+    Objective Function Value:	-inf
+    Function Evaluations:	0
+    CPU Time [s]:	0.000
+    Evaluations/Second [1/s]:	nan
+
+    Values[F0].InitialValue: nan
+    Values[mu_set].InitialValue: nan
+
+
+
+Optimization Result:
+
+    Objective Function Value:	-inf
+    Function Evaluations:	0
+    CPU Time [s]:	0.000
+    Evaluations/Second [1/s]:	nan
+
+    Values[F0].InitialValue: nan
+    Values[mu_set].InitialValue: nan
+
+
+
+Optimization Result:
+
+    Objective Function Value:	-inf
+    Function Evaluations:	0
+    CPU Time [s]:	0.000
+    Evaluations/Second [1/s]:	nan
+
+    Values[mu_set].InitialValue: nan
+
+
+Optimization Task
+
+Problem Description:
+Subtask: 
+Time-Course Task
+
+Problem Description:
+    AutomaticStepSize: 0
+    StepNumber: 87
+    StepSize: 0.238372
+    Duration: 20.5
+    TimeSeriesRequested: 1
+    OutputStartTime: 0
+    Output Event: 0
+    Start in Steady State: 0
+
+Method: Deterministic (LSODA)
+    Integrate Reduced Model: 0
+    Relative Tolerance: 1e-06
+    Absolute Tolerance: 1e-12
+    Max Internal Steps: 10000
+    Max Internal Step Size: 0
+
+
+Objective Function:
+    Values[qp]*[biomass]
+
+List of Optimization Items:
+    1e-06 <= Values[mu_set].InitialValue <= 1e+06; Start Value = 0.02
+
+List of Constraint Items:
+
+Method: Evolutionary Programming
+    Number of Generations: 200
+    Population Size: 20
+    Random Number Generator: 1
+    Seed: 0
+    Log Verbosity: 0
+
+Population Information: 
+Population Size: 20
+# Generations / Iterations: 200
+Current Generation / Iteration: 201
+Population Values: 
+   (	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	inf	-4.28377	inf	-4.28377	inf	inf	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28376	inf	-4.28377	-4.28377	inf	-4.28377	inf	inf	-4.28376	)
+
+Population:
+
+[Function Evaluations]	[Best Value]	[Best Parameters]
+20	4.28376	(	5.09477	)
+60	4.28376	(	3.79549	)
+100	4.28376	(	7.95922	)
+280	4.28376	(	16.9881	)
+440	4.28376	(	16.4714	)
+480	4.28376	(	19.2312	)
+720	4.28376	(	18.6694	)
+1440	4.28376	(	19.2785	)
+1760	4.28376	(	19.1717	)
+2120	4.28376	(	19.1387	)
+3040	4.28376	(	19.1615	)
+
+Optimization Result:
+
+    Objective Function Value:	4.28376
+    Function Evaluations:	4003
+    CPU Time [s]:	8.473
+    Evaluations/Second [1/s]:	472.442
+
+    Values[mu_set].InitialValue: 19.1615
+
+
+Optimization Task
+
+Problem Description:
+Subtask: 
+Time-Course Task
+
+Problem Description:
+    AutomaticStepSize: 0
+    StepNumber: 87
+    StepSize: 0.238372
+    Duration: 20.5
+    TimeSeriesRequested: 1
+    OutputStartTime: 0
+    Output Event: 0
+    Start in Steady State: 0
+
+Method: Deterministic (LSODA)
+    Integrate Reduced Model: 0
+    Relative Tolerance: 1e-06
+    Absolute Tolerance: 1e-12
+    Max Internal Steps: 10000
+    Max Internal Step Size: 0
+
+
+Objective Function:
+    Values[qp]*[biomass]
+
+List of Optimization Items:
+    1e-06 <= Values[mu_set].InitialValue <= 1e+06; Start Value = 0.02
+    1e-06 <= Values[F0].InitialValue <= 1e+06; Start Value = 0.3
+
+List of Constraint Items:
+
+Method: Evolutionary Programming
+    Number of Generations: 200
+    Population Size: 20
+    Random Number Generator: 1
+    Seed: 0
+    Log Verbosity: 0
+
+Population Information: 
+Population Size: 20
+# Generations / Iterations: 200
+Current Generation / Iteration: 201
+Population Values: 
+   (	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	)
+
+Population:
+
+[Function Evaluations]	[Best Value]	[Best Parameters]
+20	4.28353	(	1.14323e-06	21260.1	)
+40	4.28354	(	1.19173e-06	22796.4	)
+80	4.28376	(	1.06355	107.538	)
+120	4.28376	(	1.3081	86.1906	)
+140	4.28376	(	2.92744	53.6225	)
+180	4.28376	(	2.1115	181.565	)
+200	4.28376	(	2.08977	151.658	)
+260	4.28376	(	2.17606	151.008	)
+300	4.28376	(	2.13207	266.506	)
+460	4.28376	(	2.11624	328.486	)
+720	4.28376	(	2.11246	352.171	)
+1320	4.28376	(	2.11258	355.966	)
+1600	4.28376	(	2.08754	403.834	)
+1640	4.28376	(	2.11083	358.605	)
+1660	4.28376	(	2.08708	409.12	)
+1680	4.28376	(	2.09002	405.699	)
+1700	4.28376	(	2.0848	432.464	)
+1820	4.28376	(	2.07474	512.654	)
+1840	4.28376	(	2.08871	450.797	)
+1880	4.28376	(	2.07407	510.5	)
+1900	4.28376	(	2.07588	510.761	)
+1960	4.28376	(	2.07465	511.237	)
+2060	4.28376	(	2.07406	545.967	)
+2140	4.28376	(	2.07434	545.819	)
+2160	4.28376	(	2.07443	552.269	)
+2260	4.28376	(	2.07406	547.099	)
+2360	4.28376	(	2.07431	562.952	)
+2960	4.28376	(	2.0728	559.494	)
+3060	4.28376	(	2.07352	559.469	)
+3640	4.28376	(	2.0738	559.248	)
+
+Optimization Result:
+
+    Objective Function Value:	4.28376
+    Function Evaluations:	4004
+    CPU Time [s]:	2.100
+    Evaluations/Second [1/s]:	1906.67
+
+    Values[mu_set].InitialValue: 2.0738
+    Values[F0].InitialValue: 559.248
+
+
+Optimization Task
+
+Problem Description:
+Subtask: 
+Time-Course Task
+
+Problem Description:
+    AutomaticStepSize: 0
+    StepNumber: 87
+    StepSize: 0.238372
+    Duration: 20.5
+    TimeSeriesRequested: 1
+    OutputStartTime: 0
+    Output Event: 0
+    Start in Steady State: 0
+
+Method: Deterministic (LSODA)
+    Integrate Reduced Model: 0
+    Relative Tolerance: 1e-06
+    Absolute Tolerance: 1e-12
+    Max Internal Steps: 10000
+    Max Internal Step Size: 0
+
+
+Objective Function:
+    Values[qp]*[biomass]
+
+List of Optimization Items:
+    1e-06 <= Values[mu_set].InitialValue <= 1e+06; Start Value = 0.02
+    1e-06 <= Values[F0].InitialValue <= 1e+06; Start Value = 0.3
+
+List of Constraint Items:
+
+Method: Evolutionary Programming
+    Number of Generations: 200
+    Population Size: 20
+    Random Number Generator: 1
+    Seed: 0
+    Log Verbosity: 0
+
+Population Information: 
+Population Size: 20
+# Generations / Iterations: 200
+Current Generation / Iteration: 201
+Population Values: 
+   (	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	-4.28376	)
+
+Population:
+
+[Function Evaluations]	[Best Value]	[Best Parameters]
+20	4.28377	(	0.0865334	302608	)
+120	4.28377	(	0.155175	213229	)
+160	4.28378	(	0.144168	1e+06	)
+280	4.28378	(	0.133756	1e+06	)
+360	4.28378	(	0.173463	592344	)
+400	4.28378	(	0.168997	606031	)
+540	4.28378	(	0.169989	598743	)
+580	4.28378	(	0.178824	538842	)
+720	4.28378	(	0.179726	532945	)
+780	4.28378	(	0.180271	529318	)
+2540	4.28378	(	0.180065	530490	)
+2660	4.28378	(	0.180109	530258	)
+2680	4.28378	(	0.180062	530484	)
+2740	4.28378	(	0.180075	530333	)
+2800	4.28378	(	0.180105	530114	)
+2820	4.28378	(	0.18011	530153	)
+2940	4.28378	(	0.180122	530036	)
+2960	4.28378	(	0.180119	530079	)
+3000	4.28378	(	0.180126	530006	)
+3020	4.28378	(	0.180131	530019	)
+3040	4.28378	(	0.180134	530014	)
+3100	4.28378	(	0.180142	529937	)
+3280	4.28378	(	0.180143	529932	)
+3360	4.28378	(	0.180146	529926	)
+3380	4.28378	(	0.180146	529900	)
+3500	4.28378	(	0.180148	529892	)
+3540	4.28378	(	0.180152	529880	)
+3580	4.28378	(	0.180168	529816	)
+3680	4.28378	(	0.180168	529794	)
+3800	4.28378	(	0.180167	529776	)
+3880	4.28378	(	0.180168	529759	)
+3940	4.28378	(	0.180169	529740	)
+3980	4.28378	(	0.18017	529746	)
+
+Optimization Result:
+
+    Objective Function Value:	4.28378
+    Function Evaluations:	4004
+    CPU Time [s]:	1.755
+    Evaluations/Second [1/s]:	2281.48
+
+    Values[mu_set].InitialValue: 0.18017
+    Values[F0].InitialValue: 529746
+
+
+Optimization Task
+
+Problem Description:
+Subtask: 
+Time-Course Task
+
+Problem Description:
+    AutomaticStepSize: 0
+    StepNumber: 87
+    StepSize: 0.238372
+    Duration: 20.5
+    TimeSeriesRequested: 1
+    OutputStartTime: 0
+    Output Event: 0
+    Start in Steady State: 0
+
+Method: Deterministic (LSODA)
+    Integrate Reduced Model: 0
+    Relative Tolerance: 1e-06
+    Absolute Tolerance: 1e-12
+    Max Internal Steps: 10000
+    Max Internal Step Size: 0
+
+
+Objective Function:
+    Values[qp]*[biomass]/[glucose]
+
+List of Optimization Items:
+    1e-06 <= Values[mu_set].InitialValue <= 1e+06; Start Value = 0.02
+    1e-06 <= Values[F0].InitialValue <= 1e+06; Start Value = 0.3
+
+List of Constraint Items:
+
+Method: Evolutionary Programming
+    Number of Generations: 200
+    Population Size: 20
+    Random Number Generator: 1
+    Seed: 0
+    Log Verbosity: 0
+
+Population Information: 
+Population Size: 20
+# Generations / Iterations: 200
+Current Generation / Iteration: 201
+Population Values: 
+   (	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	-4.28378	)
+
+Population:
+
+[Function Evaluations]	[Best Value]	[Best Parameters]
+20	3.5971	(	0.00154551	8.67946	)
+40	3.64482	(	0.000694451	9.45877	)
+100	3.79191	(	0.00257182	14.2076	)
+140	3.81789	(	1e-06	14.5004	)
+200	3.8335	(	0.00122024	17.5655	)
+240	3.85311	(	1e-06	18.5351	)
+280	3.85358	(	1e-06	18.7254	)
+320	3.85424	(	1e-06	19.1436	)
+440	3.85428	(	1e-06	19.297	)
+560	3.85428	(	1e-06	19.2332	)
+640	3.85428	(	1e-06	19.2482	)
+680	3.85428	(	1e-06	19.256	)
+720	3.85428	(	1e-06	19.2572	)
+740	3.85428	(	1e-06	19.258	)
+780	3.85428	(	1e-06	19.261	)
+900	3.85428	(	1e-06	19.2609	)
+1800	3.85428	(	1e-06	19.2609	)
+1920	3.85428	(	1e-06	19.2609	)
+2000	3.85428	(	1e-06	19.2609	)
+2040	3.85428	(	1e-06	19.2609	)
+2220	3.85428	(	1e-06	19.2609	)
+2260	3.85428	(	1e-06	19.2609	)
+2320	3.85428	(	1e-06	19.2609	)
+3200	3.85428	(	1e-06	19.2609	)
+3460	3.85428	(	1e-06	19.2609	)
+3860	3.85428	(	1e-06	19.2609	)
+
+Optimization Result:
+
+    Objective Function Value:	3.85428
+    Function Evaluations:	4004
+    CPU Time [s]:	2.265
+    Evaluations/Second [1/s]:	1767.77
+
+    Values[mu_set].InitialValue: 1e-06
+    Values[F0].InitialValue: 19.2609
+
+
+Optimization Task
+
+Problem Description:
+Subtask: 
+Time-Course Task
+
+Problem Description:
+    AutomaticStepSize: 0
+    StepNumber: 87
+    StepSize: 0.238372
+    Duration: 20.5
+    TimeSeriesRequested: 1
+    OutputStartTime: 0
+    Output Event: 0
+    Start in Steady State: 0
+
+Method: Deterministic (LSODA)
+    Integrate Reduced Model: 0
+    Relative Tolerance: 1e-06
+    Absolute Tolerance: 1e-12
+    Max Internal Steps: 10000
+    Max Internal Step Size: 0
+
+
+Objective Function:
+    Values[qp]*[biomass]/[glucose]
+
+List of Optimization Items:
+    0 <= Values[mu_set].InitialValue <= 1e+06; Start Value = 0.02
+    0 <= Values[F0].InitialValue <= 1e+06; Start Value = 0.3
+
+List of Constraint Items:
+
+Method: Evolutionary Programming
+    Number of Generations: 200
+    Population Size: 20
+    Random Number Generator: 1
+    Seed: 0
+    Log Verbosity: 0
+
+Population Information: 
+Population Size: 20
+# Generations / Iterations: 200
+Current Generation / Iteration: 201
+Population Values: 
+   (	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85426	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	-3.85428	)
+
+Population:
+
+[Function Evaluations]	[Best Value]	[Best Parameters]
+20	0.842587	(	0.02	0.3	)
+60	0.980237	(	0.0217384	0.366638	)
+120	1.50844	(	0.0441362	0.47531	)
+140	2.29387	(	0.0759703	0.674986	)
+160	2.3642	(	0.0167763	1.83235	)
+200	2.93963	(	0.0613025	2.84613	)
+240	2.97605	(	0.0552874	2.41194	)
+280	3.14693	(	0.0469921	4.69635	)
+340	3.23757	(	0.021026	4.2787	)
+360	3.31378	(	0.0316514	4.81542	)
+380	3.396	(	0	6.68168	)
+400	3.51031	(	0	7.73098	)
+420	3.58319	(	0.0056331	8.29514	)
+440	3.61217	(	0	8.98669	)
+480	3.76945	(	0.00124147	12.5447	)
+500	3.79958	(	0	13.5351	)
+520	3.8296	(	0.000800945	16.0442	)
+560	3.83603	(	0	15.8507	)
+580	3.85206	(	8.48489e-05	18.5814	)
+680	3.8543	(	0	19.2751	)
+940	3.8543	(	0	19.2708	)
+1060	3.8543	(	0	19.2707	)
+1120	3.8543	(	0	19.2565	)
+1220	3.8543	(	0	19.2625	)
+1380	3.8543	(	0	19.2623	)
+1520	3.8543	(	0	19.262	)
+1620	3.8543	(	0	19.2616	)
+1680	3.8543	(	0	19.2615	)
+1740	3.8543	(	0	19.2614	)
+1820	3.8543	(	0	19.2614	)
+2080	3.8543	(	0	19.2614	)
+2280	3.8543	(	0	19.2614	)
+2320	3.8543	(	0	19.2614	)
+2400	3.8543	(	0	19.2614	)
+2460	3.8543	(	0	19.2614	)
+3520	3.8543	(	0	19.2614	)
+3600	3.8543	(	0	19.2614	)
+
+Optimization Result:
+
+    Objective Function Value:	3.8543
+    Function Evaluations:	4004
+    CPU Time [s]:	2.186
+    Evaluations/Second [1/s]:	1831.66
+
+    Values[mu_set].InitialValue: 0
+    Values[F0].InitialValue: 19.2614
+
+
+Optimization Task
+
+Problem Description:
+Subtask: 
+Time-Course Task
+
+Problem Description:
+    AutomaticStepSize: 0
+    StepNumber: 87
+    StepSize: 0.238372
+    Duration: 20.5
+    TimeSeriesRequested: 1
+    OutputStartTime: 0
+    Output Event: 0
+    Start in Steady State: 0
+
+Method: Deterministic (LSODA)
+    Integrate Reduced Model: 0
+    Relative Tolerance: 1e-06
+    Absolute Tolerance: 1e-12
+    Max Internal Steps: 10000
+    Max Internal Step Size: 0
+
+
+Objective Function:
+    [serine]/[glucose]
+
+List of Optimization Items:
+    0 <= Values[mu_set].InitialValue <= 1e+06; Start Value = 0.02
+    0 <= Values[F0].InitialValue <= 1e+06; Start Value = 0.3
+
+List of Constraint Items:
+
+Method: Evolutionary Programming
+    Number of Generations: 200
+    Population Size: 20
+    Random Number Generator: 1
+    Seed: 0
+    Log Verbosity: 0
+
+Population Information: 
+Population Size: 20
+# Generations / Iterations: 200
+Current Generation / Iteration: 201
+Population Values: 
+   (	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.85347	-3.85422	-3.85395	-3.8543	-3.85416	-3.85428	-3.85353	-3.8543	-3.8543	-3.8543	-3.8543	-3.8543	-3.8535	-3.85322	-3.8543	-3.8543	-3.8543	-3.8543	-3.85423	)
+
+Population:
+
+[Function Evaluations]	[Best Value]	[Best Parameters]
+20	12.942	(	0.02	0.3	)
+40	18.1839	(	0.016763	0.545917	)
+60	28.4054	(	0	1.32282	)
+80	30.3038	(	0.0151325	1.49559	)
+100	31.6203	(	0.00744023	1.64447	)
+120	37.0581	(	0.0184872	2.75391	)
+140	42.4676	(	0.00440065	3.71694	)
+160	47.0837	(	0.00386203	6.29476	)
+180	50.4519	(	0	11.39	)
+360	50.4596	(	0	11.024	)
+880	50.4597	(	0	10.9962	)
+960	50.4597	(	0	10.9908	)
+1160	50.4597	(	0	10.9908	)
+1200	50.4597	(	0	10.993	)
+1300	50.4597	(	0	10.9932	)
+1380	50.4597	(	0	10.9933	)
+1500	50.4597	(	0	10.9934	)
+1580	50.4597	(	0	10.9934	)
+1640	50.4597	(	0	10.9935	)
+1660	50.4597	(	0	10.9936	)
+1680	50.4597	(	0	10.9936	)
+1860	50.4597	(	0	10.9936	)
+2140	50.4597	(	0	10.9936	)
+2220	50.4597	(	0	10.9936	)
+2660	50.4597	(	0	10.9936	)
+2820	50.4597	(	0	10.9936	)
+3000	50.4597	(	0	10.9936	)
+3040	50.4597	(	0	10.9936	)
+3080	50.4597	(	0	10.9936	)
+3120	50.4597	(	0	10.9936	)
+3720	50.4597	(	0	10.9936	)
+
+Optimization Result:
+
+    Objective Function Value:	50.4597
+    Function Evaluations:	4004
+    CPU Time [s]:	2.628
+    Evaluations/Second [1/s]:	1523.59
+
+    Values[mu_set].InitialValue: 0
+    Values[F0].InitialValue: 10.9936
+
+
+Optimization Task
+
+Problem Description:
+Subtask: 
+Time-Course Task
+
+Problem Description:
+    AutomaticStepSize: 0
+    StepNumber: 87
+    StepSize: 0.238372
+    Duration: 20.5
+    TimeSeriesRequested: 1
+    OutputStartTime: 0
+    Output Event: 0
+    Start in Steady State: 0
+
+Method: Deterministic (LSODA)
+    Integrate Reduced Model: 0
+    Relative Tolerance: 1e-06
+    Absolute Tolerance: 1e-12
+    Max Internal Steps: 10000
+    Max Internal Step Size: 0
+
+
+Objective Function:
+    [serine]/[V]
+
+List of Optimization Items:
+    0 <= Values[mu_set].InitialValue <= 1e+06; Start Value = 0.02
+    0 <= Values[F0].InitialValue <= 1e+06; Start Value = 0.3
+
+List of Constraint Items:
+
+Method: Evolutionary Programming
+    Number of Generations: 200
+    Population Size: 20
+    Random Number Generator: 1
+    Seed: 0
+    Log Verbosity: 0
+
+Population Information: 
+Population Size: 20
+# Generations / Iterations: 200
+Current Generation / Iteration: 201
+Population Values: 
+   (	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4597	-50.4595	-50.4596	-50.4596	-50.4597	-50.4597	-50.4597	-50.4597	-50.4596	-50.4597	-50.4597	-50.4561	-50.4597	-50.4597	-50.4597	-50.4595	-50.4596	-50.4595	)
+
+Population:
+
+[Function Evaluations]	[Best Value]	[Best Parameters]
+20	5.1954	(	0.02	0.3	)
+40	5.83485	(	0.0154137	0.384524	)
+60	13.3048	(	0.022734	0.977394	)
+80	14.3508	(	0.020088	1.17494	)
+100	14.4828	(	0.022186	1.13259	)
+120	29.8113	(	0.120969	0.883335	)
+200	30.0238	(	0.0903256	1.52816	)
+220	30.0637	(	0.0947986	1.72149	)
+240	30.1101	(	0.0898041	1.68701	)
+260	30.121	(	0.0884648	1.9279	)
+280	30.1252	(	0.0844612	2.00575	)
+340	30.1309	(	0.0819751	2.2035	)
+420	30.1313	(	0.0809311	2.30072	)
+440	30.1313	(	0.0809812	2.29739	)
+460	30.1314	(	0.0825907	2.18435	)
+560	30.1314	(	0.0826387	2.18596	)
+580	30.1314	(	0.0820618	2.21732	)
+600	30.1314	(	0.0820557	2.21958	)
+820	30.1314	(	0.0820476	2.22225	)
+840	30.1314	(	0.0820525	2.22144	)
+880	30.1314	(	0.082051	2.22145	)
+920	30.1314	(	0.0820432	2.22192	)
+1020	30.1314	(	0.082025	2.22299	)
+1040	30.1314	(	0.0820453	2.22161	)
+1100	30.1314	(	0.0820292	2.22258	)
+1200	30.1314	(	0.0820413	2.22191	)
+1540	30.1314	(	0.0820398	2.22202	)
+1580	30.1314	(	0.08204	2.22198	)
+1600	30.1314	(	0.0820399	2.22197	)
+1740	30.1314	(	0.0820394	2.22201	)
+1800	30.1314	(	0.0820389	2.22204	)
+1960	30.1314	(	0.0820388	2.22204	)
+2080	30.1314	(	0.0820388	2.22204	)
+2120	30.1314	(	0.0820387	2.22205	)
+2140	30.1314	(	0.0820386	2.22205	)
+2160	30.1314	(	0.0820386	2.22205	)
+2180	30.1314	(	0.0820386	2.22205	)
+2200	30.1314	(	0.0820385	2.22206	)
+2240	30.1314	(	0.0820385	2.22206	)
+2260	30.1314	(	0.0820385	2.22206	)
+2280	30.1314	(	0.0820384	2.22206	)
+2360	30.1314	(	0.0820385	2.22206	)
+2380	30.1314	(	0.0820384	2.22206	)
+2400	30.1314	(	0.0820384	2.22207	)
+2420	30.1314	(	0.0820384	2.22207	)
+2480	30.1314	(	0.0820384	2.22207	)
+2500	30.1314	(	0.0820383	2.22207	)
+2540	30.1314	(	0.0820383	2.22208	)
+2580	30.1314	(	0.0820383	2.22208	)
+2600	30.1314	(	0.0820382	2.22208	)
+2620	30.1314	(	0.0820378	2.2221	)
+2640	30.1314	(	0.0820377	2.2221	)
+2680	30.1314	(	0.0820376	2.22212	)
+2700	30.1314	(	0.0820376	2.22211	)
+2740	30.1314	(	0.0820376	2.22211	)
+2760	30.1314	(	0.0820376	2.22212	)
+2800	30.1314	(	0.0820374	2.22212	)
+2840	30.1314	(	0.0820376	2.22212	)
+2860	30.1314	(	0.0820376	2.22212	)
+2880	30.1314	(	0.082037	2.22216	)
+2940	30.1314	(	0.082037	2.22215	)
+3020	30.1314	(	0.0820369	2.22216	)
+3040	30.1314	(	0.0820364	2.22219	)
+3060	30.1314	(	0.0820363	2.22219	)
+3120	30.1314	(	0.0820362	2.22221	)
+3140	30.1314	(	0.0820363	2.22219	)
+3200	30.1314	(	0.0820362	2.2222	)
+3220	30.1314	(	0.0820362	2.22221	)
+3240	30.1314	(	0.0820361	2.22221	)
+3280	30.1314	(	0.0820356	2.22224	)
+3420	30.1314	(	0.0820356	2.22224	)
+3440	30.1314	(	0.0820356	2.22224	)
+3480	30.1314	(	0.0820356	2.22224	)
+3540	30.1314	(	0.0820356	2.22225	)
+3600	30.1314	(	0.0820355	2.22224	)
+3640	30.1314	(	0.0820355	2.22225	)
+3700	30.1314	(	0.0820355	2.22225	)
+3740	30.1314	(	0.0820355	2.22225	)
+3760	30.1314	(	0.0820355	2.22225	)
+3780	30.1314	(	0.0820355	2.22225	)
+3800	30.1314	(	0.0820355	2.22225	)
+3820	30.1314	(	0.0820355	2.22225	)
+3860	30.1314	(	0.0820355	2.22225	)
+3880	30.1314	(	0.0820354	2.22225	)
+3940	30.1314	(	0.0820355	2.22225	)
+3960	30.1314	(	0.0820355	2.22225	)
+3980	30.1314	(	0.0820355	2.22225	)
+4000	30.1314	(	0.0820355	2.22225	)
+
+Optimization Result:
+
+    Objective Function Value:	30.1314
+    Function Evaluations:	4004
+    CPU Time [s]:	2.030
+    Evaluations/Second [1/s]:	1972.41
+
+    Values[mu_set].InitialValue: 0.0820355
+    Values[F0].InitialValue: 2.22225
+
+
+Optimization Task
+
+Problem Description:
+Subtask: 
+Time-Course Task
+
+Problem Description:
+    AutomaticStepSize: 0
+    StepNumber: 87
+    StepSize: 0.238372
+    Duration: 20.5
+    TimeSeriesRequested: 1
+    OutputStartTime: 0
+    Output Event: 0
+    Start in Steady State: 0
+
+Method: Deterministic (LSODA)
+    Integrate Reduced Model: 0
+    Relative Tolerance: 1e-06
+    Absolute Tolerance: 1e-12
+    Max Internal Steps: 10000
+    Max Internal Step Size: 0
+
+
+Objective Function:
+    Values[qp]
+
+List of Optimization Items:
+    0 <= Values[mu_set].InitialValue <= 1e+06; Start Value = 0.02
+    0 <= Values[F0].InitialValue <= 1e+06; Start Value = 0.3
+
+List of Constraint Items:
+
+Method: Evolutionary Programming
+    Number of Generations: 200
+    Population Size: 20
+    Random Number Generator: 1
+    Seed: 0
+    Log Verbosity: 0
+
+Population Information: 
+Population Size: 20
+# Generations / Iterations: 200
+Current Generation / Iteration: 201
+Population Values: 
+   (	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	-30.1314	)
+
+Population:
+
+[Function Evaluations]	[Best Value]	[Best Parameters]
+20	0.0287673	(	0.02	0.3	)
+40	0.122667	(	0	685694	)
+60	0.122667	(	0	717564	)
+80	0.122667	(	0	1e+06	)
+
+Optimization Result:
+
+    Objective Function Value:	0.122667
+    Function Evaluations:	4004
+    CPU Time [s]:	0.991
+    Evaluations/Second [1/s]:	4040.36
+
+    Values[mu_set].InitialValue: 0
+    Values[F0].InitialValue: 1e+06
+
+
+Optimization Task
+
+Problem Description:
+Subtask: 
+Time-Course Task
+
+Problem Description:
+    AutomaticStepSize: 0
+    StepNumber: 87
+    StepSize: 0.238372
+    Duration: 20.5
+    TimeSeriesRequested: 1
+    OutputStartTime: 0
+    Output Event: 0
+    Start in Steady State: 0
+
+Method: Deterministic (LSODA)
+    Integrate Reduced Model: 0
+    Relative Tolerance: 1e-06
+    Absolute Tolerance: 1e-12
+    Max Internal Steps: 10000
+    Max Internal Step Size: 0
+
+
+Objective Function:
+    Values[qp]*[biomass]
+
+List of Optimization Items:
+    0 <= Values[mu_set].InitialValue <= 1e+06; Start Value = 0.02
+    0 <= Values[F0].InitialValue <= 1e+06; Start Value = 0.3
+
+List of Constraint Items:
+
+Method: Evolutionary Programming
+    Number of Generations: 200
+    Population Size: 20
+    Random Number Generator: 1
+    Seed: 0
+    Log Verbosity: 0
+
+Population Information: 
+Population Size: 20
+# Generations / Iterations: 200
+Current Generation / Iteration: 201
+Population Values: 
+   (	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	-0.122667	inf	-0.122667	-0.122667	inf	inf	inf	-0.122667	-0.122667	inf	-0.122667	inf	inf	inf	inf	inf	inf	inf	inf	inf	inf	)
+
+Population:
+
+[Function Evaluations]	[Best Value]	[Best Parameters]
+20	0.0378837	(	0.02	0.3	)
+40	4.28377	(	0	624063	)
+60	4.28377	(	0	1e+06	)
+340	4.28377	(	0	999467	)
+440	4.28377	(	0	999815	)
+460	4.28377	(	0	999914	)
+620	4.28377	(	0	999962	)
+760	4.28377	(	0	999969	)
+880	4.28377	(	0	999990	)
+900	4.28377	(	0	999991	)
+1080	4.28377	(	0	999998	)
+1200	4.28377	(	0	1e+06	)
+1460	4.28377	(	0	1e+06	)
+1640	4.28377	(	0	1e+06	)
+1760	4.28377	(	0	1e+06	)
+1840	4.28377	(	0	1e+06	)
+2040	4.28377	(	0	1e+06	)
+2120	4.28377	(	0.0939202	1e+06	)
+3980	4.28377	(	0.125032	1e+06	)
+
+Optimization Result:
+
+    Objective Function Value:	4.28377
+    Function Evaluations:	4004
+    CPU Time [s]:	0.990
+    Evaluations/Second [1/s]:	4044.44
+
+    Values[mu_set].InitialValue: 0.125032
+    Values[F0].InitialValue: 1e+06
+
+
+Optimization Task
+
+Problem Description:
+Subtask: 
+Time-Course Task
+
+Problem Description:
+    AutomaticStepSize: 0
+    StepNumber: 87
+    StepSize: 0.238372
+    Duration: 20.5
+    TimeSeriesRequested: 1
+    OutputStartTime: 0
+    Output Event: 0
+    Start in Steady State: 0
+
+Method: Deterministic (LSODA)
+    Integrate Reduced Model: 0
+    Relative Tolerance: 1e-06
+    Absolute Tolerance: 1e-12
+    Max Internal Steps: 10000
+    Max Internal Step Size: 0
+
+
+Objective Function:
+    Values[qp]*[biomass]
+
+List of Optimization Items:
+    0 <= Values[mu_set].InitialValue <= 10000000; Start Value = 0.02
+    0 <= Values[F0].InitialValue <= 1000000; Start Value = 0.3
+
+List of Constraint Items:
+
+Method: Evolutionary Programming
+    Number of Generations: 200
+    Population Size: 20
+    Random Number Generator: 1
+    Seed: 0
+    Log Verbosity: 0
+
+Population Information: 
+Population Size: 20
+# Generations / Iterations: 200
+Current Generation / Iteration: 201
+Population Values: 
+   (	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	inf	-4.28377	inf	-4.28377	inf	-4.28377	inf	inf	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	-4.28377	inf	inf	inf	inf	-4.28377	)
+
+Population:
+
+[Function Evaluations]	[Best Value]	[Best Parameters]
+20	0.0378837	(	0.02	0.3	)
+40	4.28376	(	0	325761	)
+60	4.28377	(	0	1e+06	)
+620	4.28377	(	0	999589	)
+880	4.28377	(	0	999856	)
+920	4.28377	(	0	736512	)
+
+Optimization Result:
+
+    Objective Function Value:	4.28377
+    Function Evaluations:	4004
+    CPU Time [s]:	1.020
+    Evaluations/Second [1/s]:	3925.49
+
+    Values[mu_set].InitialValue: 0
+    Values[F0].InitialValue: 736512
+
+

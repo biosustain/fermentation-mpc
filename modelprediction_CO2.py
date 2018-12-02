@@ -4,9 +4,6 @@ import numpy as np
 from models import fed_batch_model_mu
 import matplotlib
 matplotlib.use('TkAgg')
-import matplotlib.pyplot as plt
-from parest_copasi import parameter_estimation
-from parest_copasi import parameter_estimation_online
 import os
 import sys
 import time
@@ -17,113 +14,7 @@ from models import fed_batch_model
 from parest_copasi import parameter_estimation_online_fedbatch
 
 
-# watch_file = pd.read_csv('data/SER_C016_Reactor24_4g-LGlycine_0,02FeedRate.csv')
-# online_data = watch_file
-#
-# online_data = (time_to_decimals(online_data))
-# online_data['Time (hours)'] = online_data['Time (min)']/60
-#
-# # Set filename of the two experimental datasets
-# R23_amounts = pd.read_csv("Preprocess/estimation/fedbatch_amounts/R23_amounts.csv")
-# R24_amounts = pd.read_csv("Preprocess/estimation/fedbatch_amounts/R24_amounts.csv")
-#
-#
-# print(online_data)
-#
-#
-# data_frame_selected_values = online_data[np.isfinite(online_data['Bioreactor 24 - CER'])]
-# data_frame_selected_values.reset_index(inplace=True, drop=True)
-#
-# # Reset the time, so the first values corresponds to time 0
-# data_frame_selected_values = data_frame_selected_values.copy()
-# data_frame_selected_values['Time (hours)'] = data_frame_selected_values['Time (hours)'] - \
-#                                            data_frame_selected_values['Time (hours)'][0]
-#
-# tCER = []
-# tCER.append(0)  # Here set the initial value of tCER if you have that.
-#
-# for i in range(0, (len(data_frame_selected_values['Time (hours)']) - 1)):
-#     tCER_i = ((data_frame_selected_values['Bioreactor 24 - CER'][i] +
-#                data_frame_selected_values['Bioreactor 24 - CER'][i + 1]) / 2) * (
-#                          data_frame_selected_values['Time (hours)'][i + 1] - data_frame_selected_values['Time (hours)'][
-#                      i]) + tCER[i]  # [CO2 %]
-#     tCER.append(tCER_i)
-#
-# mu = data_frame_selected_values['Bioreactor 24 - CER'] / tCER  # [1/h]
-#
-#
-# print(mu)
-# print(data_frame_selected_values)
-#
-# r = fed_batch_model_mu()
-#
-#
-# start_time = data_frame_selected_values['Time (hours)'][25:67][25]
-# end_time = data_frame_selected_values['Time (hours)'][25:67][26]
-#
-# r.timeCourseSelections = ['time','glucose','biomass','serine','mu']
-#
-# results = r.simulate(start_time, end_time, 2)
-#
-#
-# initial_values = results[0:1]
-# data_frame = pd.DataFrame(initial_values)
-# data_frame.columns = ['time', 'glucose', 'biomass', 'serine', 'mu']
-# mu[25:67] = mu[25:67]*1.0157664644714879
-#
-# for i in range(25, 66):
-#     r.mu = mu[25:][i + 1]
-#     glucose = data_frame['glucose'].iloc[-1]
-#     serine = data_frame['serine'].iloc[-1]
-#     biomass = data_frame['biomass'].iloc[-1]
-#
-#     start_time = data_frame_selected_values['Time (hours)'][25:][i]
-#     end_time = data_frame_selected_values['Time (hours)'][25:][i + 1]
-#     results = r.simulate(start_time, end_time, 2)
-#
-#     simulated_row = results[-1:]
-#     new_dataframe = pd.DataFrame(simulated_row)
-#     new_dataframe.columns = ['time', 'glucose', 'biomass', 'serine', 'mu']
-#     data_frame = data_frame.append(new_dataframe, ignore_index=True)
-#
-# print(data_frame)
-# data_frame.to_csv('output/output_test.csv')
-#
-#
-# # Plot of the results from the model and the experimental data
-# plt.figure(num=None, figsize=(11, 7), dpi=90, facecolor='w', edgecolor='k')
-# plt.suptitle('Plot of compounds', fontsize=16)
-#
-# plt.subplot(2, 2, 1)
-# plt.plot(data_frame['time'], data_frame['biomass'])
-# plt.scatter(R23_amounts['Time (hours)'][:5], R23_amounts['Biomass (g)'][:5])
-# plt.scatter(R24_amounts['Time (hours)'][:5], R24_amounts['Biomass (g)'][:5])
-# plt.legend(['Biomass from model', 'Biomass from data'], loc='upper left')
-# plt.xlabel('Time (hours)')
-# plt.ylabel('Biomass (g)')
-#
-# plt.subplot(2, 2, 2)
-# plt.plot(data_frame['time'], data_frame['serine'])
-# plt.scatter(R23_amounts['Time (hours)'][:5], R23_amounts['Serine (g)'][:5])
-# plt.scatter(R24_amounts['Time (hours)'][:5], R24_amounts['Serine (g)'][:5])
-# plt.legend(['Serine from model', 'Serine from data'], loc='upper left')
-# plt.xlabel('Time (hours)')
-# plt.ylabel('Serine (mole)')
-#
-# plt.subplot(2, 2, 3)
-# plt.plot(data_frame['time'], data_frame['glucose'])
-# plt.scatter(R23_amounts['Time (hours)'][:5], R23_amounts['Glucose (g)'][:5])
-# plt.scatter(R24_amounts['Time (hours)'][:5], R24_amounts['Glucose (g)'][:5])
-# plt.legend(['Glucose from model', 'Glucose from data'], loc='upper right')
-# plt.xlabel('Time (hours)')
-# plt.ylabel('Glucose (g)')
-#
-# plt.show()
-
-
-
 # Online data and real time simulation
-#
 class Watcher(object):
     running = True
     refresh_delay_secs = 1
@@ -167,15 +58,13 @@ class Watcher(object):
 def custom_action(text):
     online_data = pd.read_csv(watch_file)
 
+    # Time from online data is converted to decimals so calculations are possible to make
     online_data = (time_to_decimals(online_data))
     online_data['Time (hours)'] = online_data['Time (min)']/60
 
-    # Set filename of the two experimental datasets
-    R23_amounts = pd.read_csv("Preprocess/estimation/fedbatch_amounts/R23_amounts.csv")
     R24_amounts = pd.read_csv("Preprocess/estimation/fedbatch_amounts/R24_amounts.csv")
 
-
-
+    # Use only data from which CER begins
     data_frame_selected_values = online_data[np.isfinite(online_data['Bioreactor 24 - CER'])]
     data_frame_selected_values.reset_index(inplace=True, drop=True)
 
@@ -187,6 +76,7 @@ def custom_action(text):
     tCER = []
     tCER.append(0)  # Here set the initial value of tCER if you have that.
 
+    # Calculations of the integrated CER = tCER.
     for i in range(0, (len(data_frame_selected_values['Time (hours)']) - 1)):
         tCER_i = ((data_frame_selected_values['Bioreactor 24 - CER'][i] +
                    data_frame_selected_values['Bioreactor 24 - CER'][i + 1]) / 2) * (
@@ -194,39 +84,32 @@ def custom_action(text):
                          i]) + tCER[i]  # [CO2 %]
         tCER.append(tCER_i)
 
+    # Online growth rate calculations from CER and tCER
     mu = data_frame_selected_values['Bioreactor 24 - CER'] / tCER  # [1/h]
 
-
+    # Load model
     r = fed_batch_model_mu()
 
-    # Remember to change the ones below to be the first and the second first value of fed batch phase
+    # Remember to change the ones below to be the index of the first and the second first value of fed batch phase
     start_time = data_frame_selected_values['Time (hours)'][25]
     end_time = data_frame_selected_values['Time (hours)'][26]
 
-    # Make fake data
-
+    # Simulate the data with using growth rate from CER
     r.timeCourseSelections = ['time','glucose','biomass','serine','mu']
-
-
     results = r.simulate(start_time, end_time, 2)
 
-
+    # make the structure of the data frame with initial values, and multiply mu by the scale factor
     initial_values = results[0:1]
     data_frame = pd.DataFrame(initial_values)
     data_frame.columns = ['time', 'glucose', 'biomass', 'serine', 'mu']
-    #r.mu = 0.075784*1.104293008730403
     mu = mu*1.1043
     r.mu = 1.1043*mu[25]
 
     print(mu[25])
 
-    # Some of the inputs for the parameter_estimation_online function
-    for i in range(25, len(mu)-1): # lav 30 om til 66
+    # Simulates all the compounds from the growth rates
+    for i in range(25, len(mu)-1):
         r.mu = mu[25:][i + 1]
-        glucose = data_frame['glucose'].iloc[-1]
-        serine = data_frame['serine'].iloc[-1]
-        biomass = data_frame['biomass'].iloc[-1]
-
 
         start_time = data_frame_selected_values['Time (hours)'][25:][i]
         end_time = data_frame_selected_values['Time (hours)'][25:][i + 1]
@@ -237,14 +120,16 @@ def custom_action(text):
         new_dataframe.columns = ['time', 'glucose', 'biomass', 'serine', 'mu']
         data_frame = data_frame.append(new_dataframe, ignore_index=True)
 
+    # The simulated data gets written to a file, which is then used for the model prediction to estimate parameters
     data_frame.columns = ['Time (hours)','Glucose (g)','Biomass (g)','Serine (g)','mu']
-    data_frame[['Time (hours)','Glucose (g)','Biomass (g)','Serine (g)']].to_csv('parameter_estimation/output_test.csv')
+    data_frame[['Time (hours)','Glucose (g)','Biomass (g)','Serine (g)']].to_csv('parameter_estimation/output.csv')
 
 
-    print(data_frame)
-    experimental_data1 = 'parameter_estimation/output_test.csv'
+    # Set the path of the file, so the copasi model can read the data
+    experimental_data1 = 'parameter_estimation/output.csv'
     print(experimental_data1)
 
+    # Set bounds for the parameters
     parameter_1_lower_bound = "0"
     parameter_1_upper_bound = "10"
     parameter_2_lower_bound = "0"
@@ -273,12 +158,12 @@ def custom_action(text):
                                              parameter_7_lower_bound, parameter_7_upper_bound,
                                              model_for_parest, '1', str(len(data_frame)))
 
-    # Model simulation (change the time to be from the end of time [-1] and then just + 10 hours or something
+
     # Update model with optimized parameters
 
     print(alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max)
 
-
+    # Input the estimated parameters into the fed batch model
     f = fed_batch_model()
 
     f.alpha = float(alpha)
@@ -291,7 +176,7 @@ def custom_action(text):
 
     f.timeCourseSelections = ['time','glucose','biomass','serine','mu']
 
-
+    # Simulate the model into future time points
     print(data_frame_selected_values['Time (hours)'])
     fresults = f.simulate(data_frame_selected_values['Time (hours)'][25], data_frame_selected_values['Time (hours)'].iloc[-1]+5, 100)
 
@@ -391,20 +276,22 @@ def custom_action(text):
     ))
 
 
-    fig['layout']['yaxis1'].update(showgrid=True, title='Biomass (g)', exponentformat='power', nticks=12,
-                                   tickfont=dict(size=12), domain=[0.65, 1])
-    fig['layout']['yaxis2'].update(showgrid=True, title='Serine (g)', exponentformat='power', nticks=12,
-                                   tickfont=dict(size=12), domain=[0.65, 1])
-    fig['layout']['yaxis3'].update(showgrid=True, title='Glucose (g)', exponentformat='power', nticks=12,
-                                   tickfont=dict(size=12), domain=[0.65, 1])
+    fig['layout']['yaxis1'].update(showgrid=True, title='Biomass (g)', exponentformat='power', nticks=9,
+                                   tickfont=dict(size=17), domain=[0.65, 1])
+    fig['layout']['yaxis2'].update(showgrid=True, title='Serine (g)', exponentformat='power', nticks=9,
+                                   tickfont=dict(size=17), domain=[0.65, 1])
+    fig['layout']['yaxis3'].update(showgrid=True, title='Glucose (g)', exponentformat='power', nticks=9,
+                                   tickfont=dict(size=17), domain=[0.65, 1])
 
 
-    fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=12, tickfont=dict(size=12),
+    fig['layout']['xaxis1'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=17),
                                    domain=[0, 0.27])
-    fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=12, tickfont=dict(size=12),
+    fig['layout']['xaxis2'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=17),
                                    domain=[0.36, 0.63])
-    fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=12, tickfont=dict(size=12),
+    fig['layout']['xaxis3'].update(showgrid=True, title='Time (hours)', nticks=10, tickfont=dict(size=17),
                                    domain=[0.72, 0.99])
+
+    fig['layout'].update(font=dict(size=16))
 
     plotly.offline.plot(fig)
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- generated with COPASI 4.23 (Build 184) (http://www.copasi.org) at 2018-11-24 20:24:38 UTC -->
+<!-- generated with COPASI 4.23 (Build 184) (http://www.copasi.org) at 2018-11-28 18:52:56 UTC -->
 <?oxygen RNGSchema="http://www.copasi.org/static/schema/CopasiML.rng" type="xml"?>
 <COPASI xmlns="http://www.copasi.org/static/schema" versionMajor="4" versionMinor="23" versionDevel="184" copasiSourcesModified="0">
   <ListOfFunctions>
@@ -302,13 +302,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="0.70326548992032589" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="4.6224712090278954" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="10" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="1336.278261940947" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="3.9410312208197675" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.4100404855784454" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="8.2945042412396148" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -38770,7 +38770,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_544" name="PE: 2018-11-24 15:53:29 Exp: Original">
+      <ModelParameterSet key="ModelParameterSet_544" name="PE: 2018-11-28 17:30:09 Exp: Original">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -38841,7 +38841,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_545" name="PE: 2018-11-24 15:53:29 Exp: Experiment">
+      <ModelParameterSet key="ModelParameterSet_545" name="PE: 2018-11-28 17:30:09 Exp: Experiment">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -38855,13 +38855,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="0.80621615642722144" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="6.843505667433921" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="13.900650345648721" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6975902.4905282762" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="5.7736350619508201" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="2.6817261067982296" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="5.1284366652785947" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="0.46962590119050324" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="3.5346284418989584" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="11.774073164174856" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="1369531.8065432648" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="5.0583379034144951" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.3122822771999052" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="2.4250131922120222" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -38912,7 +38912,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_546" name="PE: 2018-11-24 15:56:53 Exp: Original">
+      <ModelParameterSet key="ModelParameterSet_546" name="PE: 2018-11-28 17:32:22 Exp: Original">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -38926,13 +38926,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="0.80621615642722144" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="6.843505667433921" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="13.900650345648721" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6975902.4905282762" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="5.7736350619508201" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="2.6817261067982296" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="5.1284366652785947" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="0.46962590119050324" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="3.5346284418989584" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="11.774073164174856" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="1369531.8065432648" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="5.0583379034144951" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.3122822771999052" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="2.4250131922120222" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -38983,7 +38983,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_547" name="PE: 2018-11-24 15:56:53 Exp: Experiment">
+      <ModelParameterSet key="ModelParameterSet_547" name="PE: 2018-11-28 17:32:22 Exp: Experiment">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -38997,13 +38997,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.0751603020278959" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="9.5273332424064918" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="21.218469399681027" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="5456178.2455939157" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="8.5975646395322816" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="3.6583774950842183" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="6.9880701357575354" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="0.61415667456684264" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="4.9729710182361533" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="10.778306720520385" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="1018350.2782474658" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="4.6258708550920318" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.5392685379325606" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="2.8719096895649714" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -39054,7 +39054,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_548" name="PE: 2018-11-24 15:58:02 Exp: Original">
+      <ModelParameterSet key="ModelParameterSet_548" name="PE: 2018-11-28 17:34:13 Exp: Original">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -39068,13 +39068,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.0751603020278959" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="9.5273332424064918" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="21.218469399681027" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="5456178.2455939157" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="8.5975646395322816" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="3.6583774950842183" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="6.9880701357575354" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="0.61415667456684264" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="4.9729710182361533" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="10.778306720520385" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="1018350.2782474658" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="4.6258708550920318" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.5392685379325606" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="2.8719096895649714" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -39125,7 +39125,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_549" name="PE: 2018-11-24 15:58:02 Exp: Experiment">
+      <ModelParameterSet key="ModelParameterSet_549" name="PE: 2018-11-28 17:34:13 Exp: Experiment">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -39139,155 +39139,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.0751603020278959" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="9.5273332424064918" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="21.218469399681027" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="5456178.2455939157" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="8.5975646395322816" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="3.6583774950842183" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="6.9880701357575354" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glucose]" value="0" type="ModelValue" simulationType="assignment"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glufeed]" value="415" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu]" value="0" type="ModelValue" simulationType="assignment"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs]" value="0" type="ModelValue" simulationType="assignment"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qp]" value="0" type="ModelValue" simulationType="assignment"/>
-        </ModelParameterGroup>
-        <ModelParameterGroup cn="String=Kinetic Parameters" type="Group">
-          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume]" type="Reaction">
-            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
-              <InitialExpression>
-                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
-              </InitialExpression>
-            </ModelParameter>
-          </ModelParameterGroup>
-          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass]" type="Reaction">
-            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass],ParameterGroup=Parameters,Parameter=mu" value="0" type="ReactionParameter" simulationType="assignment">
-              <InitialExpression>
-                &lt;CN=Root,Model=IDModel_1,Vector=Values[mu],Reference=InitialValue>
-              </InitialExpression>
-            </ModelParameter>
-          </ModelParameterGroup>
-          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose]" type="Reaction">
-            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
-              <InitialExpression>
-                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
-              </InitialExpression>
-            </ModelParameter>
-            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=c_glufeed" value="415" type="ReactionParameter" simulationType="assignment">
-              <InitialExpression>
-                &lt;CN=Root,Model=IDModel_1,Vector=Values[c_glufeed],Reference=InitialValue>
-              </InitialExpression>
-            </ModelParameter>
-            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=qs" value="0" type="ReactionParameter" simulationType="assignment">
-              <InitialExpression>
-                &lt;CN=Root,Model=IDModel_1,Vector=Values[qs],Reference=InitialValue>
-              </InitialExpression>
-            </ModelParameter>
-          </ModelParameterGroup>
-          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine]" type="Reaction">
-            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine],ParameterGroup=Parameters,Parameter=qp" value="0" type="ReactionParameter" simulationType="assignment">
-              <InitialExpression>
-                &lt;CN=Root,Model=IDModel_1,Vector=Values[qp],Reference=InitialValue>
-              </InitialExpression>
-            </ModelParameter>
-          </ModelParameterGroup>
-        </ModelParameterGroup>
-      </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_550" name="PE: 2018-11-24 15:58:59 Exp: Original">
-        <ModelParameterGroup cn="String=Initial Time" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
-        </ModelParameterGroup>
-        <ModelParameterGroup cn="String=Initial Compartment Sizes" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment]" value="1" type="Compartment" simulationType="fixed"/>
-        </ModelParameterGroup>
-        <ModelParameterGroup cn="String=Initial Species Values" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[V]" value="6.148605814997e+22" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[glucose]" value="0" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[biomass]" value="1.261662598104928e+23" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
-        </ModelParameterGroup>
-        <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.0751603020278959" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="9.5273332424064918" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="21.218469399681027" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="5456178.2455939157" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="8.5975646395322816" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="3.6583774950842183" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="6.9880701357575354" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glucose]" value="0" type="ModelValue" simulationType="assignment"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glufeed]" value="415" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu]" value="0" type="ModelValue" simulationType="assignment"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs]" value="0" type="ModelValue" simulationType="assignment"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qp]" value="0" type="ModelValue" simulationType="assignment"/>
-        </ModelParameterGroup>
-        <ModelParameterGroup cn="String=Kinetic Parameters" type="Group">
-          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume]" type="Reaction">
-            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
-              <InitialExpression>
-                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
-              </InitialExpression>
-            </ModelParameter>
-          </ModelParameterGroup>
-          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass]" type="Reaction">
-            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass],ParameterGroup=Parameters,Parameter=mu" value="0" type="ReactionParameter" simulationType="assignment">
-              <InitialExpression>
-                &lt;CN=Root,Model=IDModel_1,Vector=Values[mu],Reference=InitialValue>
-              </InitialExpression>
-            </ModelParameter>
-          </ModelParameterGroup>
-          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose]" type="Reaction">
-            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
-              <InitialExpression>
-                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
-              </InitialExpression>
-            </ModelParameter>
-            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=c_glufeed" value="415" type="ReactionParameter" simulationType="assignment">
-              <InitialExpression>
-                &lt;CN=Root,Model=IDModel_1,Vector=Values[c_glufeed],Reference=InitialValue>
-              </InitialExpression>
-            </ModelParameter>
-            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=qs" value="0" type="ReactionParameter" simulationType="assignment">
-              <InitialExpression>
-                &lt;CN=Root,Model=IDModel_1,Vector=Values[qs],Reference=InitialValue>
-              </InitialExpression>
-            </ModelParameter>
-          </ModelParameterGroup>
-          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine]" type="Reaction">
-            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine],ParameterGroup=Parameters,Parameter=qp" value="0" type="ReactionParameter" simulationType="assignment">
-              <InitialExpression>
-                &lt;CN=Root,Model=IDModel_1,Vector=Values[qp],Reference=InitialValue>
-              </InitialExpression>
-            </ModelParameter>
-          </ModelParameterGroup>
-        </ModelParameterGroup>
-      </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_551" name="PE: 2018-11-24 15:58:59 Exp: Experiment">
-        <ModelParameterGroup cn="String=Initial Time" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
-        </ModelParameterGroup>
-        <ModelParameterGroup cn="String=Initial Compartment Sizes" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment]" value="1" type="Compartment" simulationType="fixed"/>
-        </ModelParameterGroup>
-        <ModelParameterGroup cn="String=Initial Species Values" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[V]" value="6.148605814997e+22" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[glucose]" value="0" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[biomass]" value="1.261662598104928e+23" type="Species" simulationType="reactions"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
-        </ModelParameterGroup>
-        <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.120743096489764" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.56488974568618" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="2225526.0338529786" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.9684810983036947" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="2.8857969156532217" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="5.5165143478210448" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -39338,7 +39196,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_552" name="PE: 2018-11-24 16:08:36 Exp: Original">
+      <ModelParameterSet key="ModelParameterSet_550" name="PE: 2018-11-28 18:16:16 Exp: Original">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -39352,13 +39210,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.120743096489764" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.56488974568618" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="2225526.0338529786" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.9684810983036947" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="2.8857969156532217" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="5.5165143478210448" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -39409,7 +39267,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_553" name="PE: 2018-11-24 16:08:36 Exp: Experiment">
+      <ModelParameterSet key="ModelParameterSet_551" name="PE: 2018-11-28 18:16:16 Exp: Experiment">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -39423,13 +39281,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1179450071372188" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="9.9845691847714413" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="9.47794027332273" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="2889528.3783969483" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="4.0897652331358989" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0192125706164017" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.6936975348130749" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -39480,7 +39338,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_554" name="PE: 2018-11-24 16:11:12 Exp: Original">
+      <ModelParameterSet key="ModelParameterSet_552" name="PE: 2018-11-28 18:17:47 Exp: Original">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -39494,13 +39352,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1179450071372188" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="9.9845691847714413" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="9.47794027332273" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="2889528.3783969483" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="4.0897652331358989" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0192125706164017" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.6936975348130749" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -39551,7 +39409,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_555" name="PE: 2018-11-24 16:11:12 Exp: Experiment">
+      <ModelParameterSet key="ModelParameterSet_553" name="PE: 2018-11-28 18:17:47 Exp: Experiment">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -39565,13 +39423,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -39622,7 +39480,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_556" name="PE: 2018-11-24 16:16:34 Exp: Original">
+      <ModelParameterSet key="ModelParameterSet_554" name="PE: 2018-11-28 18:19:30 Exp: Original">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -39636,13 +39494,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -39693,7 +39551,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_557" name="PE: 2018-11-24 16:16:34 Exp: Experiment">
+      <ModelParameterSet key="ModelParameterSet_555" name="PE: 2018-11-28 18:19:30 Exp: Experiment">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -39707,13 +39565,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -39764,7 +39622,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_558" name="PE: 2018-11-24 16:24:03 Exp: Original">
+      <ModelParameterSet key="ModelParameterSet_556" name="PE: 2018-11-28 18:32:47 Exp: Original">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -39778,13 +39636,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -39835,7 +39693,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_559" name="PE: 2018-11-24 16:24:03 Exp: Experiment">
+      <ModelParameterSet key="ModelParameterSet_557" name="PE: 2018-11-28 18:32:47 Exp: Experiment">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -39849,13 +39707,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -39906,7 +39764,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_560" name="PE: 2018-11-24 16:25:05 Exp: Original">
+      <ModelParameterSet key="ModelParameterSet_558" name="PE: 2018-11-28 18:33:23 Exp: Original">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -39920,13 +39778,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -39977,7 +39835,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_561" name="PE: 2018-11-24 16:25:05 Exp: Experiment">
+      <ModelParameterSet key="ModelParameterSet_559" name="PE: 2018-11-28 18:33:23 Exp: Experiment">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -39991,13 +39849,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -40048,7 +39906,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_562" name="PE: 2018-11-24 16:59:21 Exp: Original">
+      <ModelParameterSet key="ModelParameterSet_560" name="PE: 2018-11-28 18:34:17 Exp: Original">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -40062,13 +39920,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -40119,7 +39977,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_563" name="PE: 2018-11-24 16:59:21 Exp: Experiment">
+      <ModelParameterSet key="ModelParameterSet_561" name="PE: 2018-11-28 18:34:17 Exp: Experiment">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -40133,13 +39991,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -40190,7 +40048,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_564" name="PE: 2018-11-24 17:59:40 Exp: Original">
+      <ModelParameterSet key="ModelParameterSet_562" name="PE: 2018-11-28 18:34:58 Exp: Original">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -40204,13 +40062,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -40261,7 +40119,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_565" name="PE: 2018-11-24 17:59:40 Exp: Experiment">
+      <ModelParameterSet key="ModelParameterSet_563" name="PE: 2018-11-28 18:34:58 Exp: Experiment">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -40275,13 +40133,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -40332,7 +40190,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_566" name="PE: 2018-11-24 18:46:04 Exp: Original">
+      <ModelParameterSet key="ModelParameterSet_564" name="PE: 2018-11-28 18:35:32 Exp: Original">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -40346,13 +40204,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -40403,7 +40261,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_567" name="PE: 2018-11-24 18:46:04 Exp: Experiment">
+      <ModelParameterSet key="ModelParameterSet_565" name="PE: 2018-11-28 18:35:32 Exp: Experiment">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -40417,13 +40275,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -40474,7 +40332,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_568" name="PE: 2018-11-24 18:47:37 Exp: Original">
+      <ModelParameterSet key="ModelParameterSet_566" name="PE: 2018-11-28 18:36:06 Exp: Original">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -40488,13 +40346,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -40545,7 +40403,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_569" name="PE: 2018-11-24 18:47:37 Exp: Experiment">
+      <ModelParameterSet key="ModelParameterSet_567" name="PE: 2018-11-28 18:36:06 Exp: Experiment">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -40559,13 +40417,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -40616,7 +40474,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_0" name="PE: 2018-11-24 20:24:38 Exp: Original">
+      <ModelParameterSet key="ModelParameterSet_568" name="PE: 2018-11-28 18:37:14 Exp: Original">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -40630,13 +40488,13 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -40687,7 +40545,7 @@
           </ModelParameterGroup>
         </ModelParameterGroup>
       </ModelParameterSet>
-      <ModelParameterSet key="ModelParameterSet_2" name="PE: 2018-11-24 20:24:38 Exp: Experiment">
+      <ModelParameterSet key="ModelParameterSet_569" name="PE: 2018-11-28 18:37:14 Exp: Experiment">
         <ModelParameterGroup cn="String=Initial Time" type="Group">
           <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
         </ModelParameterGroup>
@@ -40701,13 +40559,723 @@
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
         </ModelParameterGroup>
         <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1209213447710065" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="19.151639640165321" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6122505.6376496935" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="7.8008236236882373" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.0140409607516787" type="ModelValue" simulationType="fixed"/>
-          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="7.725022574468797" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glucose]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glufeed]" value="415" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qp]" value="0" type="ModelValue" simulationType="assignment"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Kinetic Parameters" type="Group">
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass],ParameterGroup=Parameters,Parameter=mu" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[mu],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=c_glufeed" value="415" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[c_glufeed],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=qs" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qs],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine],ParameterGroup=Parameters,Parameter=qp" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qp],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+        </ModelParameterGroup>
+      </ModelParameterSet>
+      <ModelParameterSet key="ModelParameterSet_570" name="PE: 2018-11-28 18:42:03 Exp: Original">
+        <ModelParameterGroup cn="String=Initial Time" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Compartment Sizes" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment]" value="1" type="Compartment" simulationType="fixed"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Species Values" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[V]" value="6.148605814997e+22" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[glucose]" value="0" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[biomass]" value="1.261662598104928e+23" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glucose]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glufeed]" value="415" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qp]" value="0" type="ModelValue" simulationType="assignment"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Kinetic Parameters" type="Group">
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass],ParameterGroup=Parameters,Parameter=mu" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[mu],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=c_glufeed" value="415" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[c_glufeed],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=qs" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qs],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine],ParameterGroup=Parameters,Parameter=qp" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qp],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+        </ModelParameterGroup>
+      </ModelParameterSet>
+      <ModelParameterSet key="ModelParameterSet_571" name="PE: 2018-11-28 18:42:03 Exp: Experiment">
+        <ModelParameterGroup cn="String=Initial Time" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Compartment Sizes" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment]" value="1" type="Compartment" simulationType="fixed"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Species Values" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[V]" value="6.148605814997e+22" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[glucose]" value="0" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[biomass]" value="1.261662598104928e+23" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glucose]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glufeed]" value="415" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qp]" value="0" type="ModelValue" simulationType="assignment"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Kinetic Parameters" type="Group">
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass],ParameterGroup=Parameters,Parameter=mu" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[mu],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=c_glufeed" value="415" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[c_glufeed],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=qs" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qs],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine],ParameterGroup=Parameters,Parameter=qp" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qp],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+        </ModelParameterGroup>
+      </ModelParameterSet>
+      <ModelParameterSet key="ModelParameterSet_572" name="PE: 2018-11-28 18:45:14 Exp: Original">
+        <ModelParameterGroup cn="String=Initial Time" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Compartment Sizes" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment]" value="1" type="Compartment" simulationType="fixed"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Species Values" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[V]" value="6.148605814997e+22" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[glucose]" value="0" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[biomass]" value="1.261662598104928e+23" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1189707914410685" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="5.216943213129583" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3456897.4806168796" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="2.4557060382624409" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="1.7806463968661581" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="3.3251029460653481" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glucose]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glufeed]" value="415" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qp]" value="0" type="ModelValue" simulationType="assignment"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Kinetic Parameters" type="Group">
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass],ParameterGroup=Parameters,Parameter=mu" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[mu],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=c_glufeed" value="415" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[c_glufeed],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=qs" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qs],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine],ParameterGroup=Parameters,Parameter=qp" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qp],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+        </ModelParameterGroup>
+      </ModelParameterSet>
+      <ModelParameterSet key="ModelParameterSet_573" name="PE: 2018-11-28 18:45:14 Exp: Experiment">
+        <ModelParameterGroup cn="String=Initial Time" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Compartment Sizes" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment]" value="1" type="Compartment" simulationType="fixed"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Species Values" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[V]" value="6.148605814997e+22" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[glucose]" value="0" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[biomass]" value="1.261662598104928e+23" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1605618174614747" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="9.6570702836511249" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="2558580.3666315973" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="4.0810790125688552" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="2.2510492775986877" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="4.2532177777976781" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glucose]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glufeed]" value="415" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qp]" value="0" type="ModelValue" simulationType="assignment"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Kinetic Parameters" type="Group">
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass],ParameterGroup=Parameters,Parameter=mu" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[mu],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=c_glufeed" value="415" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[c_glufeed],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=qs" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qs],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine],ParameterGroup=Parameters,Parameter=qp" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qp],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+        </ModelParameterGroup>
+      </ModelParameterSet>
+      <ModelParameterSet key="ModelParameterSet_574" name="PE: 2018-11-28 18:47:32 Exp: Original">
+        <ModelParameterGroup cn="String=Initial Time" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Compartment Sizes" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment]" value="1" type="Compartment" simulationType="fixed"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Species Values" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[V]" value="6.148605814997e+22" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[glucose]" value="0" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[biomass]" value="1.261662598104928e+23" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1605618174614747" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="10" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="9.6570702836511249" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="2558580.3666315973" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="4.0810790125688552" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="2.2510492775986877" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="4.2532177777976781" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glucose]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glufeed]" value="415" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qp]" value="0" type="ModelValue" simulationType="assignment"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Kinetic Parameters" type="Group">
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass],ParameterGroup=Parameters,Parameter=mu" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[mu],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=c_glufeed" value="415" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[c_glufeed],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=qs" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qs],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine],ParameterGroup=Parameters,Parameter=qp" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qp],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+        </ModelParameterGroup>
+      </ModelParameterSet>
+      <ModelParameterSet key="ModelParameterSet_575" name="PE: 2018-11-28 18:47:32 Exp: Experiment">
+        <ModelParameterGroup cn="String=Initial Time" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Compartment Sizes" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment]" value="1" type="Compartment" simulationType="fixed"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Species Values" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[V]" value="6.148605814997e+22" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[glucose]" value="0" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[biomass]" value="1.261662598104928e+23" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1244432012440504" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="8.2149395345198606" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="10" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6911624.1395791071" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="3.9481639467355789" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="2.7057491468569652" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="5.0284628913663099" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glucose]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glufeed]" value="415" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qp]" value="0" type="ModelValue" simulationType="assignment"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Kinetic Parameters" type="Group">
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass],ParameterGroup=Parameters,Parameter=mu" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[mu],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=c_glufeed" value="415" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[c_glufeed],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=qs" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qs],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine],ParameterGroup=Parameters,Parameter=qp" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qp],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+        </ModelParameterGroup>
+      </ModelParameterSet>
+      <ModelParameterSet key="ModelParameterSet_576" name="PE: 2018-11-28 18:52:14 Exp: Original">
+        <ModelParameterGroup cn="String=Initial Time" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Compartment Sizes" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment]" value="1" type="Compartment" simulationType="fixed"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Species Values" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[V]" value="6.148605814997e+22" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[glucose]" value="0" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[biomass]" value="1.261662598104928e+23" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="1.1244432012440504" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="8.2149395345198606" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="10" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="6911624.1395791071" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="3.9481639467355789" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="2.7057491468569652" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="5.0284628913663099" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glucose]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glufeed]" value="415" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qp]" value="0" type="ModelValue" simulationType="assignment"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Kinetic Parameters" type="Group">
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass],ParameterGroup=Parameters,Parameter=mu" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[mu],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=c_glufeed" value="415" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[c_glufeed],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=qs" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qs],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine],ParameterGroup=Parameters,Parameter=qp" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qp],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+        </ModelParameterGroup>
+      </ModelParameterSet>
+      <ModelParameterSet key="ModelParameterSet_577" name="PE: 2018-11-28 18:52:14 Exp: Experiment">
+        <ModelParameterGroup cn="String=Initial Time" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Compartment Sizes" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment]" value="1" type="Compartment" simulationType="fixed"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Species Values" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[V]" value="6.148605814997e+22" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[glucose]" value="0" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[biomass]" value="1.261662598104928e+23" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="0.70450662846211665" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="4.6033722674126185" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="8.3158975142942424" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3154460.365832977" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="3.3554715774723669" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="3.2359977658326589" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="6.074983965224618" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glucose]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glufeed]" value="415" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qp]" value="0" type="ModelValue" simulationType="assignment"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Kinetic Parameters" type="Group">
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass],ParameterGroup=Parameters,Parameter=mu" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[mu],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=c_glufeed" value="415" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[c_glufeed],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=qs" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qs],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine],ParameterGroup=Parameters,Parameter=qp" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qp],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+        </ModelParameterGroup>
+      </ModelParameterSet>
+      <ModelParameterSet key="ModelParameterSet_0" name="PE: 2018-11-28 18:52:56 Exp: Original">
+        <ModelParameterGroup cn="String=Initial Time" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Compartment Sizes" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment]" value="1" type="Compartment" simulationType="fixed"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Species Values" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[V]" value="6.148605814997e+22" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[glucose]" value="0" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[biomass]" value="1.261662598104928e+23" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="0.70450662846211665" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="4.6033722674126185" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="8.3158975142942424" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="3154460.365832977" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="3.3554715774723669" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="3.2359977658326589" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="6.074983965224618" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glucose]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[c_glufeed]" value="415" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs]" value="0" type="ModelValue" simulationType="assignment"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qp]" value="0" type="ModelValue" simulationType="assignment"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Kinetic Parameters" type="Group">
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[EqVolume],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_biomass],ParameterGroup=Parameters,Parameter=mu" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[mu],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=Fin" value="0.0003852076250063224" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[Fin],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=c_glufeed" value="415" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[c_glufeed],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_glucose],ParameterGroup=Parameters,Parameter=qs" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qs],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+          <ModelParameterGroup cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine]" type="Reaction">
+            <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Reactions[eq_serine],ParameterGroup=Parameters,Parameter=qp" value="0" type="ReactionParameter" simulationType="assignment">
+              <InitialExpression>
+                &lt;CN=Root,Model=IDModel_1,Vector=Values[qp],Reference=InitialValue>
+              </InitialExpression>
+            </ModelParameter>
+          </ModelParameterGroup>
+        </ModelParameterGroup>
+      </ModelParameterSet>
+      <ModelParameterSet key="ModelParameterSet_2" name="PE: 2018-11-28 18:52:56 Exp: Experiment">
+        <ModelParameterGroup cn="String=Initial Time" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1" value="12.5" type="Model" simulationType="time"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Compartment Sizes" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment]" value="1" type="Compartment" simulationType="fixed"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Species Values" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[V]" value="6.148605814997e+22" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[glucose]" value="0" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[biomass]" value="1.261662598104928e+23" type="Species" simulationType="reactions"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Compartments[default_compartment],Vector=Metabolites[serine]" value="0" type="Species" simulationType="reactions"/>
+        </ModelParameterGroup>
+        <ModelParameterGroup cn="String=Initial Global Quantities" type="Group">
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_max]" value="0.70326548992032589" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks]" value="4.6224712090278954" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs]" value="10" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Ki]" value="1336.278261940947" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[qs_max]" value="3.9410312208197675" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[alpha]" value="4.4100404855784454" type="ModelValue" simulationType="fixed"/>
+          <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[beta]" value="8.2945042412396148" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[F0]" value="0.29999999999999999" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[mu_set]" value="0.02" type="ModelValue" simulationType="fixed"/>
           <ModelParameter cn="CN=Root,Model=IDModel_1,Vector=Values[Fin]" value="0.0003852076250063224" type="ModelValue" simulationType="assignment"/>
@@ -40783,7 +41351,7 @@
       <StateTemplateVariable objectReference="ModelValue_11"/>
     </StateTemplate>
     <InitialState type="initialState">
-      12.5 6.148605814997e+22 0 1.261662598104928e+23 0 0.0003852076250063224 0 0 0 0 1 1.1209213447710065 10 19.151639640165321 6122505.6376496935 7.8008236236882373 4.0140409607516787 7.725022574468797 0.29999999999999999 0.02 415 
+      12.5 6.148605814997e+22 0 1.261662598104928e+23 0 0.0003852076250063224 0 0 0 0 1 0.70326548992032589 4.6224712090278954 10 1336.278261940947 3.9410312208197675 4.4100404855784454 8.2945042412396148 0.29999999999999999 0.02 415 
     </InitialState>
   </Model>
   <ListOfTasks>
@@ -40875,7 +41443,7 @@
             <Parameter name="ObjectCN" type="cn" value="CN=Root,Model=IDModel_1,Vector=Values[alpha],Reference=InitialValue"/>
             <Parameter name="LowerBound" type="cn" value="0"/>
             <Parameter name="UpperBound" type="cn" value="10"/>
-            <Parameter name="StartValue" type="float" value="4.0140409607516787"/>
+            <Parameter name="StartValue" type="float" value="4.4100404855784454"/>
             <ParameterGroup name="Affected Experiments">
             </ParameterGroup>
             <ParameterGroup name="Affected Cross Validation Experiments">
@@ -40885,7 +41453,7 @@
             <Parameter name="ObjectCN" type="cn" value="CN=Root,Model=IDModel_1,Vector=Values[beta],Reference=InitialValue"/>
             <Parameter name="LowerBound" type="cn" value="0"/>
             <Parameter name="UpperBound" type="cn" value="10"/>
-            <Parameter name="StartValue" type="float" value="7.725022574468797"/>
+            <Parameter name="StartValue" type="float" value="8.2945042412396148"/>
             <ParameterGroup name="Affected Experiments">
             </ParameterGroup>
             <ParameterGroup name="Affected Cross Validation Experiments">
@@ -40893,36 +41461,6 @@
           </ParameterGroup>
           <ParameterGroup name="FitItem">
             <Parameter name="ObjectCN" type="cn" value="CN=Root,Model=IDModel_1,Vector=Values[Ks_qs],Reference=InitialValue"/>
-            <Parameter name="LowerBound" type="cn" value="0"/>
-            <Parameter name="UpperBound" type="cn" value="100"/>
-            <Parameter name="StartValue" type="float" value="19.151639640165321"/>
-            <ParameterGroup name="Affected Experiments">
-            </ParameterGroup>
-            <ParameterGroup name="Affected Cross Validation Experiments">
-            </ParameterGroup>
-          </ParameterGroup>
-          <ParameterGroup name="FitItem">
-            <Parameter name="ObjectCN" type="cn" value="CN=Root,Model=IDModel_1,Vector=Values[qs_max],Reference=InitialValue"/>
-            <Parameter name="LowerBound" type="cn" value="0"/>
-            <Parameter name="UpperBound" type="cn" value="10"/>
-            <Parameter name="StartValue" type="float" value="7.8008236236882373"/>
-            <ParameterGroup name="Affected Experiments">
-            </ParameterGroup>
-            <ParameterGroup name="Affected Cross Validation Experiments">
-            </ParameterGroup>
-          </ParameterGroup>
-          <ParameterGroup name="FitItem">
-            <Parameter name="ObjectCN" type="cn" value="CN=Root,Model=IDModel_1,Vector=Values[Ki],Reference=InitialValue"/>
-            <Parameter name="LowerBound" type="cn" value="0"/>
-            <Parameter name="UpperBound" type="cn" value="10000000"/>
-            <Parameter name="StartValue" type="float" value="6122505.6376496935"/>
-            <ParameterGroup name="Affected Experiments">
-            </ParameterGroup>
-            <ParameterGroup name="Affected Cross Validation Experiments">
-            </ParameterGroup>
-          </ParameterGroup>
-          <ParameterGroup name="FitItem">
-            <Parameter name="ObjectCN" type="cn" value="CN=Root,Model=IDModel_1,Vector=Values[Ks],Reference=InitialValue"/>
             <Parameter name="LowerBound" type="cn" value="0"/>
             <Parameter name="UpperBound" type="cn" value="10"/>
             <Parameter name="StartValue" type="float" value="10"/>
@@ -40932,10 +41470,40 @@
             </ParameterGroup>
           </ParameterGroup>
           <ParameterGroup name="FitItem">
+            <Parameter name="ObjectCN" type="cn" value="CN=Root,Model=IDModel_1,Vector=Values[qs_max],Reference=InitialValue"/>
+            <Parameter name="LowerBound" type="cn" value="0"/>
+            <Parameter name="UpperBound" type="cn" value="10"/>
+            <Parameter name="StartValue" type="float" value="3.9410312208197675"/>
+            <ParameterGroup name="Affected Experiments">
+            </ParameterGroup>
+            <ParameterGroup name="Affected Cross Validation Experiments">
+            </ParameterGroup>
+          </ParameterGroup>
+          <ParameterGroup name="FitItem">
+            <Parameter name="ObjectCN" type="cn" value="CN=Root,Model=IDModel_1,Vector=Values[Ki],Reference=InitialValue"/>
+            <Parameter name="LowerBound" type="cn" value="0"/>
+            <Parameter name="UpperBound" type="cn" value="10000000"/>
+            <Parameter name="StartValue" type="float" value="1336.278261940947"/>
+            <ParameterGroup name="Affected Experiments">
+            </ParameterGroup>
+            <ParameterGroup name="Affected Cross Validation Experiments">
+            </ParameterGroup>
+          </ParameterGroup>
+          <ParameterGroup name="FitItem">
+            <Parameter name="ObjectCN" type="cn" value="CN=Root,Model=IDModel_1,Vector=Values[Ks],Reference=InitialValue"/>
+            <Parameter name="LowerBound" type="cn" value="0"/>
+            <Parameter name="UpperBound" type="cn" value="10"/>
+            <Parameter name="StartValue" type="float" value="4.6224712090278954"/>
+            <ParameterGroup name="Affected Experiments">
+            </ParameterGroup>
+            <ParameterGroup name="Affected Cross Validation Experiments">
+            </ParameterGroup>
+          </ParameterGroup>
+          <ParameterGroup name="FitItem">
             <Parameter name="ObjectCN" type="cn" value="CN=Root,Model=IDModel_1,Vector=Values[mu_max],Reference=InitialValue"/>
             <Parameter name="LowerBound" type="cn" value="0"/>
             <Parameter name="UpperBound" type="cn" value="10"/>
-            <Parameter name="StartValue" type="float" value="1.1209213447710065"/>
+            <Parameter name="StartValue" type="float" value="0.70326548992032589"/>
             <ParameterGroup name="Affected Experiments">
             </ParameterGroup>
             <ParameterGroup name="Affected Cross Validation Experiments">
@@ -40952,7 +41520,7 @@
             <Parameter name="Key" type="key" value="Experiment_0"/>
             <Parameter name="File Name" type="file" value="parameter_estimation/output_test.csv"/>
             <Parameter name="First Row" type="unsignedInteger" value="1"/>
-            <Parameter name="Last Row" type="unsignedInteger" value="32"/>
+            <Parameter name="Last Row" type="unsignedInteger" value="12"/>
             <Parameter name="Experiment Type" type="unsignedInteger" value="1"/>
             <Parameter name="Normalize Weights per Experiment" type="bool" value="1"/>
             <Parameter name="Separator" type="string" value=","/>
