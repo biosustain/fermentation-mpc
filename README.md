@@ -100,6 +100,7 @@ mu = data_frame_selected_values['Bioreactor 24 - CER'] / tCER  # [1/h]
 #### Parameter estimation
 For the parameter estimation part, the models has to be saved as a SBML file, and then uploaded within Copasi.
 You have make an estimation task before running this program, and choose which parameters you want to estimate. In this case it worked well with estimating all parameters.
+Then you have to save the file as a .cps file.
 In the program you can then set the lower and upper bounds.
 
 ```
