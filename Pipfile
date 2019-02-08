@@ -23,6 +23,7 @@ xlrd = "*"
 beautifulsoup = "*"
 lxml = "*"
 pathlib = "*"
+click = "*"
 
 [dev-packages]
 

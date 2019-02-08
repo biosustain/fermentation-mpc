@@ -16,7 +16,7 @@ def parameter_estimation_online_fedbatch(experimental_data1,
                          parameter_5_lower_bound,parameter_5_upper_bound,
                          parameter_6_lower_bound,parameter_6_upper_bound,
                          parameter_7_lower_bound,parameter_7_upper_bound,
-                         model_for_parest, number_of_first_row, number_of_last_row):
+                         model_for_parest, number_of_first_row, number_of_last_row, path_mpc):
     '''
     Parameters estimation in copasi
 
@@ -44,13 +44,13 @@ def parameter_estimation_online_fedbatch(experimental_data1,
 
     #  From cps to xml, if it is not already in an xml format.
     try:
-        os.rename('/Users/s144510/Documents/Bachelorproject/fermentation-mpc/' + model_for_parest + '.cps',
-                  '/Users/s144510/Documents/Bachelorproject/fermentation-mpc/' + model_for_parest + '.xml')
+        os.rename(path_mpc + model_for_parest + '.cps',
+                  path_mpc + model_for_parest + '.xml')
     except OSError:
         pass
 
-    soup = BeautifulSoup(open('/Users/s144510/Documents/Bachelorproject/fermentation-mpc/' + model_for_parest + '.xml', 'r'), 'xml')
-    infile = open('/Users/s144510/Documents/Bachelorproject/fermentation-mpc/' + model_for_parest + '.xml', "w")
+    soup = BeautifulSoup(open(path_mpc + model_for_parest + '.xml', 'r'), 'xml')
+    infile = open(path_mpc + model_for_parest + '.xml', "w")
 
 
     # File name and first and second row of experiment
@@ -114,20 +114,20 @@ def parameter_estimation_online_fedbatch(experimental_data1,
     infile.close()
 
     # From xml to cps
-    os.rename('/Users/s144510/Documents/Bachelorproject/fermentation-mpc/' + model_for_parest + '.xml',
-              '/Users/s144510/Documents/Bachelorproject/fermentation-mpc/' + model_for_parest + '.cps')
+    os.rename(path_mpc + model_for_parest + '.xml',
+              path_mpc + model_for_parest + '.cps')
 
     # Run the parameterestimation in Copasi for the model from the terminal
     # Find the path to CopasiSE, it could be the path given below in the comment
     # os.system("/Applications/COPASI/CopasiSE model_mu.cps --save model_mu.cps")
-    os.system("/Users/s144510/Documents/Bachelorproject/fermentation-mpc/CopasiSE " +
+    os.system(path_mpc + "/CopasiSE " +
               model_for_parest + '.cps --save ' + model_for_parest + ".cps")
 
     # Get the results
-    os.rename('/Users/s144510/Documents/Bachelorproject/fermentation-mpc/' + model_for_parest + '.cps',
-              '/Users/s144510/Documents/Bachelorproject/fermentation-mpc/' + model_for_parest + '.xml')
+    os.rename(path_mpc + model_for_parest + '.cps',
+              path_mpc + model_for_parest + '.xml')
 
-    soup = BeautifulSoup(open('/Users/s144510/Documents/Bachelorproject/fermentation-mpc/' + model_for_parest + '.xml', 'r'), 'xml')
+    soup = BeautifulSoup(open(path_mpc + model_for_parest + '.xml', 'r'), 'xml')
 
     result_parameter_1 = [s for s in soup.find_all('ParameterGroup') if s["name"] == "FitItem"][0]
     result_parameter_1 = [s for s in result_parameter_1.find_all('Parameter') if s['name'] == "StartValue"][0]
@@ -159,8 +159,8 @@ def parameter_estimation_online_fedbatch(experimental_data1,
 
 
     infile.close()
-    os.rename('/Users/s144510/Documents/Bachelorproject/fermentation-mpc/' + model_for_parest + '.xml',
-              '/Users/s144510/Documents/Bachelorproject/fermentation-mpc/' + model_for_parest + '.cps')
+    os.rename(path_mpc + model_for_parest + '.xml',
+              path_mpc + model_for_parest + '.cps')
 
     return alpha, beta, Ks_qs, qs_max, Ki, Ks, mu_max
 
