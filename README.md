@@ -38,7 +38,7 @@ This was made in Jupiter Notebook using Python version 3 from Anaconda.
 ## Usage of the program
 
 One can choose to use the modelprediction_CO2.py for only prediction or modelpredictionfeed_CO2,
-which can predict and provide an optimal feeding strategy. Herunder example of how to use modelpredictionfeed_CO2.py is described.
+which can predict and provide an optimal feeding strategy. Below there is an example of how to use modelpredictionfeed_CO2.py.
 
 #### Before running the script
 
